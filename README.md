@@ -1,4 +1,4 @@
-# CatsAnsChaos
+# Chaos and Cats
 A course on Mathematical Modelling and Scientific Visualization
 
 [Web Page](https://eltaurus-lt.github.io/ChaosAndCats/)
