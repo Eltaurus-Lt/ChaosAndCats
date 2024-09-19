@@ -3,26 +3,119 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
 :root {
-    --section-col: white;
-    --subsection-col: slategray;
-    --header-col: white;
-    --subheader-col: #888;
+    --section-col: #eee;white;
+    --subsection-col: #1c2027d0;slategray;
+    --header-col: #eee;white;
+    --subheader-col: white;#1c2027;#607080;
     --text-col: #a2a2a4;
     --bg-col: #383b43;
     --substrate-col: #1c2027;
+    --border-col: #556065b0;#607080b0;
+    --hover-col: #2b2f37;#484b53;
+
+    --minwidth: 420px;
+    --maxwidth: 860px;
 }
 
-.seo-only {
+.off {
     display: none;
+}
+
+
+
+.header {
+    position: fixed;
+    top: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 5em;
+    grid-template-rows: 100%;
+
+    height: 1.5em;
+    width: calc(100% - 2 * 2em);
+    padding: .5em 2em;
+    min-width: var(--minwidth);
+    max-width: var(--maxwidth); 
+    margin-left: -2em;
+
+
+    border-bottom: 1px var(--border-col) solid;
+    outline-offset: -5px;
+
+    background: var(--bg-col);
+    box-shadow: 5px 0px 15px #0005;
+}
+
+
+.header .button {
+    text-align: center;
+    min-width: max-content;
+}
+
+.header .button,
+#language-selector {
+
+    background: var(--bg-col);
+    color: var(--text-col);
+    width: 5em;
+    box-shadow: 0 0 10px -5px black inset;
+    border: none;
+    padding: .5em;
+    position: relative;
+    border-radius: 4px;
+
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    font-family: "Noto Sans", Arial, sans-serif;
+    font-size: 13px;
+}
+
+.header .button:focus,
+.header .button:hover,
+#language-selector:focus,
+#language-selector:hover {
+ //   color: var(--header-col);
+    background: var(--hover-col);
+}
+.header .button:active,
+#language-selector:focus {
+    box-shadow: 0 0 8px -2px black inset;
+    outline: 1px solid #0002 !important;
+}
+
+#language-selector:focus-visible {
+    outline: none;
+}
+
+select:focus > option:checked { 
+    display: none; !important;
+}
+
+#language-selector {
+    grid-column: 5;
+}
+
+.header .button.fwd {
+    grid-column: -1;
+    justify-self: right;
+}
+.header .button.prg {
+    grid-column: 3;
+    justify-self: center;
 }
 
 html {
     background: var(--substrate-col);
 }
 
+
 body {
-    min-width: 420px;
-    max-width: 860px;
+    min-width: var(--minwidth);
+    max-width: var(--maxwidth);
     margin: 0 auto;
 
     padding: 2em;
@@ -31,7 +124,7 @@ body {
 
     box-shadow: 5px 0px 40px #0005;
 
-    outline: 1px var(--subheader-col) solid;
+    outline: 1px var(--border-col) solid;
     outline-offset: -5px;
 
     font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", Times, serif;
@@ -39,7 +132,7 @@ body {
     color: var(--text-col);
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5 {
     font-family: "Noto Sans", Arial, sans-serif;
 }
 
@@ -53,13 +146,14 @@ h1 {
 h2 {
     color: var(--subsection-col);
     font-weight: 500;
-    margin-top: 1.66em;
+    font-size: 2em;
+    margin-top: 1.5em;
 }
 
 p {  
     text-align: justify;
     text-justify: inter-word;
-    margin-bottom: 2em;
+    margin-bottom: 2.5em;
 }
 
 a {
@@ -68,12 +162,16 @@ a {
 
 
 
-h1:not(:first-of-type) {
+h1:first-of-type {
+    margin-top: 1.75em;
+    margin-bottom: 0;
+}
+h1 {
     margin-top: 5em;
 }
 
-h1, h2, h3, h4, h5 {
-    text-shadow: 2px 2px 2px #0005;
+h1, h3 {
+   text-shadow: 2px 1px 2px #0005;
 }
 
 a:has(h3, h5) {
@@ -93,6 +191,10 @@ a h3 {
     text-decoration: underline;
 }
 
+h5 {
+    padding-left: .5em;
+}
+
 h4, h5 {
     margin: 0;
     width: max-content;
@@ -100,5 +202,5 @@ h4, h5 {
     color: var(--subheader-col);
 
     font-family: "Titillium Web", Roboto, sans-serif;
-    font-weight: 400;
+    font-weight: 300;
 }
