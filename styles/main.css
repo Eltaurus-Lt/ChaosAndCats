@@ -20,7 +20,8 @@ body {
 
     box-shadow: 5px 0px 40px #0005;
 
-    border: 1px black solid;
+    outline: 1px var(--subheader-col) solid;
+    outline-offset: -5px;
 }
 
 h1 {
