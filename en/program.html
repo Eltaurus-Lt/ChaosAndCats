@@ -12,7 +12,14 @@
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="icon" type="image/svg+xml" href="">
 </head>
-<body>
+<body rnd="0">
+
+<script>
+  const variantsN = 2;
+  var rnd = localStorage.getItem("catsRND") || Math.floor(Math.random() * variantsN);
+  document.body.setAttribute("rnd", rnd);
+  localStorage.setItem("catsRND", (parseInt(rnd) + 1) % variantsN);
+</script>
 
 <div class="header">
   <select id="language-selector">
@@ -32,26 +39,37 @@
     <h3>1. Mathematical Modeling</h3>
     <h5>Wolfram Mathematica</h5>
   </a>
-  <p>
-  Entering special characters and formuli. Everything is an expression (operators, functions, data types). Symbolic computation mechanism. 
+  <div class="section">
+    <img rnd="0" src="../imgs/program/1-wheel.gif">
+    <img rnd="1" src="../imgs/program/1-ball.gif">
+    <p>
+    Entering special characters and formuli. Everything is an expression (operators, functions, data types). Symbolic computation mechanism. 
 Patterns and transformation rules, assigning variables and functions. Functional programming, listable functions, functional operations. Local transformation rules. Solving algebraic and differential equations. Plots, graphics objects, interactive outputs. Animation, spline animation, and exporting frame sequences.
-  </p>
+    </p>
+  </div>
 
   <a href="chapter-02.html">
     <h3>2. Raster Graphics</h3>
     <h5>Adobe Phostoshop</h5>
   </a>
-  <p>
-  Интерфейс программы, панели Navigator, History, Layers и Tools. Быстрые клавиши для навигации и работы со слоями в основном окне документа. Базовые средства рисования: инструменты Brush и Eraser, настройки функции Fill, рисование стрелочек. Способы изменения размеров изображения, функция Free Transform. Выделение областей изображения, инструменты Marquee и Polygonal Lasso. Функции выравнивания и распределения слоёв. Неразрушающее редактирование. Пути. Растровые, векторные и обтравочные маски. Каналы RGB изображения. Настройки яркости: функции Curves и Levels, гистограмма, инструменты Dodge и Burn, корректирующие слои. Инструменты Stamp и Healing Brush, опция Content-Aware Fill. Нелинейная история, инструмент History Brush. Автоматизация действий: панель Actions, функции Batch и Variables, скрипты.
-  </p>
+  <div class="section">
+    <img rnd="0" src="../imgs/program/2-wheel.gif">
+    <img rnd="1" src="../imgs/program/2-ball.gif">
+    <p>
+    Интерфейс программы, панели Navigator, History, Layers и Tools. Быстрые клавиши для навигации и работы со слоями в основном окне документа. Базовые средства рисования: инструменты Brush и Eraser, настройки функции Fill, рисование стрелочек. Способы изменения размеров изображения, функция Free Transform. Выделение областей изображения, инструменты Marquee и Polygonal Lasso. Функции выравнивания и распределения слоёв. Неразрушающее редактирование. Пути. Растровые, векторные и обтравочные маски. Каналы RGB изображения. Настройки яркости: функции Curves и Levels, гистограмма, инструменты Dodge и Burn, корректирующие слои. Инструменты Stamp и Healing Brush, опция Content-Aware Fill. Нелинейная история, инструмент History Brush. Автоматизация действий: панель Actions, функции Batch и Variables, скрипты.
+    </p>
+  </div>
 
   <a href="chapter-03.html">
     <h3>3. Vector Graphics</h3>
     <h5>Adobe Illustrator</h5>
   </a>
-  <p>
-  Математические основы векторной графики, кривые Безье́. Интерфейс Adobe Illustrator. Работа со сплайнами, инструменты Pen и Shape Builder, панель Pathfinder. Особенности панели Layers, режим изоляции. Настройки внешнего вида векторных объектов, выбор группы объектов по общему признаку. Векторные маски. Работа с текстовыми объектами. Комбинирование векторных и растровых изображений в Photoshop и Illustrator, smart-объекты и трассировка, копирование и вставка объектов между приложениями Adobe.
-  </p>
+  <div class="section">
+    <img src="../imgs/program/3-cat.png">
+    <p>
+    Математические основы векторной графики, кривые Безье́. Интерфейс Adobe Illustrator. Работа со сплайнами, инструменты Pen и Shape Builder, панель Pathfinder. Особенности панели Layers, режим изоляции. Настройки внешнего вида векторных объектов, выбор группы объектов по общему признаку. Векторные маски. Работа с текстовыми объектами. Комбинирование векторных и растровых изображений в Photoshop и Illustrator, smart-объекты и трассировка, копирование и вставка объектов между приложениями Adobe.
+    </p>
+  </div>
 
 
 
@@ -61,18 +79,26 @@ Patterns and transformation rules, assigning variables and functions. Functional
     <h3>4A. 3D Graphics and Animation</h3>
     <h5>Unreal Engine</h5>
   </a>
-  <p>
-  Интерфейс программы, навигация во Viewport, панели Outlines, Details, Content Drawer, основные инструменты, создание базовых объектов и сцен. Оптимизация для ПК с низкими характеристиками. Левая система координат!, относительная привязка объектов. Анимация по ключевым кадрам, панель Sequencer. Настройка параметров рендера и экспорт видео, окно Movie Render Queue. Акторы, программирование поведения с помощью Blueprint, симуляция динамических систем в реальном времени. Импорт анимации, таблиц данных и моделей из Wolfram Mathematica. Импорт формул LaTeX, отображение текста и математических символов в 2D и 3D, виджеты. Визуализация траекторий с помощью системы Niagara. Параметры материалов, настройка освещения и камеры, Post Process Volume.
+  <div class="section">
+    <img rnd="0" src="../imgs/program/4A-wheel.gif">
+    <img rnd="1" src="../imgs/program/4A-ball.gif">
+    <p>
+    Интерфейс программы, навигация во Viewport, панели Outlines, Details, Content Drawer, основные инструменты, создание базовых объектов и сцен. Оптимизация для ПК с низкими характеристиками. Левая система координат!, относительная привязка объектов. Анимация по ключевым кадрам, панель Sequencer. Настройка параметров рендера и экспорт видео, окно Movie Render Queue. Акторы, программирование поведения с помощью Blueprint, симуляция динамических систем в реальном времени. Импорт анимации, таблиц данных и моделей из Wolfram Mathematica. Импорт формул LaTeX, отображение текста и математических символов в 2D и 3D, виджеты. Визуализация траекторий с помощью системы Niagara. Параметры материалов, настройка освещения и камеры, Post Process Volume.
 <!-- 3d стрелочки, спавн точек и сплайнов по таблицам данных -->
-  </p>
+    </p>
+  </div>
 
   <a href="chapter-B.html">
     <h3>4B. Generative Neural Networks</h3>
     <h5>Stable Diffusion</h5>
   </a>
-  <p>
+  <div class="section">
+    <img rnd="0" src="../imgs/program/4B-wheel.gif">
+    <img rnd="1" src="../imgs/program/4B-cat.gif">
+    <p>
   Параметризация функционального пространства, универсальная теорема аппроксимации. Принципы обучения нейросетей для классификации и обработки изображений. Автокодировщики и их применение для анализа динамических систем. Конволюционные нейросети (CNN), нейросети для улучшения качества изображений и видео. Нейросети для генерации изображений: вариационные автокодировщики (VAE), генеративно-состязательные сети (GAN), дифузионные модели. Работа со Stable Diffusion в Google Colab.  
-  </p>
+    </p>
+  </div>
 
   <a href="chapter-C.html">
     <h3>4C. Web and Interactive design</h3>

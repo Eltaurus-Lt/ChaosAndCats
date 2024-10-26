@@ -21,7 +21,17 @@
     display: none;
 }
 
+::selection {
+    color: white;
+    background-color: #884fd0;
+}
 
+body[rnd="1"] [rnd="0"],
+body[rnd="2"] [rnd="0"],
+body:not([rnd="1"]) [rnd="1"],
+body:not([rnd="2"]) [rnd="2"] {
+    display: none;
+}
 
 .header {
     position: fixed;
@@ -153,7 +163,22 @@ h2 {
 p {  
     text-align: justify;
     text-justify: inter-word;
-    margin-bottom: 2.5em;
+}
+
+.section {
+    margin: 1em 0 2.5em;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1em;
+}
+
+.section p {
+    margin: 0;
+}
+
+.section img {
+    margin-top: .42em;
+    border-radius: 3px;
 }
 
 a {
