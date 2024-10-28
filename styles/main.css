@@ -176,7 +176,8 @@ p {
     margin: 0;
 }
 
-.section img {
+.section img,
+.section video {
     margin-top: .42em;
     border-radius: 3px;
 }
