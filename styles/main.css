@@ -13,7 +13,6 @@
     --border-col: #556065b0;#607080b0;
     --hover-col: #2b2f37;#484b53;
 
-    --minwidth: 300px;
     --maxwidth: 860px;
 }
 
@@ -43,7 +42,7 @@ body:not([rnd="2"]) [rnd="2"] {
     height: 1.5em;
     width: calc(100% - 2 * 2em);
     padding: .5em 2em;
-    min-width: var(--minwidth);
+
     max-width: var(--maxwidth); 
     margin-left: -2em;
 
