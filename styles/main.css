@@ -168,8 +168,13 @@ p {
 .section {
     margin: 1em 0 2.5em;
     display: grid;
-    grid-template-columns: 180px 1fr;
     gap: 1em;
+}
+
+@media (min-width: 45em) {
+    .section {
+        grid-template-columns: min-content 1fr;
+    }
 }
 
 .section p {
@@ -178,6 +183,7 @@ p {
 
 .section img,
 .section video {
+    width: 180px;
     margin-top: .42em;
     border-radius: 3px;
 }
@@ -203,6 +209,7 @@ h1, h3 {
 a:has(h3, h5) {
     display: block;
     width: max-content;
+    max-width: 100%;
     text-decoration: none;
 }
 
@@ -211,6 +218,7 @@ h3 {
     margin-bottom: 0;
     color: var(--header-col);
     width: max-content;
+    max-width: 100%;
 }
 
 a h3 {
