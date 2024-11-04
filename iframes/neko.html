@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Neko</title>
+  <meta name="author" content="Eltaurus">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/svg+xml" href="">
+
+
+  <style>
+    html, body {
+      height: 100px;
+      width: 100px;
+      overflow: hidden;
+    }
+  </style>
+
+
+  <style>
+
+ :root {
+  --neko-still: url("chrome-extension://__MSG_@@extension_id__/nekos/still.gif"), url("nekos/still.gif"), url("https://webneko.net/white/still.gif");
+  --neko-alert: url("chrome-extension://__MSG_@@extension_id__/nekos/alert.gif"), url("nekos/alert.gif"), url("https://webneko.net/white/alert.gif");
+  --neko-yawn: url("chrome-extension://__MSG_@@extension_id__/nekos/yawn.gif"), url("nekos/yawn.gif"), url("https://webneko.net/white/yawn.gif");
+  
+  --neko-run-north-1: url("chrome-extension://__MSG_@@extension_id__/nekos/nrun1.gif"), url("nekos/nrun1.gif"), url("https://webneko.net/white/nrun1.gif");
+  --neko-run-north-2: url("chrome-extension://__MSG_@@extension_id__/nekos/nrun2.gif"), url("nekos/nrun2.gif"), url("https://webneko.net/white/nrun2.gif");
+  --neko-run-northeast-1: url("chrome-extension://__MSG_@@extension_id__/nekos/nerun1.gif"), url("nekos/nerun1.gif"), url("https://webneko.net/white/nerun1.gif");
+  --neko-run-northeast-2: url("chrome-extension://__MSG_@@extension_id__/nekos/nerun2.gif"), url("nekos/nerun2.gif"), url("https://webneko.net/white/nerun2.gif");
+  --neko-run-east-1: url("chrome-extension://__MSG_@@extension_id__/nekos/erun1.gif"), url("nekos/erun1.gif"), url("https://webneko.net/white/erun1.gif");
+  --neko-run-east-2: url("chrome-extension://__MSG_@@extension_id__/nekos/erun2.gif"), url("nekos/erun2.gif"), url("https://webneko.net/white/erun2.gif");
+  --neko-run-southeast-1: url("chrome-extension://__MSG_@@extension_id__/nekos/serun1.gif"), url("nekos/serun1.gif"), url("https://webneko.net/white/serun1.gif");
+  --neko-run-southeast-2: url("chrome-extension://__MSG_@@extension_id__/nekos/serun2.gif"), url("nekos/serun2.gif"), url("https://webneko.net/white/serun2.gif");
+  --neko-run-south-1: url("chrome-extension://__MSG_@@extension_id__/nekos/srun1.gif"), url("nekos/srun1.gif"), url("https://webneko.net/white/srun1.gif");
+  --neko-run-south-2: url("chrome-extension://__MSG_@@extension_id__/nekos/srun2.gif"), url("nekos/srun2.gif"), url("https://webneko.net/white/srun2.gif");
+  --neko-run-southwest-1: url("chrome-extension://__MSG_@@extension_id__/nekos/swrun1.gif"), url("nekos/swrun1.gif"), url("https://webneko.net/white/swrun1.gif");
+  --neko-run-southwest-2: url("chrome-extension://__MSG_@@extension_id__/nekos/swrun2.gif"), url("nekos/swrun2.gif"), url("https://webneko.net/white/swrun2.gif");
+  --neko-run-west-1: url("chrome-extension://__MSG_@@extension_id__/nekos/wrun1.gif"), url("nekos/wrun1.gif"), url("https://webneko.net/white/wrun1.gif");
+  --neko-run-west-2: url("chrome-extension://__MSG_@@extension_id__/nekos/wrun2.gif"), url("nekos/wrun2.gif"), url("https://webneko.net/white/wrun2.gif");
+  --neko-run-northwest-1: url("chrome-extension://__MSG_@@extension_id__/nekos/nwrun1.gif"), url("nekos/nwrun1.gif"), url("https://webneko.net/white/nwrun1.gif");
+  --neko-run-northwest-2: url("chrome-extension://__MSG_@@extension_id__/nekos/nwrun2.gif"), url("nekos/nwrun2.gif"), url("https://webneko.net/white/nwrun2.gif");
+  
+  --neko-scratch-north-1: url("chrome-extension://__MSG_@@extension_id__/nekos/nscratch1.gif"), url("nekos/nscratch1.gif"), url("https://webneko.net/white/nscratch1.gif");
+  --neko-scratch-north-2: url("chrome-extension://__MSG_@@extension_id__/nekos/nscratch2.gif"), url("nekos/nscratch2.gif"), url("https://webneko.net/white/nscratch2.gif");
+  --neko-scratch-east-1: url("chrome-extension://__MSG_@@extension_id__/nekos/escratch1.gif"), url("nekos/escratch1.gif"), url("https://webneko.net/white/escratch1.gif");
+  --neko-scratch-east-2: url("chrome-extension://__MSG_@@extension_id__/nekos/escratch2.gif"), url("nekos/escratch2.gif"), url("https://webneko.net/white/escratch2.gif");
+  --neko-scratch-south-1: url("chrome-extension://__MSG_@@extension_id__/nekos/sscratch1.gif"), url("nekos/sscratch1.gif"), url("https://webneko.net/white/sscratch1.gif");
+  --neko-scratch-south-2: url("chrome-extension://__MSG_@@extension_id__/nekos/sscratch2.gif"), url("nekos/sscratch2.gif"), url("https://webneko.net/white/sscratch2.gif");
+  --neko-scratch-west-1: url("chrome-extension://__MSG_@@extension_id__/nekos/wscratch1.gif"), url("nekos/wscratch1.gif"), url("https://webneko.net/white/wscratch1.gif");
+  --neko-scratch-west-2: url("chrome-extension://__MSG_@@extension_id__/nekos/wscratch2.gif"), url("nekos/wscratch2.gif"), url("https://webneko.net/white/wscratch2.gif");
+  
+  --neko-itch-1: url("chrome-extension://__MSG_@@extension_id__/nekos/itch1.gif"), url("nekos/itch1.gif"), url("https://webneko.net/white/itch1.gif");
+  --neko-itch-2: url("chrome-extension://__MSG_@@extension_id__/nekos/itch2.gif"), url("nekos/itch2.gif"), url("https://webneko.net/white/itch2.gif");
+  --neko-sleep-1: url("chrome-extension://__MSG_@@extension_id__/nekos/sleep1.gif"), url("nekos/sleep1.gif"), url("https://webneko.net/white/sleep1.gif");
+  --neko-sleep-2: url("chrome-extension://__MSG_@@extension_id__/nekos/sleep2.gif"), url("nekos/sleep2.gif"), url("https://webneko.net/white/sleep2.gif");
+   
+  --baloon-purple-1: url("chrome-extension://__MSG_@@extension_id__/balloons/purple-l.gif"), url("balloons/purple-l.gif"), url("https://raw.githubusercontent.com/Eltaurus-Lt/Neko1111/refs/heads/main/Extension/balloons/purple-l.gif");
+  --baloon-purple-2: url("chrome-extension://__MSG_@@extension_id__/balloons/purple-c.gif"), url("balloons/purple-c.gif"), url("https://raw.githubusercontent.com/Eltaurus-Lt/Neko1111/refs/heads/main/Extension/balloons/purple-c.gif");
+  --baloon-purple-3: url("chrome-extension://__MSG_@@extension_id__/balloons/purple-r.gif"), url("balloons/purple-r.gif"), url("https://raw.githubusercontent.com/Eltaurus-Lt/Neko1111/refs/heads/main/Extension/balloons/purple-r.gif");
+  --baloon-yellow-1: url("chrome-extension://__MSG_@@extension_id__/balloons/yellow-l.gif"), url("balloons/yellow-l.gif"), url("https://raw.githubusercontent.com/Eltaurus-Lt/Neko1111/refs/heads/main/Extension/balloons/yellow-l.gif");
+  --baloon-yellow-2: url("chrome-extension://__MSG_@@extension_id__/balloons/yellow-c.gif"), url("balloons/yellow-c.gif"), url("https://raw.githubusercontent.com/Eltaurus-Lt/Neko1111/refs/heads/main/Extension/balloons/yellow-c.gif");
+  --baloon-yellow-3: url("chrome-extension://__MSG_@@extension_id__/balloons/yellow-r.gif"), url("balloons/yellow-r.gif"), url("https://raw.githubusercontent.com/Eltaurus-Lt/Neko1111/refs/heads/main/Extension/balloons/yellow-r.gif");
+  --baloon-white-1: url("chrome-extension://__MSG_@@extension_id__/balloons/white-l.gif"), url("balloons/white-l.gif"), url("https://raw.githubusercontent.com/Eltaurus-Lt/Neko1111/refs/heads/main/Extension/balloons/white-l.gif");
+  --baloon-white-2: url("chrome-extension://__MSG_@@extension_id__/balloons/white-c.gif"), url("balloons/white-c.gif"), url("https://raw.githubusercontent.com/Eltaurus-Lt/Neko1111/refs/heads/main/Extension/balloons/white-c.gif");
+  --baloon-white-3: url("chrome-extension://__MSG_@@extension_id__/balloons/white-r.gif"), url("balloons/white-r.gif"), url("https://raw.githubusercontent.com/Eltaurus-Lt/Neko1111/refs/heads/main/Extension/balloons/white-r.gif");
+   
+  --baloon-pop: url("chrome-extension://__MSG_@@extension_id__/balloons/pop.gif"), url("balloons/pop.gif"), url("https://raw.githubusercontent.com/Eltaurus-Lt/Neko1111/refs/heads/main/Extension/balloons/pop.gif");   
+  
+  --frame-1: var(--neko-alert);
+  --frame-2: var(--neko-still);
+}
+
+
+@keyframes nekoLoop {
+  0%,100% {
+    background-image: var(--frame-1);
+  }
+  50% {
+    background-image: var(--frame-2);
+  }
+}
+
+#neko {
+  width: 64px;
+  height: 64px;
+  left: 0;
+  top: 0;
+  background: var(--neko-still); 
+  background-size: cover;
+  position: absolute;
+  image-rendering: pixelated;
+  animation: nekoLoop .5s step-end infinite; 
+  z-index: 1000;
+  cursor: pointer;
+}
+
+#neko[data-state="still"] {
+  animation: none;
+}
+
+#neko[data-state="run"][data-dir="n"] {
+  --frame-1: var(--neko-run-north-1);
+  --frame-2: var(--neko-run-north-2);
+}
+#neko[data-state="run"][data-dir="ne"] {
+  --frame-1: var(--neko-run-northeast-1);
+  --frame-2: var(--neko-run-northeast-2);
+}
+#neko[data-state="run"][data-dir="e"] {
+  --frame-1: var(--neko-run-east-1);
+  --frame-2: var(--neko-run-east-2);
+}
+#neko[data-state="run"][data-dir="se"] {
+  --frame-1: var(--neko-run-southeast-1);
+  --frame-2: var(--neko-run-southeast-2);
+}
+#neko[data-state="run"][data-dir="s"] {
+  --frame-1: var(--neko-run-south-1);
+  --frame-2: var(--neko-run-south-2);
+}
+#neko[data-state="run"][data-dir="sw"] {
+  --frame-1: var(--neko-run-southwest-1);
+  --frame-2: var(--neko-run-southwest-2);
+}
+#neko[data-state="run"][data-dir="w"] {
+  --frame-1: var(--neko-run-west-1);
+  --frame-2: var(--neko-run-west-2);
+}
+#neko[data-state="run"][data-dir="nw"] {
+  --frame-1: var(--neko-run-northwest-1);
+  --frame-2: var(--neko-run-northwest-2);
+}
+
+#neko[data-state="scratch"][data-dir^="n"] {
+  --frame-1: var(--neko-scratch-north-1);
+  --frame-2: var(--neko-scratch-north-2);
+}
+#neko[data-state="scratch"][data-dir^="s"] {
+  --frame-1: var(--neko-scratch-south-1);
+  --frame-2: var(--neko-scratch-south-2);
+}
+#neko[data-state="scratch"][data-dir$="e"] {
+  --frame-1: var(--neko-scratch-east-1);
+  --frame-2: var(--neko-scratch-east-2);
+}
+#neko[data-state="scratch"][data-dir$="w"] {
+  --frame-1: var(--neko-scratch-west-1);
+  --frame-2: var(--neko-scratch-west-2);
+}
+
+#neko[data-state="sleep"] {
+  --frame-1: var(--neko-sleep-1);
+  --frame-2: var(--neko-sleep-2);
+  animation-duration: 2s;
+}
+#neko[data-state="itch"] {
+  --frame-1: var(--neko-itch-1);
+  --frame-2: var(--neko-itch-2);
+}
+
+#neko[data-state="yawn"] {
+  --frame-1: var(--neko-yawn);
+  animation-iteration-count: 1;
+  animation-duration: 4s;
+}
+#neko[data-state="alert"] {
+  --frame-1: var(--neko-alert);
+  animation-iteration-count: 1;
+  animation-duration: 1.5s;
+}
+
+
+
+.baloon {
+  width: 64px;
+  height: 64px;
+  left: 0;
+  top: 0;
+  background: var(--baloon-purple-2); 
+  background-size: cover;
+  position: absolute;
+  image-rendering: pixelated;
+  animation: baloonLoop 3s step-end infinite; 
+  z-index: 1100;
+  cursor: pointer;
+}
+
+/* .baloon.target {
+  border: solid red 2px;
+} */
+
+.baloon.pop {
+  animation: none;
+  background-image: var(--baloon-pop);
+}
+
+@keyframes baloonLoop {
+  0%,50%,100% {
+    background-image: var(--frame-c);
+  }
+  25% {
+    background-image: var(--frame-l);
+  }
+  75% {
+    background-image: var(--frame-r);
+  }
+}
+
+.baloon.purple {
+  --frame-l: var(--baloon-purple-1);
+  --frame-c: var(--baloon-purple-2);
+  --frame-r: var(--baloon-purple-3);
+}
+
+.baloon.yellow {
+  --frame-l: var(--baloon-yellow-1);
+  --frame-c: var(--baloon-yellow-2);
+  --frame-r: var(--baloon-yellow-3);
+}
+
+.baloon.white {
+  --frame-l: var(--baloon-white-1);
+  --frame-c: var(--baloon-white-2);
+  --frame-r: var(--baloon-white-3);
+}
+
+  </style>
+</head>
+<body>
+
+  <script>
+const neko = document.createElement("div");
+neko.id = "neko";
+document.children[0].appendChild(neko);
+
+const step = 12;
+const blnStep = 6;
+const baloonFreq = 0.02;
+const spf = 100;
+const mouseRange = 1000;
+let posX, posY;
+let targetX, targetY, target, mouseX, mouseY;
+let state, boredom, fatigue;
+
+
+function nekoInit() {
+  posX = 100;
+  posY = 100;
+  boredom = 0;
+  fatigue = 0;
+  state = "still";
+  target = "mouse";
+  
+  neko.style.transform = "translate(" + posX + "px," + posY  + "px)";
+  neko.setAttribute('data-state', state);
+};
+nekoInit();
+
+function switchState(newState) {
+  state = newState;
+  // void neko.offsetHeight;
+  neko.setAttribute('data-state', state);
+  boredom = 0;
+}
+
+function popBaloon(baloon) {
+  baloon.classList.add('pop');
+  setTimeout(() => {
+    baloon.parentNode.removeChild(baloon);
+  }, "500");
+}
+
+function moveTowardsTarget() {
+  
+  if (target === "mouse") {
+    targetX = mouseX;
+    targetY = mouseY;
+  } else if (target && typeof(target) != "string" && document.contains(target)) {
+    let xy = getBaloonXY(target);
+    targetX = xy[0];
+    targetY = xy[1];
+  } else {
+    targetX = 100;
+    targetY = 100;
+    switchState("still");
+  }
+  
+  let targetVec = [targetX - posX, targetY - posY];
+  let alpha = Math.atan2(targetVec[1], targetVec[0]);
+  
+  switch(Math.round(4 * alpha/Math.PI)) {
+  case -3:
+    neko.setAttribute('data-dir', "nw");
+    break;
+  case -2:
+    neko.setAttribute('data-dir', "n");
+    break;
+  case -1:
+    neko.setAttribute('data-dir', "ne");
+    break;
+  case 0:
+    neko.setAttribute('data-dir', "e");
+    break;
+  case 1:
+    neko.setAttribute('data-dir', "se");
+    break;
+  case 2:
+    neko.setAttribute('data-dir', "s");
+    break;
+  case 3:
+    neko.setAttribute('data-dir', "sw");
+    break;
+  default:
+    neko.setAttribute('data-dir', "w"); 
+  }
+  
+  let range = 3 * step * step;
+  if (target === "mouse") {
+    range = mouseRange;
+  }
+  
+  if (targetVec[0] * targetVec[0] + targetVec[1] * targetVec[1] > range) {
+    posX += step * Math.cos(alpha);
+    posY += step * Math.sin(alpha);
+    neko.style.transform = "translate(calc(" + posX + "px - 50%) , calc(" + posY  + "px - 50%))";
+    
+  } else {
+    if (target != "mouse" && document.contains(target)) {
+      popBaloon(target);
+    }
+    switchState("still");
+  }
+  
+  
+}
+
+function getBaloonXY(bln) {
+  var matches = bln.style.transform.match(/\d+/g);
+  let xy = matches.map(function(match) {
+    return parseInt(match, 10); 
+  });
+  return xy;
+}
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.pageX;
+  mouseY = e.pageY;
+  if (state === "yawn" || state === "itch" || state === "still") {
+    target = "mouse";
+    switchState("alert");
+  }
+});
+
+function nekoLoop() {
+  let baloons = document.getElementsByClassName("baloon");
+//  console.log(target);
+  
+  boredom += spf;
+  
+  switch (state) {
+   case "run":
+      moveTowardsTarget();
+      fatigue += spf;
+      break;
+   case "still":
+      if (fatigue > 12000 && boredom > 5000) {
+        switchState("yawn");
+      };
+      if (boredom > 2000) {
+        if (baloons && Math.random() < .9) {
+          target = "";
+          switchState("alert");
+        } else {
+          switchState("itch");
+        }
+      };
+      break;
+   case "itch": 
+      fatigue += spf;
+      if (boredom > 3000) {
+        switchState("still");
+      }
+      break;
+  case "yawn":
+      if (boredom > 3000) {
+        if (fatigue < 0) {
+          switchState("still");
+        } else {
+          switchState("sleep");
+        }
+      }
+      break;
+  case "sleep":
+      fatigue -= spf;
+      if (fatigue < -10000 && boredom > 10000) {
+        switchState("yawn");
+      }
+     break;
+  case "alert":    
+      if (boredom > 500) {
+        if (target != "mouse" || ((posX - mouseX) * (posX - mouseX) + (posY - mouseY) * (posY - mouseY) < 2 * mouseRange)) {
+          if (Math.random() < 0.1 && ((posX - mouseX) * (posX - mouseX) + (posY - mouseY) * (posY - mouseY) > 2 * mouseRange)) {
+          target = "mouse";
+        } else if (baloons && baloons.length > 0) {
+          target = Array.from(baloons)[Math.floor(Math.random() * baloons.length)];
+          Array.from(baloons).forEach( bl => bl.classList.remove('target'));
+          target.classList.add('target');
+        } else {
+          target = "";
+        }
+      }
+        if (target !== "") {
+          switchState("run");
+        } else {
+          switchState("still");
+        }
+      }
+      break;
+  default:
+      
+  }
+ 
+  
+  //baloonLoop
+  if (Math.random() < baloonFreq) {
+    //console.log('~O');
+    let newBln = document.createElement("div");
+    newBln.classList.add('baloon');
+    let prob = Math.random();
+    if (prob < .3) {
+      newBln.classList.add('yellow');
+    } else if (prob > .6) {
+      newBln.classList.add('white');
+    } else {
+      newBln.classList.add('purple');
+    }
+    newBln.style.transform = "translate(" + Math.round(Math.random() * window.innerWidth) + "px, " + (window.innerHeight + 16) + "px )";
+    newBln.style.left = "-16px";
+    newBln.style.top = "-16px";
+    document.children[0].appendChild(newBln);
+    newBln.onclick = function () {popBaloon(this)};
+    
+  }
+
+  //console.log(baloons.length);
+  Array.from(baloons).forEach( bln => {
+    let xy = getBaloonXY(bln);
+    if (xy[1] <= blnStep) {
+      bln.parentNode.removeChild(bln);
+    } else if (!bln.classList.contains('pop')) { 
+      bln.style.transform = "translate(" + xy[0] + "px, " + (xy[1] - blnStep) + "px )";
+    }
+  });
+  
+}
+
+neko.onclick = function () {target = "mouse"; switchState("alert");};
+setInterval(nekoLoop, spf);
+
+
+//preloaders
+let assets = [
+  '--neko-still',
+  '--neko-alert', 
+  '--neko-yawn',
+  '--neko-run-north-1',
+  '--neko-run-north-2',
+  '--neko-run-northeast-1',
+  '--neko-run-northeast-2',
+  ' --neko-run-east-1',
+  '--neko-run-east-2',
+  '--neko-run-southeast-1',
+  '--neko-run-southeast-2',
+  '--neko-run-south-1',
+  '--neko-run-south-2',
+  '--neko-run-southwest-1',
+  '--neko-run-southwest-2',
+  '--neko-run-west-1',
+  '--neko-run-west-2',
+  '--neko-run-northwest-1',
+  '--neko-run-northwest-2',
+  '--neko-scratch-north-1',
+  '--neko-scratch-north-2',
+  '--neko-scratch-east-1',
+  '--neko-scratch-east-2',
+  '--neko-scratch-south-1',
+  '--neko-scratch-south-2',
+  '--neko-scratch-west-1',
+  '--neko-scratch-west-2',
+  '--neko-itch-1',
+  '--neko-itch-2',
+  '--neko-sleep-1',
+  '--neko-sleep-2',
+  '--baloon-purple-1',
+  '--baloon-purple-2',
+  '--baloon-purple-3',
+  '--baloon-yellow-1',
+  '--baloon-yellow-2',
+  '--baloon-yellow-3',
+  '--baloon-white-1',
+  '--baloon-white-2',
+  '--baloon-white-3',
+  '--baloon-pop'
+];
+// document.addEventListener('DOMContentLoaded', function () {
+      
+      assets.forEach( a => {
+        let newDiv = document.createElement('div');
+        newDiv.style.background = 'var(' + a + ')';
+        // newDiv.style.width = '32px';
+        // newDiv.style.height = '32px';
+        document.children[0].appendChild(newDiv);
+      });
+//    });
+  </script>
+</body>
+</html>

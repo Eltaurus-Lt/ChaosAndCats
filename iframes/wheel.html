@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Lagrange system (wheel)</title>
+  <meta name="author" content="Eltaurus">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/svg+xml" href="">
+
+  <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+  <style>
+    html, body {
+      height: 420px;
+      width: 420px;
+    }
+  </style>
+
+
+  <style>
+
+@property --phi {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 42;
+}
+
+:root {
+  --duration: 4s;
+  --white-outline: 5px;
+  animation: oscillation var(--duration) infinite linear;
+}
+
+@keyframes oscillationSpline {
+  0%, 50%, 100% {
+    --phi: 0;
+    animation-timing-function: ease-out;
+  }
+  25% {
+    --phi: 66;
+    animation-timing-function: ease-in;
+  }
+  75% {
+    --phi: -66;
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes oscillation {
+  0.0% {--phi: -66.0;}
+  1.01% {--phi: -65.87;}
+  2.02% {--phi: -65.5;}
+  3.03% {--phi: -64.87;}
+  4.04% {--phi: -64.0;}
+  5.05% {--phi: -62.88;}
+  6.06% {--phi: -61.52;}
+  7.07% {--phi: -59.92;}
+  8.08% {--phi: -58.07;}
+  9.09% {--phi: -56.0;}
+  10.1% {--phi: -53.7;}
+  11.11% {--phi: -51.18;}
+  12.12% {--phi: -48.44;}
+  13.13% {--phi: -45.5;}
+  14.14% {--phi: -42.37;}
+  15.15% {--phi: -39.05;}
+  16.16% {--phi: -35.55;}
+  17.17% {--phi: -31.9;}
+  18.18% {--phi: -28.1;}
+  19.19% {--phi: -24.18;}
+  20.2% {--phi: -20.14;}
+  21.21% {--phi: -16.01;}
+  22.22% {--phi: -11.8;}
+  23.23% {--phi: -7.54;}
+  24.24% {--phi: -3.24;}
+  25.25% {--phi: 1.08;}
+  26.26% {--phi: 5.39;}
+  27.27% {--phi: 9.67;}
+  28.28% {--phi: 13.91;}
+  29.29% {--phi: 18.08;}
+  30.3% {--phi: 22.17;}
+  31.31% {--phi: 26.16;}
+  32.32% {--phi: 30.02;}
+  33.33% {--phi: 33.75;}
+  34.34% {--phi: 37.32;}
+  35.35% {--phi: 40.73;}
+  36.36% {--phi: 43.96;}
+  37.37% {--phi: 47.0;}
+  38.38% {--phi: 49.84;}
+  39.39% {--phi: 52.47;}
+  40.4% {--phi: 54.88;}
+  41.41% {--phi: 57.07;}
+  42.42% {--phi: 59.02;}
+  43.43% {--phi: 60.75;}
+  44.44% {--phi: 62.23;}
+  45.45% {--phi: 63.47;}
+  46.46% {--phi: 64.47;}
+  47.47% {--phi: 65.22;}
+  48.48% {--phi: 65.72;}
+  49.49% {--phi: 65.97;}
+  50.51% {--phi: 65.97;}
+  51.52% {--phi: 65.72;}
+  52.53% {--phi: 65.22;}
+  53.54% {--phi: 64.47;}
+  54.55% {--phi: 63.47;}
+  55.56% {--phi: 62.23;}
+  56.57% {--phi: 60.75;}
+  57.58% {--phi: 59.02;}
+  58.59% {--phi: 57.07;}
+  59.6% {--phi: 54.88;}
+  60.61% {--phi: 52.47;}
+  61.62% {--phi: 49.84;}
+  62.63% {--phi: 47.0;}
+  63.64% {--phi: 43.96;}
+  64.65% {--phi: 40.73;}
+  65.66% {--phi: 37.32;}
+  66.67% {--phi: 33.75;}
+  67.68% {--phi: 30.02;}
+  68.69% {--phi: 26.16;}
+  69.7% {--phi: 22.17;}
+  70.71% {--phi: 18.08;}
+  71.72% {--phi: 13.91;}
+  72.73% {--phi: 9.67;}
+  73.74% {--phi: 5.39;}
+  74.75% {--phi: 1.08;}
+  75.76% {--phi: -3.24;}
+  76.77% {--phi: -7.54;}
+  77.78% {--phi: -11.8;}
+  78.79% {--phi: -16.01;}
+  79.8% {--phi: -20.14;}
+  80.81% {--phi: -24.18;}
+  81.82% {--phi: -28.1;}
+  82.83% {--phi: -31.9;}
+  83.84% {--phi: -35.55;}
+  84.85% {--phi: -39.05;}
+  85.86% {--phi: -42.37;}
+  86.87% {--phi: -45.5;}
+  87.88% {--phi: -48.44;}
+  88.89% {--phi: -51.18;}
+  89.9% {--phi: -53.7;}
+  90.91% {--phi: -56.0;}
+  91.92% {--phi: -58.07;}
+  92.93% {--phi: -59.92;}
+  93.94% {--phi: -61.52;}
+  94.95% {--phi: -62.88;}
+  95.96% {--phi: -64.0;}
+  96.97% {--phi: -64.87;}
+  97.98% {--phi: -65.5;}
+  98.99% {--phi: -65.87;}
+  100.0% {--phi: -66.0;}
+}
+
+svg#pic1 {
+  left: 50vw;
+  top: 50vh;
+  position: absolute;
+  overflow: visible;
+  width: 201.25px;
+}
+
+#svgr {
+  position: absolute;
+  transform: rotate(calc(-1 * var(--phi) * 1deg)) translateY(45.719px) rotate(calc(3 * var(--phi) * 1deg)) translateY(-45.719px);
+}
+
+#OC {
+  rotate: calc(-1 * var(--phi) * 1deg);
+}
+#Cr {
+  --Crad: calc(45.719);
+  translate: calc(var(--Crad) * sin(var(--phi) * 1deg) * 1px) calc(var(--Crad) * cos(var(--phi) * 1deg) * 1px);
+  //filter: drop-shadow(cyan 0 1.5px 0);
+}
+
+#arccropright {
+  rotate: calc(-1 * max(0, var(--phi)) * 1deg);
+}
+#arccropleft {
+  rotate: calc(-1 * min(0, var(--phi)) * 1deg);
+}
+
+#arcArrow {
+  rotate: calc(-1 * max(0, var(--phi)) * 1deg);
+  --fade-length: 5; /*deg*/
+  --fade-end: 22; /*deg*/
+  opacity: calc((max(var(--phi), -1 * var(--phi)) - var(--fade-end) + var(--fade-length)) / var(--fade-length));
+}
+
+/* TeX labels */
+.math {
+  position: absolute;
+  left: 50vw;
+  top: 50vh;
+  padding: 0;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
+  z-index: 2;
+}
+.MJXc-display {
+  margin: 0 !important;
+  padding: 1px 0 !important;
+}
+
+#R {
+  translate: -70px -25px;
+}
+#g {
+  translate: 80px -57px;
+}
+#O {
+  translate: 17px -25px;
+}
+
+#C {
+  --Crad: calc(45.719 * 201.25 / 101.25);
+  translate: calc(var(--Crad) * sin(var(--phi) * 1deg) * 1px + 20px) calc(var(--Crad) * cos(var(--phi) * 1deg) * 1px - 15px);
+}
+
+#r  {
+  --Crad: calc(45.719 * 201.25 / 101.25);
+  translate: calc(var(--Crad) * sin(var(--phi) * 1deg) * 1px - 26px) calc(var(--Crad) * cos(var(--phi) * 1deg) * 1px + 7px);
+}
+
+#phi {
+  --rad: calc(12 * 201.25 / 101.25);
+  translate: calc(var(--rad) * sin(max(var(--phi), 0) * 1deg + 30deg) * 1px + 5px) calc(var(--rad) * cos(max(0, 1.1 * var(--phi)) * 1deg + 30deg) * 1px + 2px);
+}
+
+.math.outline {
+  z-index: 1;
+  -webkit-text-stroke: var(--white-outline) white;
+}
+  </style>
+</head>
+<body>
+
+<div id="g" class="math">
+  \[\vec{g}\]
+</div>
+<div id="R" class="math">\[
+  R
+\]</div>
+<div id="phi" class="math">\[
+  \varphi
+\]</div>
+<div id="O" class="math">\[
+  O
+\]</div>
+<div id="C" class="math">\[
+  C
+\]</div>
+<div id="C" class="math outline">\[
+  C
+\]</div>
+<div id="r" class="math">\[
+  r
+\]</div>
+<div id="r" class="math outline">\[
+  r
+\]</div>
+
+<svg id="pic1" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	  viewBox="0 0 101.25 84.736" enable-background="new 0 0 101.25 84.736" xml:space="preserve">
+  
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto-start-reverse">
+        <polygon points="10 3.5, 0 0, 1.5 3.5, 0 7" />
+      </marker>
+    </defs>
+  
+  	<line stroke="#000000" stroke-width=".5" x1="0" y1="0" x2="0" y2="-10"/>
+    <line stroke="#000000" stroke-width=".5" x1="-68.736" y1="0" x2="-68.736" y2="-10"/>
+    <line stroke="#000000" stroke-width=".5" x1="-68.736" y1="-5" x2="0" y2="-5" marker-end="url(#arrowhead)" marker-start="url(#arrowhead)" />
+    <line stroke="#000000" stroke-width=".5" x1="0" y1="0" x2="0" y2="var(--phi)"/>
+    <line stroke="#000000" stroke-width=".5" x1="32" y1="-20" x2="32" y2="-35" marker-start="url(#arrowhead)"/>
+  
+    <line id="OC" stroke="#000000" stroke-width=".5" x1="0" y1="0" x2="0" y2="45.719"/>
+    <line stroke="#000000" stroke-width=".5" x1="0" y1="0" x2="0" y2="22"  stroke-dasharray="3 2"/>
+    <line id="Cr" stroke="#000000" stroke-width=".5" x1="0" y1="0" x2="-16.164" y2="16.164" marker-end="url(#arrowhead)"/>
+  
+    <defs>
+      <clipPath id="arcClipright">
+        <polygon id="arccropright" fill="#0000FF" points="0,0 0,40 -40,0"/>
+      </clipPath>
+      <clipPath id="arcClip" clip-path="url(#arcClipright)">
+        <polygon id="arccropleft" fill="#FF0000" points="0,0 0,40 40,0"/>    
+      </clipPath>
+    </defs>
+  
+    <circle clip-path="url(#arcClip)" cx="0" stroke="#000000" fill="#00000000" stroke-width=".5" cy="0" r="11.72"/>
+    <line id="arcArrow" stroke="#000000" stroke-width=".5" x1="-.01" y1="11.718" x2="0" y2="11.72" marker-end="url(#arrowhead)"/>
+     
+  
+<g id="svgr">
+	<defs>
+		<circle id="SVGID_1_" cx="0.0" cy="45.719" r="23.017"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  overflow="visible"/>
+	</clipPath>
+  
+    <circle id="rc" cx="0.0" cy="45.719" r="1.414"/>
+	
+		<line clip-path="url(#SVGID_2_)" fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="16.667" y1="29.052" x2="-16.667" y2="62.385"/>
+	
+		<line clip-path="url(#SVGID_2_)" fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="21.51" y1="34.062" x2="-11.823" y2="67.396"/>
+	
+		<line clip-path="url(#SVGID_2_)" fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="26.354" y1="39.072" x2="-6.98" y2="72.406"/>
+	
+		<line clip-path="url(#SVGID_2_)" fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="31.198" y1="44.083" x2="-2.136" y2="77.416"/>
+	
+		<line clip-path="url(#SVGID_2_)" fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="11.824" y1="24.042" x2="-21.51" y2="57.375"/>
+	
+		<line clip-path="url(#SVGID_2_)" fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="6.98" y1="19.031" x2="-26.354" y2="52.365"/>
+	
+		<line clip-path="url(#SVGID_2_)" fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="2.136" y1="14.021" x2="-31.197" y2="47.354"/>
+	<use xlink:href="#SVGID_1_"  overflow="visible" fill="none" stroke="#000000" stroke-miterlimit="10"/>
+</g>
+<circle id="Rc" cx="0.0" cy="0" r="1.414"/>
+<path id="R_1_" fill="none" stroke="#000000" stroke-miterlimit="10" d="M-101.25,0h32.198c0,37.822,30.916,68.736,69.053,68.736
+	S69.051,38.139,69.051,0h32.199"/>
+<g>
+	<defs>
+		<path id="SVGID_3_" d="M101.25,0H69.051h-0.008C68.872,37.992,38.031,68.736,0,68.736C-38.03,68.736-68.873,37.992-69.044,0
+			h-0.008h-32.198v15.149h17.642C-76.313,54.685-41.614,84.736,0,84.736c41.613,0,76.313-30.051,83.607-69.587h17.643V0z"/>
+	</defs>
+	<clipPath id="SVGID_4_">
+		<use xlink:href="#SVGID_3_"  overflow="visible"/>
+	</clipPath>
+	<g clip-path="url(#SVGID_4_)">
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="17.845" y1="-110.011" x2="-148.167" y2="56"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="22.772" y1="-105.084" x2="-143.237" y2="60.923"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="27.699" y1="-100.158" x2="-138.312" y2="65.852"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="32.625" y1="-95.23" x2="-133.387" y2="70.781"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="47.407" y1="-80.449" x2="-118.605" y2="85.562"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="52.333" y1="-75.523" x2="-113.676" y2="90.486"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="57.26" y1="-70.596" x2="-108.75" y2="95.413"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="62.187" y1="-65.669" x2="-103.824" y2="100.342"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="42.48" y1="-85.377" x2="-123.531" y2="80.633"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="37.553" y1="-90.303" x2="-128.455" y2="75.705"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="76.969" y1="-50.888" x2="-89.043" y2="115.123"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="81.895" y1="-45.961" x2="-84.113" y2="120.047"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="86.822" y1="-41.034" x2="-79.188" y2="124.975"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="91.75" y1="-36.107" x2="-74.263" y2="129.905"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="72.042" y1="-55.815" x2="-93.969" y2="110.195"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="67.115" y1="-60.741" x2="-98.894" y2="105.268"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="106.531" y1="-21.326" x2="-59.482" y2="144.686"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="111.457" y1="-16.399" x2="-54.552" y2="149.608"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="116.385" y1="-11.473" x2="-49.627" y2="154.537"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="121.311" y1="-6.546" x2="-44.701" y2="159.467"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="101.603" y1="-26.253" x2="-64.407" y2="139.757"/>
+		<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="96.677" y1="-31.18" x2="-69.332" y2="134.829"/>
+	</g>
+</g>
+</svg>
+
+</body>
+</html>

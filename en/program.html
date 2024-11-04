@@ -32,7 +32,6 @@
 
   <h1>Program</h1>
 
-
   <h2>Core chapters</h2>
 
   <a href="chapter-01.html">
@@ -106,18 +105,25 @@ Image to image (<i>img2img</i>) generation, inpainting, diffusion models for ima
   </div>
 
   <a href="chapter-C.html">
-    <h3>4C. Web and Interactive design</h3>
+    <h3>4C. Web and Interactive Design</h3>
     <h5>HTML + CSS + JavaScript</h5>
   </a>
-  <p>
-  HTML basics: tags, attributes and styles.
-Cascading Style Sheets (CSS): selectors, specificity, inheritance, combinators, pseudo-classes, custom properties (variables). CSS units, absolute and relative units. Box model: <i>padding</i>, <i>margin</i>, <i>border</i>, and <i>outline</i>. Element positioning: <i>display</i> and <i>position</i> properties, flexbox and grid layouts, <i>inset</i> shortcut.
+  <div class="section">
+    <div rnd="0" class="iframe-container" style="background: white">
+      <iframe class="iframe-content square" src="../iframes/wheel.html" frameborder="0" style="width: 450px; height: 450px; scale: 47.5%"></iframe>
+    </div>
+    <div rnd="1" class="iframe-container" style="background: slategray">
+      <iframe class="iframe-content square" src="../iframes/neko.html" frameborder="0" style="width: 200px; height: 200px"></iframe>
+    </div>
+    <p>
+    HTML basics: tags, attributes and styles.
+Cascading Style Sheets (CSS): selectors, specificity, inheritance, combinators, pseudo-classes, custom properties (variables). CSS units, absolute and relative units. Box model: <i>padding</i>, <i>margin</i>, <i>border</i>, and <i>outline</i>. Element positioning: <i>display</i> and <i>position</i> properties, flexbox and grid layouts, <i>inset</i> shorthand.
 Raster and vector graphics with <code>&lt;canvas&gt;</code> and inline <code>&lt;svg&gt;</code> container. SVG <code>&lt;path&gt;</code> syntax, presentation (CSS) attributes, <code>&lt;filter&gt;</code>'s. Structuring SVG with <code>&lt;g&gt;</code>, <code>&lt;def&gt;</code>, and <code>&lt;use&gt;</code> tags.
 Animation: CSS <i>transitions</i> and <i>@keyframes</i>, SVG <code>&lt;set&gt;</code> and <code>&lt;animate&gt;</code>.
 HTML domain object model (DOM), accessing objects with JavaScript. Basic interface elements: buttons, sliders, checkboxes, dropdowns. Interactivity: <i>onclick</i> attribute, event listeners, <i>setTimeout</i> and <i>setInterval</i> methods.
 Embedding LaTeX expressions with MathJax.
-  </p>
-
+    </p>
+  </div>
 
 
   <h2>Extra chapters (on demand)</h2>
@@ -137,12 +143,20 @@ Composition settings, Motion blur, and Frame Blending. <i>Render Queue</i> and e
   </div>
 
   <a href="chapter-02*.html">
-    <h3>2*. Presentations and Layout design</h3>
-    <h5>Adobe InDesign | Microsoft PowerPoint</h5>
+    <h3>2*. Layout and Graphic Design</h3>
+    <h5>Microsoft PowerPoint | Adobe InDesign</h5>
   </a>
-  <p>
-  Базовые принципы дизайна. Шрифты: классификация, форматы файлов, инструменты для подбора и поиска шрифтов. Использование цвета в дизайне. Верстка постеров в Adobe InDesign. Оформление презентаций в Microsoft PowerPoint, интерактивные элементы, анимация при помощи встроенных инструментов.
-  </p>
+  <div class="section">
+    <img src="../imgs/program/2^.gif">
+    <p>
+Foundational design principles: repetition and contrast in position (proximity), alignment, and size. Optical compensation.
+Fonts: serif vs sans-serif, typographical point. Repetition and contrast in font families, size, and weight. Font libraries, file formats.
+Color schemes: proximity and contrast in analagous, complimentary, and tetrad palettes. Color libraries.
+Microsoft PowerPoint: <i>Selection Pane</i>, importing vector images and LaTeX equations, extracting files from presentations.
+Interactive elements, dynamic references, animation and transitions, layer naming for <i>Morph</i>. Baking presentations, rendering to video.
+<!-- Foundational principles in design tools (CSS, InDesign). -->
+    </p>
+  </div>	
 
   <a href="chapter-03*.html">
     <h3>3*. Color Theory</h3>
@@ -159,6 +173,7 @@ Blending modes in Adobe Photoshop and Wolfram Mathematica, multiply as a substit
 <i>Hue/Saturation</i> adjustment and selective color editing. 
 Colorizing grayscale images, working with channels, gradient maps in Wolfram Mathematica, Adobe Photoshop, and After Effects.
 Color decomposition for retouching.
+<!-- optical compensation, Adelson's effect, dress -->
     </p>
   </div>
 
