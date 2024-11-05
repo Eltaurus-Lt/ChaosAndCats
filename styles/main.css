@@ -128,7 +128,7 @@ body {
     max-width: var(--maxwidth);
     margin: 0 auto;
 
-    padding: 2em;
+    padding: 2em 2em 4em;
 
     background: var(--bg-col);
 
