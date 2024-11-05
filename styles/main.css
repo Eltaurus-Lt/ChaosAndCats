@@ -85,7 +85,7 @@ body:not([rnd="2"]) [rnd="2"] {
 }
 
 #language-selector {
-    padding-top: .25em;
+    padding-top: .3em;
 }
 
 .header .button:focus,
@@ -132,7 +132,8 @@ body {
     max-width: var(--maxwidth);
     margin: 0 auto;
 
-    padding: 2em 2em 4em;
+    padding: 2em;
+    padding-bottom: 6em;
 
     background: var(--bg-col);
 
