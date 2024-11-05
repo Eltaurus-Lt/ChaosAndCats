@@ -84,6 +84,10 @@ body:not([rnd="2"]) [rnd="2"] {
     font-size: 13px;
 }
 
+#language-selector {
+    padding-top: .25em;
+}
+
 .header .button:focus,
 .header .button:hover,
 #language-selector:focus,
