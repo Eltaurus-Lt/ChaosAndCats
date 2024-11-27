@@ -176,7 +176,7 @@ p {
     gap: 1em;
 }
 
-@media (min-width: 45em) {
+@media (min-width: 50em) {
     .section {
         grid-template-columns: min-content 1fr;
     }
