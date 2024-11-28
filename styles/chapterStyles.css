@@ -1,0 +1,63 @@
+h1 {
+    margin-bottom: 1em;
+}
+
+/* slides */
+
+.slide {
+    background: white;
+    border-radius: 3px;
+    margin: .5em 0;
+    width: 100%;
+}
+
+
+
+/* downloads */
+
+.downloads-block {
+    margin-top: .5em;
+
+    padding: .75em 1em;
+    border: 1px solid var(--border-col);
+    border-radius: .5em;
+
+    background: var(--substrate-col);
+    box-shadow: 5px 0px 15px #0005 inset;
+
+    display: flex;
+    gap: .75em;
+}
+
+.downloads-block legend {
+    font-family: sans-serif;
+    font-size: 15px;
+    color: var(--text-col);
+
+    padding: .25em;
+    border: 1px solid var(--border-col);
+    border-radius: .25em;
+
+    background: var(--bg-col);
+
+    box-shadow: 5px 0px 15px #0005;
+}
+
+.downloads-block a {
+    background: var(--hover-col);
+    font-family: courier;
+    font-size: 1rem;
+    padding: .3em .5em;
+    border-radius: .55em;
+
+    color: var(--section-col) !important;
+    text-decoration: none;
+
+    box-shadow: 5px 0px 15px #0005;
+    
+    transition: background-color .1s;
+}
+
+.downloads-block a:hover {
+    background: var(---subsection-col, #22242f);
+}
