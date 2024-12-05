@@ -34,9 +34,13 @@ h1 {
     font-size: 15px;
     color: var(--text-col);
 
+    width: min-content;
+    max-width: 100%;
+
     padding: .25em;
     border: 1px solid var(--border-col);
     border-radius: .25em;
+
 
     background: var(--bg-col);
 
@@ -44,15 +48,21 @@ h1 {
 }
 
 .downloads-block a {
-    background: var(--hover-col);
-    font-family: courier;
+    font-family: "Segoe UI", "Segoe UI Symbol", "Noto Sans", courier;
     font-size: 1rem;
-    padding: .3em .5em;
+
+    display: inline-block;
+    position: relative;
+
+    padding: .3em .6em;
     border-radius: .55em;
+    width: max-content;
+    overflow: hidden;
 
     color: var(--section-col) !important;
     text-decoration: none;
 
+    background: var(--hover-col);
     box-shadow: 5px 0px 15px #0005;
     
     transition: background-color .1s;
@@ -60,4 +70,46 @@ h1 {
 
 .downloads-block a:hover {
     background: var(---subsection-col, #22242f);
+    text-decoration: underline;
+}
+
+.downloads-block a:is(
+    [href$='.nb'],
+    [href$='.pdf'],
+    [href$='.psd'],
+    [href$='.ai'],
+) {
+    padding-left: 2em;
+}
+
+.downloads-block a::after {
+    content: "";
+    position: absolute; 
+    display: inline-block;
+    top: 50%; 
+    transform: translateY(-50%);
+
+    background-size: contain;
+
+    width: 1.1em;
+    height: 1.1em;
+    left: .5em;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crips-edges;
+}
+
+.downloads-block a[href$='.nb']::after {
+    background-image: url("../imgs/file_icons/nb.png");
+}
+.downloads-block a[href$='.pdf']::after {
+    background-image: url("../imgs/file_icons/pdf.png");
+}
+.downloads-block a[href$='.txt']::after {
+    background-image: url("../imgs/file_icons/txt.png");
+}
+.downloads-block a[href$='.psd']::after {
+    background-image: url("../imgs/file_icons/psd.png");
+}
+.downloads-block a[href$='.ai']::after {
+    background-image: url("../imgs/file_icons/ai.png");
 }
