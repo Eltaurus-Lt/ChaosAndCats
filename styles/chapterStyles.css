@@ -2,6 +2,10 @@ h1 {
     margin-bottom: 1em;
 }
 
+h4 {
+    font-family: Arial, sans-serif;
+}
+
 /* slides */
 
 .slide {
@@ -11,12 +15,31 @@ h1 {
     width: 100%;
 }
 
+/* references */
 
+.references {
+    margin: 1em;
+}
+
+.references a {
+    text-decoration-thickness: 1px;
+}
+
+*:has(>ol.references) {
+    counter-reset: refN;
+}
+ol.references li {
+    display: block;
+}
+ol.references li::before {
+    content: "[" counter(refN) "] ";
+    counter-increment: refN;
+}
 
 /* downloads */
 
 .downloads-block {
-    margin-top: .5em;
+    margin-top: 2em;
 
     padding: .75em 1em;
     border: 1px solid var(--border-col);
