@@ -26,6 +26,7 @@ h1 {
     box-shadow: 5px 0px 15px #0005 inset;
 
     display: flex;
+    flex-wrap: wrap;
     gap: .75em;
 }
 
@@ -91,8 +92,8 @@ h1 {
 
     background-size: contain;
 
-    width: 1.1em;
-    height: 1.1em;
+    width: 1.12em;
+    height: 1.12em;
     left: .5em;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crips-edges;
