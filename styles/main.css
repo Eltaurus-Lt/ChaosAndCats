@@ -24,6 +24,9 @@ img {
 .off {
     display: none;
 }
+.invis {
+    visibility: hidden;
+}
 
 ::selection {
     color: white;
