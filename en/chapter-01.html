@@ -27,78 +27,82 @@
 
   <h1>Mathematical Modeling</h1>
 
-  <h2 id="#L01">Lesson 1</h2>
+  <h2 id="L01">Lesson 1</h2>
   <h3>Introduction to Wolfram Mathematica</h3>
 
   <div class="section">
-    <img src="../imgs/01/L01.webp" class="invis">
+    <img src="../imgs/01/L01.png">
     <p>
-    Mathematical notation and special-character aliases. Converting expressions to and from LaTeX code. <i>Everything is an expression</i>: operators, functions, data structures. Symbolic computation principles.
-Patterns and replacement rules, variables and functions as global replacements. Functional programming, listable functions, higher-order functions.
+    Mathematical notation and special-character aliases. Converting expressions to and from LaTeX code. 
+<br>
+<i>Everything is an expression</i>: a unified form for operators, functions, objects, and data structures. Symbolic computation principles: patterns and replacement rules, variables and functions as global replacements. Functional programming, listable functions, higher-order functions.
     </p>
   </div>
 
-  <h2 id="#L02">Lesson 2</h2>
+  <h2 id="L02">Lesson 2</h2>
   <h3>Plots</h3>
 
   <div class="section">
-    <img src="../imgs/01/L02.webp" class="invis">
+    <img src="../imgs/01/L02.png">
     <p>
-    Plots, dynamic outputs and interactive expressions.  
+    <code id="plot">Plot[]</code>, <code>ListPlot[]</code>, and <code>ParametricPlot[]</code> expressions. Plot options and substitutions. Combining plots with <code>Show[]</code>.
+<br>
+Dynamic outputs and interactive expressions, <code>Manipulate[]</code>.  
     </p>
   </div>
 
-  <h2 id="#L03">Lesson 3</h2>
-  <h3>Equations</h3>
+  <h2 id="L03">Lesson 3</h2>
+  <h3>Algebraic Equations</h3>
 
   <div class="section">
-    <img src="../imgs/01/L03.webp" class="invis">
+    <img src="../imgs/01/L03.gif">
     <p>
-    Localized replacement rules. Solving algebraic equations. 
+    Localized replacement rules: <code>Rule[]</code> (<code>-&gt;</code>, <code>→</code>), <code>ReplaceAll[]</code> (<code>/.</code>), and <code>ReplaceRepeated[]</code> (<code>//.</code>). Expression <code>Equal[]</code> (<code>==</code>). Analytical and numerical expressions for solving algebraic equations: <code>Solve[]</code>, <code>NSolve[]</code>, and <code>FindRoot[]</code>, parameters and domain specification. Applying and plotting solution results.
+<br>
+*<code>RuleDelayed[]</code> (<code>:&gt;</code>, <code>:→</code>).
     </p>
   </div>
 
-  <h2 id="#L04">Lesson 4</h2>
+  <h2 id="L04">Lesson 4</h2>
   <h3>Differential Equations</h3>
 
   <div class="section">
-    <img src="../imgs/01/L04.webp" class="invis">
+    <img src="../imgs/01/L04-lorenz.gif">
     <p>
-    Solving differential equations. 
+    Analytical and numerical differentiation and integration: <code>D[]</code> (<code>'</code>), <code>Integrate[]</code> (<code>∫</code>), and <code>NIntegrate[]</code> expressions. Analytical and numerical expressions for solving Differential Equations (ODE) and Differential-Algebraic systems of Equations (DAE): <code>DSolve[]</code> and <code>NDSolve[]</code>, constaints and initial conditions. Plotting the solutions.
+
     </p>
   </div>
 
-  <h2 id="#L05">Lesson 5</h2>
-  <h3>2D Graphics</h3>
+  <h2 id="L05">Lesson 5</h2>
+  <h3>2D Graphics and Animation</h3>
 
   <div class="section">
-    <img src="../imgs/01/L05.webp" class="invis">
+    <img src="../imgs/01/L05-ball.gif">
     <p>
-    Graphics.
+    <code>Graphics[]</code> expression, graphical primitives, styling options. Adding graphical primitives to <a href="#L02"><i>Plots</i></a>, evaluated form of a <a href="#plot"><code>Plot[]</code></a>, embedding <i>Plots</i> into <code>Graphics[]</code>.
+<br>
+Parametric animation and exporting frame sequences.
     </p>
   </div>
 
-  <h2 id="#L08">Lesson 7-8</h2>
+  <h2 id="L08">Lesson 6</h2>
   <h3>Lagrange Equations</h3>
 
   <div class="section">
-    <img src="../imgs/01/L07.webp" class="invis">
+    <img src="../imgs/01/L06-ball.webp">
     <p>
-    Parametric animation and exporting frame sequences.
+    Automated derivation and integration of Lagrange equations.
     Rendering LaTeX expressions.
     </p>
   </div>
 
-  <h2 id="#bonus1">Lesson *</h2>
-  <h3>Spline animation and 3D Graphics</h3>
-
-  <div class="section">
-    <img src="../imgs/01/L^.webp" class="invis">
-    <p>
-    Smooth-step function, spline animation in Wolfram Mathematica.
-    Native 3D functionality: materials and lighting, generating and exporting 3D meshes.
-    </p>
-  </div>
+  <ul class="references">
+    <h4>Linked Lessons</h4> 
+    <li><a href="">Raster Graphics in Wolfram Mathematica</a></li>
+    <li><a href="">3D Graphics in Wolfram Mathematica</a></li>
+    <li><a href="chapter-01^.html#bonus1">Spline animaiton in Wolfram Mathematica</a></li>
+  </ul>
 
   <script src="../scripts/main.js"></script>
 </body>

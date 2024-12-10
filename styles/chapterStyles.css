@@ -36,6 +36,10 @@ ol.references li::before {
     counter-increment: refN;
 }
 
+ul.references {
+    list-style-type: square;
+}
+
 /* downloads */
 
 .downloads-block {
