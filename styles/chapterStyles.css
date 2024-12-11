@@ -107,6 +107,7 @@ ul.references {
     [href$='.psd'],
     [href$='.ai'],
     [href$='.aep'],
+    [href$='.pptx'],
 ) {
     padding-left: 2em;
 }
@@ -144,4 +145,7 @@ ul.references {
 }
 .downloads-block a[href$='.aep']::after {
     background-image: url("../imgs/file_icons/aep.png");
+}
+.downloads-block a[href$='.pptx']::after {
+    background-image: url("../imgs/file_icons/pptx.png");
 }
