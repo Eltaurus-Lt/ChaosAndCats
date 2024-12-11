@@ -185,7 +185,7 @@ p {
 }
 
 @media (min-width: 50em) {
-    .section {
+    .section:has(img+p, video+p, .iframe-container+p) {
         grid-template-columns: min-content 1fr;
     }
 }
