@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Bezier curve</title>
+  <meta name="author" content="Eltaurus">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/svg+xml" href="">
+
+  <script type="text/javascript" async="" src="https://code.jquery.com/jquery-3.6.0.js" defer></script>
+  <script type="text/javascript" async="" src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" defer></script>
+
+  <style>
+    html, body {
+ //     height: 420px;
+  //    width: 420px;
+    }
+  </style>
+
+
+  <style>
+
+.contrp {
+  position: absolute;
+//  transition: position .5s;
+//  cursor: grab;
+}
+
+.square {
+  padding: 4px;
+  background: white;
+  border: black solid 2px;
+}
+.circle {
+  padding: 6px;
+  background: black;
+  border-radius: 100px;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="contrp square" id="contr1"></div>  
+<div class="contrp circle" id="contr2"></div>  
+<div class="contrp circle" id="contr3"></div> 
+<div class="contrp square" id="contr4"></div>  
+
+<svg width='100%' height='100%' viewPort='0 0 100 100' id="svgcanvas">
+  <path id="spline"   stroke="red"   stroke-width="5" fill="transparent"/>
+  <path id="tangent1" stroke="black" stroke-width="2" fill="transparent"/>
+  <path id="tangent2" stroke="black" stroke-width="2" fill="transparent"/>
+</svg>
+
+<script>
+
+function randomin(xmin, xmax) {
+  return xmin + Math.floor(Math.random() * (xmax - xmin + 1));
+}
+
+const randomizeSpline = setInterval(() => {
+  $(".contrp").each(function () {return $(this).animate({
+            left: randomin(50,550), 
+            top:  randomin(50,350)
+       } , {
+            step: SVGupdate,
+            duration: 500
+      })});
+}, 5000);
+
+$(".contrp").draggable({
+            containment : "#frame",
+            scroll: false,
+            cursor: "none",
+            drag: function() {
+                    SVGupdate();
+                    clearInterval(randomizeSpline);
+                  },
+            stop: SVGupdate
+         });
+
+
+SVGupdate();
+
+function SVGupdate() {
+  var $controls = $(".contrp");
+  
+  xs = $controls.map(function(){ return (
+                                $(this).position().left + 
+                                parseInt($(this).css('padding-left').replace('px', '')) +
+                                parseInt($(this).css('border-left-width').replace('px', ''))
+                               )}).toArray();
+  ys = $controls.map(function(){ return (
+                                $(this).position().top + 
+                                parseInt($(this).css('padding-top').replace('px', '')) +
+                                parseInt($(this).css('border-top-width').replace('px', ''))
+                               )}).toArray();
+ 
+  $("#spline").attr("d",  
+              "M " + xs[0]+","+ys[0] + 
+             " C " + xs[1]+","+ys[1] +
+               " " + xs[2]+","+ys[2] +
+               " " + xs[3]+","+ys[3]);
+  $("#tangent1").attr("d", 
+              "M " + xs[0]+","+ys[0] + 
+             " L " + xs[1]+","+ys[1]);
+  $("#tangent2").attr("d", 
+              "M " + xs[2]+","+ys[2] + 
+             " L " + xs[3]+","+ys[3]);
+ 
+}
+</script>
+
+</body>
+</html>
