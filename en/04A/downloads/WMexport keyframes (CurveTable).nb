@@ -1,0 +1,239 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8719,        231]
+NotebookOptionsPosition[      8330,        217]
+NotebookOutlinePosition[      8673,        232]
+CellTagsIndexPosition[      8630,        229]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "Script for exporting ODE solution ",
+ StyleBox["sol",
+  FontWeight->"Bold"],
+ "\[LeftDoubleBracket]1\[RightDoubleBracket] as a keyframe sequence (Curve \
+Table format)"
+}], "Text",
+ CellChangeTimes->{{3.854959465478443*^9, 3.8549594720317883`*^9}, {
+  3.854959503702077*^9, 3.8549595827872643`*^9}, {3.8549596675991464`*^9, 
+  3.8549597327380705`*^9}, {3.9430831140593357`*^9, 3.943083139537678*^9}, {
+  3.943083188368099*^9, 3.9430832158014097`*^9}, {3.9430837225213194`*^9, 
+  3.9430837316030536`*^9}, {3.943084725512029*^9, 3.9430847269298773`*^9}, {
+  3.9430881138235836`*^9, 3.943088165946185*^9}, {3.9430884221772795`*^9, 
+  3.9430884286679106`*^9}},ExpressionUUID->"7a53b606-02c9-473b-b58c-\
+f5b8bdee512e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   StyleBox["(*",
+    FontSize->0], 
+   StyleBox[
+    RowBox[{"Sequence", " ", 
+     RowBox[{"parameters", ":"}]}],
+    FontSize->18,
+    FontColor->RGBColor[0., 0.7686274509803922, 0.]], 
+   StyleBox["*)",
+    FontSize->0]}], " ", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"filename", "=", "\"\<solution_keyframes\>\""}], ";"}], " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"time", "=", "5"}], ";"}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"animation", " ", "time"}], ",", " ", 
+     RowBox[{"sec", " ", 
+      RowBox[{"(", " ", 
+       RowBox[{"=", " ", 
+        RowBox[{
+         RowBox[{"0", " ", "for", " ", "real"}], "-", 
+         RowBox[{"time", " ", "solution", " ", "playback"}]}]}], " ", 
+       ")"}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fps", "=", "25"}], ";"}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"=", " ", 
+     RowBox[{
+     "total", " ", "number", " ", "of", " ", "keyframes", " ", "if", " ", 
+      "time", " ", "is", " ", "normalized", " ", 
+      RowBox[{"(", 
+       RowBox[{"time", " ", "=", " ", "1"}], ")"}]}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    StyleBox["(*",
+     FontSize->0], 
+    StyleBox[
+     RowBox[{"Keyframe", " ", 
+      RowBox[{"resampling", ":"}]}],
+     FontSize->18,
+     FontColor->RGBColor[0., 0.7686274509803922, 0.]], 
+    StyleBox["*)",
+     FontSize->0]}], " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Clear", "[", 
+     RowBox[{"t", ",", "ta"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"t1t2", "=", 
+     RowBox[{"sol", "\[LeftDoubleBracket]", 
+      RowBox[{"1", ",", "1", ",", "2", ",", "1", ",", "1"}], 
+      "\[RightDoubleBracket]"}]}], ";"}], " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[CapitalDelta]t", "=", 
+     RowBox[{
+      RowBox[{"t1t2", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+      "-", 
+      RowBox[{
+      "t1t2", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}]}], ";", 
+    RowBox[{"(*", " ", 
+     RowBox[{"solution", " ", "time", " ", "interval"}], " ", "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"vars", "=", 
+     RowBox[{"sol", "\[LeftDoubleBracket]", 
+      RowBox[{"1", ",", ";;", ",", "1"}], "\[RightDoubleBracket]"}]}], ";", 
+    " ", 
+    RowBox[{"(*", " ", 
+     RowBox[{"phase", " ", "variables"}], " ", "*)"}], "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"time", "\[Equal]", "0"}], ",", 
+      RowBox[{"time", "=", "\[CapitalDelta]t"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tpb", "[", "t_", "]"}], ":=", " ", 
+    RowBox[{"time", "*", 
+     FractionBox[
+      RowBox[{"t", "-", 
+       RowBox[{
+       "t1t2", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+      "\[CapitalDelta]t"]}]}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "playback", " ", "time", " ", "reparametrization", " ", "function"}], " ",
+     "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"rows", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"#", "[", "t", "]"}], "&"}], "/@", 
+      RowBox[{"Prepend", "[", 
+       RowBox[{"vars", ",", "tpb"}], "]"}]}]}], ";", 
+    RowBox[{"(*", " ", 
+     RowBox[{"exported", " ", "functions", " ", 
+      RowBox[{"(", 
+       RowBox[{"table", " ", "rows"}], ")"}]}], " ", "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"Nframes", "=", 
+     RowBox[{"Ceiling", "[", 
+      RowBox[{"fps", " ", "time"}], "]"}]}], ";"}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"total", " ", "number", " ", "of", " ", "keyframes"}], " ", 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tab", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"rows", "/.", 
+        RowBox[{
+        "sol", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], ",", 
+       
+       RowBox[{"{", 
+        RowBox[{"t", ",", 
+         RowBox[{
+         "t1t2", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], ",", 
+         
+         RowBox[{
+         "t1t2", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], ",", 
+         
+         RowBox[{"\[CapitalDelta]t", "/", "Nframes"}]}], "}"}]}], "]"}]}], 
+    ";"}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"table", " ", "of", " ", "resampled", " ", "values"}], " ", 
+    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    StyleBox["(*",
+     FontSize->0], 
+    StyleBox[
+     RowBox[{"Export", " ", 
+      RowBox[{"to", " ", ".", 
+       RowBox[{"csv", ":"}]}]}],
+     FontSize->18,
+     FontColor->RGBColor[0., 0.7686274509803922, 0.]], 
+    StyleBox["*)",
+     FontSize->0]}], " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetDirectory", "@", 
+     RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{
+      RowBox[{"filename", "<>", "\"\<.csv\>\""}], ",", 
+      RowBox[{
+       RowBox[{"Prepend", "[", 
+        RowBox[{"tab", ",", 
+         RowBox[{"ToString", "/@", 
+          RowBox[{"Prepend", "[", 
+           RowBox[{"vars", ",", "\"\<time\>\""}], "]"}]}]}], "]"}], 
+       "\[Transpose]"}]}], "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.8549547847986193`*^9, 3.854954790588171*^9}, {
+   3.8549548296609*^9, 3.8549549216855183`*^9}, {3.8549595921184707`*^9, 
+   3.8549596585607915`*^9}, {3.8549597752166185`*^9, 
+   3.8549597902592835`*^9}, {3.854959845538179*^9, 3.8549599932209544`*^9}, {
+   3.8549600843940234`*^9, 3.8549601100895166`*^9}, {3.854960371883294*^9, 
+   3.8549603814014997`*^9}, {3.938325587431488*^9, 3.9383256268176975`*^9}, {
+   3.9430825652188387`*^9, 3.943082632559271*^9}, {3.943082684543893*^9, 
+   3.9430826877604876`*^9}, {3.943083015079029*^9, 3.9430830348144803`*^9}, {
+   3.943083308718134*^9, 3.943083372428171*^9}, {3.9430834081339655`*^9, 
+   3.943083471126934*^9}, {3.9430835420634823`*^9, 3.943083547862795*^9}, {
+   3.9430835952612123`*^9, 3.9430837029282284`*^9}, {3.94308382451132*^9, 
+   3.9430838307425723`*^9}, {3.9430838656463127`*^9, 3.943083877552521*^9}, {
+   3.943083912305107*^9, 3.9430839904090014`*^9}, 3.9430840390622644`*^9, {
+   3.943084081753557*^9, 3.9430842487103057`*^9}, {3.9430842911426272`*^9, 
+   3.943084295662762*^9}, {3.943084341526559*^9, 3.943084375879941*^9}, {
+   3.9430844262259903`*^9, 3.943084435295062*^9}, {3.9430847458806252`*^9, 
+   3.943084767158952*^9}, {3.943084990174015*^9, 3.94308503663161*^9}, {
+   3.94308513302238*^9, 3.9430852911985917`*^9}, {3.9430853513524475`*^9, 
+   3.9430853756646605`*^9}, {3.943085555463927*^9, 3.943085568889403*^9}, {
+   3.9430857987307034`*^9, 3.9430858493394823`*^9}, {3.9430860341277065`*^9, 
+   3.9430860460870104`*^9}, 3.943086314088357*^9, {3.943086358586011*^9, 
+   3.943086398087001*^9}, 3.9430868439078555`*^9, {3.943088167852096*^9, 
+   3.943088402421826*^9}, {3.9430884325779867`*^9, 
+   3.9430885131452646`*^9}},ExpressionUUID->"462d27f1-dfb6-4017-a8f2-\
+f14cb3839357"]
+},
+WindowSize->{919, 872},
+WindowMargins->{{63, Automatic}, {-41, Automatic}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 731, 14, 34, "Text",ExpressionUUID->"7a53b606-02c9-473b-b58c-f5b8bdee512e"],
+Cell[1292, 36, 7034, 179, 441, "Input",ExpressionUUID->"462d27f1-dfb6-4017-a8f2-f14cb3839357"]
+}
+]
+*)
+
