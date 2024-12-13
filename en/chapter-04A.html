@@ -50,23 +50,30 @@
   <div class="section">
     <img src="../imgs/04A/L02.webp" class="invis">
     <p>
-    <i>Actors</i> and <i>Blueprints</i>, events <code>Tick</code> and <code>BeginPlay</code>. Mathematical modelling in Unreal Engine, real-time ODE integration. Trajectory visualization with <i>Niagara</i>. Unreal Engine physics.
+    <i>Actors</i> and <i>Blueprints</i>, events <code>Tick</code> and <code>BeginPlay</code>. Mathematical modelling in Unreal Engine, real-time ODE integration. Trajectory visualization with <i>Niagara</i>.
     <br>
     *Importing LaTeX expressions via Adobe Illustrator, <i>Widgets</i>, 2D and 3D rendering of text and imported formulae.
+    <br>
+    **Unreal Engine physics.
     </p>
   </div>
 
   <h2 id="L03">Lesson 3</h2>
-  <h3>Construction Scripts</h3>
+  <h3>Dynamical system rigging</h3>
 
   <div class="section">
     <img src="../imgs/04A/L03.png">
     <p>
-    <i>Construction scripts</i>, rigging a dynamical systems. Importing 3D meshes from <a href="#WM3Dexport">Wolfram Mathematica</a>. Lighting and sky settings, <i>Post Process Volume</i>, HDRI environment maps.
+    <i>Construction scripts</i>, blueprint variables, exposing variables the level editor. Importing 3D meshes from <a href="#WM3Dexport">Wolfram Mathematica</a>. Lighting and sky settings, <i>Post Process Volume</i>, HDRI environment maps.
 <br>
 *Exposing variables and construction scripts to <i>Sequencer</i>.
     </p>
   </div>
+
+  <ol class="references">
+    <h4>Resources</h4> 
+    <li><a href="https://polyhaven.com/hdris" target="_blank">Poly Haven</a> — free HDRIs, 3D models, and materials</li>
+  </ol>
 
   <h2 id="L04">Lesson 4</h2>
   <h3>Integration with Wolfram Mathematica</h3>
@@ -74,7 +81,9 @@
   <div class="section">
     <img src="../imgs/program/4A-ball.webp">
     <p>
-    Importing <a href="chapter-01.html#L05">animation keyframes</a> and table data from Wolfram Mathematica. Camera settings, <i>Movie Render Queue</i> plugin, <i>Pathtracer</i>, render settings for high-quality video. 
+    Importing <a href="chapter-01.html#L05">animation keyframes</a> and table data from Wolfram Mathematica.
+    <br>
+    Camera settings, <i>Movie Render Queue</i> plugin, <i>Pathtracer</i>, render settings for high-quality video. 
     </p>
   </div>
 
@@ -88,9 +97,11 @@
   <h3>Materials and Material Blueprints</h3>
 
   <div class="section">
-    <img src="../imgs/04A/L05.webp" class="invis">
+    <img src="../imgs/04A/L05s.webp">
     <p>
     Material <i>Blueprints</i> and <i>Material Instances</i>. Shaders for mathematical modelling on GPU.
+    <br>
+    *Bridge between CPU and GPU: <i>Material Parameter Collections</i>, <code>Set Vector Parameter Value</code> and <code>Collection Parameter</code> nodes.
     </p>
   </div>
 
@@ -100,7 +111,7 @@
   <div class="section">
     <img src="../imgs/04A/Lss.png">
     <p>
-    Native 3D expressions: <code>Graphics3D[]</code>, <code>Plot3D[]</code>, and <code>ParametricPlot3D[]</code>. <code>Tube</code> primitive and 3D arrows. <code>PlotRange</code> and <code>SphericalRegion</code>, <code>RotationAction</code>. <code>Boxed</code> and <code>Mesh</code> plot options. Materials: base color, <code>Specularity[]</code>, Lighting, <i>PBR</i> materials in v13. Camera settings: <code>ViewPoint</code>+<code>ViewCenter</code> and <code>ViewVector</code> (absolute vs scaled coordinates), <code>ViewVertical</code>, <code>ViewAngle</code>. 
+    Native 3D expressions: <code>Graphics3D[]</code>, <code>Plot3D[]</code>, and <code>ParametricPlot3D[]</code>. <code>Tube[]</code> primitive and 3D arrows. <code>PlotRange</code> and <code>SphericalRegion</code>, <code>RotationAction</code>. <code>Boxed</code> and <code>Mesh</code> plot options. Materials: base color, <code>Specularity[]</code>, Lighting, <i>PBR</i> materials in v13. Camera settings: <code>ViewPoint</code>+<code>ViewCenter</code> and <code>ViewVector</code> (absolute vs scaled coordinates), <code>ViewVertical</code>, <code>ViewAngle</code>. 
 Generating and exporting 3D meshes.
     </p>
   </div>

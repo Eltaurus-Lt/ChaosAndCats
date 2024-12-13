@@ -1,0 +1,158 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5358,        150]
+NotebookOptionsPosition[      4968,        136]
+NotebookOutlinePosition[      5313,        151]
+CellTagsIndexPosition[      5270,        148]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "Script for exporting parametric animation ",
+ StyleBox["Pic[t]",
+  FontWeight->"Bold"],
+ ".\n(parameter values t = 0 and t = 1 must correspond to the start and end \
+of the animation!)"
+}], "Text",
+ CellChangeTimes->{{3.854959465478443*^9, 3.8549594720317883`*^9}, {
+  3.854959503702077*^9, 3.8549595827872643`*^9}, {3.8549596675991464`*^9, 
+  3.8549597327380705`*^9}, {3.9430984651379337`*^9, 3.9430984699539223`*^9}, {
+  3.9430985045516005`*^9, 3.9430985047662673`*^9}, {3.943098636666441*^9, 
+  3.943098682349874*^9}, {3.94309901770788*^9, 3.943099050153849*^9}, {
+  3.9430991020856276`*^9, 
+  3.9430991861779633`*^9}},ExpressionUUID->"7a53b606-02c9-473b-b58c-\
+f5b8bdee512e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   StyleBox["(*",
+    FontSize->0], 
+   StyleBox[
+    RowBox[{"Animation", " ", 
+     RowBox[{"parameters", ":"}]}],
+    FontSize->18,
+    FontColor->RGBColor[1, 0, 0]], 
+   StyleBox["*)",
+    FontSize->0]}], " ", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"dirname", "=", "\"\<animation_frames\>\""}], ";"}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"subdirectory", " ", "for", " ", "frames"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"size", "=", "500"}], ";"}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"frame", " ", "width"}], ",", " ", "px"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"time", "=", "4"}], ";"}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"animation", " ", "time"}], ",", " ", "sec"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fps", "=", "25"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"loop", "=", "True"}], ";"}], 
+   RowBox[{"(*", " ", 
+    RowBox[{"looping", " ", 
+     RowBox[{"(", 
+      RowBox[{
+      "prevents", " ", "the", " ", "last", " ", "frame", " ", "from", " ", 
+       "coinciding", " ", "with", " ", "the", " ", "first"}], ")"}]}], " ", 
+    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    StyleBox["(*",
+     FontSize->0], 
+    StyleBox[
+     RowBox[{"Export", " ", "of", " ", "each", " ", "frame", " ", 
+      RowBox[{"as", " ", ".", 
+       RowBox[{"png", ":"}]}]}],
+     FontSize->18,
+     FontColor->RGBColor[1, 0, 0]], 
+    StyleBox["*)",
+     FontSize->0]}], " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Nframes", "=", 
+     RowBox[{"Ceiling", "[", 
+      RowBox[{"fps", " ", "time"}], "]"}]}], ";", " ", 
+    RowBox[{"(*", " ", 
+     RowBox[{"total", " ", "number", " ", "of", " ", "frames"}], " ", "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"SetDirectory", "@", 
+     RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   
+   RowBox[{
+    RowBox[{"Quiet", "@", 
+     RowBox[{"CreateDirectory", "[", "dirname", "]"}]}], ";", " ", 
+    RowBox[{"(*", " ", 
+     RowBox[{"creating", " ", "the", " ", "subdirectory"}], " ", "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Export", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"dirname", "<>", "\"\<//frame\>\"", "<>", 
+         RowBox[{"StringPadLeft", "[", 
+          RowBox[{
+           RowBox[{"ToString", "[", 
+            RowBox[{"#", "-", "1"}], "]"}], ",", "4", ",", "\"\<0\>\""}], 
+          "]"}], "<>", "\"\<.png\>\""}], ",", 
+        RowBox[{"Rasterize", "[", 
+         RowBox[{
+          RowBox[{"Pic", "[", 
+           FractionBox[
+            RowBox[{"#", "-", "1"}], 
+            RowBox[{"Nframes", "-", 
+             RowBox[{"Boole", "[", 
+              RowBox[{"!", "loop"}], "]"}]}]], "]"}], ",", 
+          RowBox[{"RasterSize", "\[Rule]", "size"}]}], "]"}]}], "]"}], "&"}], 
+     "/@", 
+     RowBox[{"Range", "[", "Nframes", "]"}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.8549547847986193`*^9, 3.854954790588171*^9}, {
+   3.8549548296609*^9, 3.8549549216855183`*^9}, {3.8549595921184707`*^9, 
+   3.8549596585607915`*^9}, {3.8549597752166185`*^9, 
+   3.8549597902592835`*^9}, {3.854959845538179*^9, 3.8549599932209544`*^9}, {
+   3.8549600843940234`*^9, 3.8549601100895166`*^9}, {3.854960371883294*^9, 
+   3.8549603814014997`*^9}, {3.938325587431488*^9, 3.9383256268176975`*^9}, {
+   3.9430985110565233`*^9, 3.9430986110182943`*^9}, 3.943099061858923*^9, {
+   3.943099120161543*^9, 3.9430991287142735`*^9}, {3.9430992021681995`*^9, 
+   3.943099344419088*^9}},ExpressionUUID->"462d27f1-dfb6-4017-a8f2-\
+f14cb3839357"]
+},
+WindowSize->{775, 872},
+WindowMargins->{{249, Automatic}, {-211, Automatic}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 697, 14, 56, "Text",ExpressionUUID->"7a53b606-02c9-473b-b58c-f5b8bdee512e"],
+Cell[1258, 36, 3706, 98, 317, "Input",ExpressionUUID->"462d27f1-dfb6-4017-a8f2-f14cb3839357"]
+}
+]
+*)
+
