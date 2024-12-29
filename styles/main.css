@@ -14,6 +14,7 @@
     --border-text-col: #556065;
     --hover-col: #2b2f37;#484b53;
 
+    --minwidth: min-content;
     --maxwidth: 860px;
 }
 
@@ -192,6 +193,12 @@ p {
 
 .section p {
     margin: 0;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .section .iframe-container,

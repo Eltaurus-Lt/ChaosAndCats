@@ -40,6 +40,22 @@ ul.references {
     list-style-type: square;
 }
 
+/* content formats */
+
+.centerpiece {
+    display: block;
+    width: 640px;
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+    margin: auto;
+}
+
+.spaceship {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+}
+
+
 /* downloads */
 
 .downloads-block {
