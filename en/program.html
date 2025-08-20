@@ -23,7 +23,7 @@
 <script>
   const variantsN = 2;
   var rnd = localStorage.getItem("catsRND") || Math.floor(Math.random() * variantsN);
-  document.body.setAttribute("rnd", rnd);
+  // document.body.setAttribute("rnd", rnd);
   localStorage.setItem("catsRND", (parseInt(rnd) + 1) % variantsN);
 </script>
 
@@ -130,6 +130,17 @@ Raster graphics (<code>&lt;canvas&gt;</code>). Vector graphics (inline <code>&lt
 CSS animation (<i>transitions</i> and <i>@keyframes</i>), SVG animation (<code>&lt;set&gt;</code> and <code>&lt;animate&gt;</code>).
 HTML domain object model (DOM), accessing objects with JavaScript. Basic interface elements: buttons, sliders, checkboxes, dropdowns. Interactivity: <i>onclick</i> attribute, event listeners, <i>setTimeout</i> and <i>setInterval</i> methods.
 Rendering LaTeX expressions (MathJax library).
+    </p>
+  </div>
+
+  <a href="chapter-04D.html">
+    <h3>4D. Shaders</h3>
+    <h5>GLSL</h5>
+  </a>
+  <div class="section">
+    <img rnd="0" src="../imgs/program/4B-wheel.gif">
+    <p>
+
     </p>
   </div>
 
