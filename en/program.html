@@ -138,9 +138,15 @@ Rendering LaTeX expressions (MathJax library).
     <h5>GLSL</h5>
   </a>
   <div class="section">
-    <img rnd="0" src="../imgs/program/4B-wheel.gif">
+    <img rnd="0" src="../imgs/program/4D-wing.gif">
     <p>
-
+    Special aspects of real-time GPU simulations and rendering, graphical pipeline. GLSL basics: program structure, variable types, function declarations. Functional paradigm and polymorphism. 
+<!-- no recursion, no rng, no complex data structures -->
+Coordinate system: drawing gradients, disks, and circles. Vectors, matrices and other data structures, swizzling. Build-in mathematical functions, interpolation. Drawing complex shapes, 2D signed-distance function (SDF), straight-line segments, dashing.
+Time-dependent animations, ODE solvers.
+PDE simulation: derivative functions <code>dFdx</code> and <code>dFdy</code>, buffers.
+Integration into HTML with <code>&lt;canvas&gt;</code>, passing data from CPU, <code>uniform</code> variables, mouse and keyboard control.
+Exporting animation frames into files.
     </p>
   </div>
 
@@ -195,7 +201,7 @@ Color decomposition, combination with frequency (wavelet) decomposition, applica
   </div>
 
   <a href="chapter-04^.html">
-    <h3>4*. Image Processing and Procedural Generation</h3>
+    <h3>4*. Procedural Generation Algorythms</h3>
     <h5></h5>
   </a>
   <div class="section">
@@ -210,13 +216,12 @@ Reaction-diffusion patterns.
 
   <a href="chapter-05^.html">
     <h3>5*. 3D Programming Fundamentals</h3>
-    <h5>GLSL</h5>
+    <h5>GLSL | Wolfram Mathematica</h5>
   </a>
   <div class="section">
     <img src="../imgs/program/5^.gif">
     <p>
     Mathematical foundations: ray tracing vs projection (rasterization) rendering. Ray tracing variations: path tracing, ray marching, cone marching. Physically based rendering (PBR) and materials: the Rendering equation, Bidirectional Scattering Distribution Function (BSDF), metallic-roughness model. Specular reflections: Fresnel coefficients, Schlick's approximation, highlight models. Mesh geometry and normals: Phong shading, normal maps. Global illumination and ambient occlusion (AO), implementation with Fibonacci lattice. Anti-aliasing (AA), motion blur, and depth-of-field blur with combined supersampling technique.
-Shaders: GLSL basics, real-time GPU simulations and rendering, integration into HTML with <code>&lt;canvas&gt;</code>, Unreal Engine material blueprints.
 Native 3D functionality in Wolfram Mathematica: materials and lighting, generating and exporting 3D meshes.
     </p>
   </div>
