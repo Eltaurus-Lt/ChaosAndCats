@@ -10,6 +10,7 @@
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/chapterStyles.css">
   <link rel="icon" type="image/svg+xml" href="">
 </head>
 <body>
@@ -26,9 +27,32 @@
 </div>
 
   <h1>Математическое моделирование</h1>
-  <h2>Wolfram Mathematica</h2>
 
-  <a href="chapter-02.html">Раздел 2</a>
+<h2 id="L01">Семинар 1</h2>
+  <h3>Введение в Wolfram Mathematica</h3>
+
+  <div class="section">
+    <img src="../imgs/01/L01.png">
+    <p>
+    Набор формул: математические операторы, греческие буквы и другие специальные символы. Конвертирование формул в и из LaTeX кода.
+<br>
+M-выражения ― универсальная форма записи операторов, функций и структур данных. Выражения <code>Part[]</code> (<code>[[]]</code>), <code>FullForm[]</code> и <code>TreeForm[]</code>. Принципы работы механизма символьных вычислений: правила замены и паттерны. Переменные и функции как глобальные правила, выражения <code>Set[]</code> (<code>=</code>) и <code>SetDelayed[]</code> (<code>:=</code>) для задания правил.
+<br>
+Основы функционального программирования: анонимные функции&nbsp;(<code>&amp;</code>) и безымянные аргументы (<code>#</code>,&nbsp;<code>#2</code>,&nbsp;…), префиксная (<code>@</code>) и постфиксная (<code>//</code>) нотации, перегрузка функций, применение функций к спискам. Функции высшего порядка: <code>Apply[]</code> (<code>@@</code> и <code>@@@</code>), <code>Map[]</code> (<code>/@</code>), <code>Nest[]</code>, <code>NestList[]</code> и <code>Fold[]</code>.
+    </p>
+  </div>
+
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href=".nb" download title="блокнот семинара">Семинар 01.nb</a>
+    <a class="dwld" href=".pdf" download title="конспект блокнота">Семинар 01.pdf</a>
+  </fieldset>
+
+  <ol class="references">
+    <h4>Внешние ресурсы</h4> 
+    <li><a href="https://www.wolframcloud.com/" target="_blank">Облачная Wolfram Mathematica</a> (в бесплатной версии не доступна работа с файлами)</li>
+  </ol>
+
 
   <script src="../scripts/main.js"></script>
 </body>
