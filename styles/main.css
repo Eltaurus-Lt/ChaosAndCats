@@ -25,7 +25,7 @@ img {
 }
 
 .off {
-    display: none;
+    display: none !important;
 }
 .invis {
     visibility: hidden;
