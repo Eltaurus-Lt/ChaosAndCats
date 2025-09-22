@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>4D. Shaders</title>
+  <title>4D. 3D Modeling</title>
   <meta name="author" content="Eltaurus">
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -22,91 +22,85 @@
     <option lang="ru" value="ru">Rus</option>
   </select>
   <a class="off" href="../ru/chapter-04D.html">rus</a>
-  <a class="button fwd" href="chapter-01^.html">Forward ⮞</a>
+  <a class="button fwd" href="chapter-04E.html">Forward ⮞</a>
 </div>
 
 
 
-  <h1>Shaders</h1>
+  <h1>3D Modeling</h1>
 
   <h2>Examples</h2>
 
-  <h3>Time-evolution map of a chaotic dinamical system</h3>
-  <h5>Elastic Pendulum</h5>
-  <br>
-  <iframe class="spaceship" src="https://www.shadertoy.com/embed/w3GXRh?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
+  <h2 id="L01">Lesson 1</h2>
+  <h3 id="blender">Introduction to Blender</h3>
 
-  <p>
-    🖱️ Click - Show current state for the system initiated on the clicked pixel<br>
-    ⌨️ Space - Reset to initial conditions<br>
-  </p>
+  <div class="section">
+    <img class="invis" src="../imgs/04D/L01.webp">
+    <p>
+	General interface: opening, closing, switching, and rearranging panels, <i>Outliner</i> and <i>Properties</i> panels. <i>Viewport</i> panel: navigation, modes, display regimes, overlays. Adding and manipulating objects: <i>N-Panel</i>, gizmos, shortcuts. Object rotation: Euler angles vs quaternions, geometry origin and pivot points, <i>3D-cursor</i>.
+    </p>
+  </div>
 
-  <ol class="references">
-    <h4>References</h4> 
-    <li><a href="https://en.wikipedia.org/wiki/Elastic_pendulum" target="_blank">Elastic pendulum</a></li>
-  </ol>
+  <h2 id="L02">Lesson 2</h2>
+  <h3>Modeling basics</h3>
 
-  <br><br><br>
+  <div class="section">
+    <img class="invis" src="../imgs/04D/L02.webp">
+    <p>
+	Object modeling: <i>Array</i>, <i>Bevel</i>, and <i>Boolean</i> modifiers. Shading and normals: mathematical foundations, shading methods, dependence on mesh topology.
+    </p>
+  </div>
 
-  <h3>Laminar 2D flow</h3>
-  <h5>Zhukovsky conformal map</h5>
-  <br>
-  <iframe class="spaceship" src="https://www.shadertoy.com/embed/W3yXRy?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
+  <h2 id="L03">Lesson 3</h2>
+  <h3>SubD workflow</h3>
+	
+  <div class="section">
+    <img class="invis" src="../imgs/04D/L03.webp">
+    <p>
+	<i>Viewport</i> <i>Edit Mode</i>: manipulating indivisual verteces, edges, and faces. Extrude and inset, join and fill, inserting and selecting edge loops. Delete vs Dissolve vs Merge. Mathamtical foundations of the <i>Subdivision</i> modifier: B-splines and relation to <a href="chapter-03.html#bezier">Bézier curves</a>, <i>Catmull-Clark</i> algorythm. Controling edge sharpness: edge <i>crease</i>, support loops, beveling.
+<i>Loop Tools</i> add-on.
+    </p>
+  </div>
 
-  <p>
-    ⌨️/🖱️ ↔ - Change angle of attack<br>
-    ⌨️/🖱️  ↕ - Change profile curvature<br>
-  </p>
+  <h2 id="L04">Lesson 4</h2>
+  <h3>Materials and rendering</h3>
+  <div class="section">
+    <img class="invis" src="../imgs/04D/L04.webp">
+    <p>
+	PBR materials: physical foundations, principal BSDF, basic parameters, <i>Shader Nodes</i>. Lighting and camera settings, HDRI environment maps. Eevee and Cycles rendering engines, GPU setup.
+    </p>
+  </div>
 
-  <ol class="references">
-    <h4>References</h4> 
-    <li><a href="https://en.wikipedia.org/wiki/Potential_flow" target="_blank">Potential Flow</a></li>
-    <li><a href="https://en.wikipedia.org/wiki/Joukowsky_transform" target="_blank">Zhukovsky map</a></li>
-  </ol>
+  <h2 id="L05">Lesson 5*</h2>
+  <h3>Animation</h3>
 
-  <br><br><br>
+  <div class="section">
+    <img class="invis" src="../imgs/04D/L05s.webp">
+    <p>
+	Keyframe animation, <i>Timeline</i> and <i>Graph Editor</i> panel (<a href="chapter-03.html#bezier">Bézier splines</a>). Importing animation keyframes and 3D meshes from Wolfram Mathematica.
+	<br>
+	*Importing and animating LaTeX expressions.
+    </p>
+  </div>
 
-  <h3>Mixing in Hamiltonian space</h3>
-  <h5>Continuous Smale horseshoe</h5>
-  <br>
-  <iframe class="spaceship" src="https://www.shadertoy.com/embed/tXySDD?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
-
-  <p>
-    🖱️ - Draw<br>
-    ⌨️1️⃣-7️⃣ - Select colors<br>
-    ⌨️ Space - Reset
-  </p>
-
-  <ol class="references">
-    <h4>References</h4> 
-    <li><a href="https://en.wikipedia.org/wiki/Mixing_(mathematics)" target="_blank">Mixing</a></li>
-    <li><a href="https://en.wikipedia.org/wiki/Horseshoe_map" target="_blank">Smale horseshoe</a></li>
-  </ol>
-
-  <br><br><br>
-
-  <h3>Fast reaction–diffusion</h3>
-  <h5>Turing pattern</h5>
-  <br>
-  <iframe class="spaceship" src="https://www.shadertoy.com/embed/3XySDR?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
-
-  <p>
-    🖱️ - Draw<br>
-    ⌨️ Space - Toggle perturbing animation
-  </p>
-
-  <ol class="references">
-    <h4>References</h4> 
-    <li><a href="https://en.wikipedia.org/wiki/Reaction%E2%80%93diffusion_system" target="_blank">Reaction–diffusion</a></li>
-    <li><a href="https://en.wikipedia.org/wiki/Turing_pattern" target="_blank">Turing patterns</a></li>
-  </ol>
+  <h2 id="Lss">Lesson **</h2>
+  <h3>Physics simulations and Scripting</h3>
+  <div class="section">
+    <img class="invis" src="../imgs/04D/Lss.webp">
+    <p>
+	Rigid-body simulations: body properties, <i>Rigid Body World</i> properties, initial conditions, constrains, baking. Liquid and gas simulations, volumetric shading. 
+	<br>
+	Procedural geometry with <i>Geometry Nodes</i>. <i>Drivers</i>. Visualizing trajectories with particles and with Geometry Nodes. *<i>Python Console</i> scripts.
+    </p>
+  </div>
 
   <h2>Linked Lessons</h2>
   <ul class="references">
-    <li><a href="chapter-04A.html#L05">Shaders in Unreal Engine</a></li>
+    <li><a href="chapter-04A.html">3D graphics and animaiton (Unreal Engine)</a></li>
     <li><a href="chapter-05^.html">3D Programming fundamentals</a></li>
   </ul>
 
+  
   <script src="../scripts/main.js"></script>
 </body>
 </html>
