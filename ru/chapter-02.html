@@ -10,6 +10,7 @@
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/chapterStyles.css">
   <link rel="icon" type="image/svg+xml" href="">
 </head>
 <body>
@@ -26,10 +27,103 @@
 
 
   <h1>Растровая графика</h1>
-  <h2>Adobe Photoshop</h2>
+
+  <h2 id="L01">Семинар 1</h2>
+  <h3 id="photoshop">Введение в Adobe Photoshop</h3>
+
+  <div class="section">
+    <img src="../imgs/02/L01-ball.webp">
+    <p>
+    Интерфейс, редактирование раскладки панелей, командное меню «Окно» (<i>Window</i>), создание документов и импорт изображений.
+Панель «Инструменты» (<i>Tools</i>), инструменты рисования «Кисть» (<i>Brush</i>) и <i>Ластик</i> (<i>Eraser</i>), панель настройки иструментов. Цвета: интерфейс выбора, панели «Цвет» (<i>Color</i>) и «Образцы» (<i>Swatches</i>), инструмент «Пипетка» (<i>Eyedropper</i>).
+Навигация в окне документа: инструменты «Рука» (<i>Hand</i>) и «Лупа» (<i>Zoom</i>), панель «Навигатор» (<i>Navigator</i>), комбинации клавиш для навигации. Панель «Слои» (<i>Layers</i>) и структура документов Adobe Photoshop, прозрачность, инструмент «Перемещение» (<i>Move</i>), комбинации клавиш для выбора слоёв. Отмена и повторение действий, панель «История» (<i>History</i>), сохранение состояний.
+Изменение размеров изображения и холста, команды <i>Trim</i> и <i>Reveal All</i>, инструмент кадрирования (<i>Crop</i>), режим свободной трансформации (<i>Free Transform</i>). Выделение и вырезание областей изображения, инструменты «Область» (<i>Marquee</i>) и «Прямолинейное лассо» (<i>Polygonal Lasso</i>), выделение по слою, параметры команды заливки (<i>Fill</i>).
+    </p>
+  </div>
+
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href="https://eltaurus-lt.github.io/CnC/LFF/02 - Lesson 01.psd" download title="документ семинара">Lesson 01.psd</a>
+  </fieldset>
+
+  <ul class="references off">
+    <h4>Связанные темы</h4> 
+    <li><a href="chapter-03*.html">Цветовые пространства и теория цвета</a></li>
+  </ul>
+
+  <ol class="references">
+    <h4>Внешние ресурсы</h4> 
+    <li><a href="https://www.photopea.com/" target="_blank">Photopea</a> ― бесплатный браузерный редактор с похожим функционалом</li>
+  </ol>
 
 
-  <a href="chapter-01.html">Раздел 1</a>
+
+  <h2 id="L02">Семинар 2</h2>
+  <h3>Интеграция Adobe Photoshop и Wolfram Mathematica</h3>
+
+  <div class="section">
+    <img src="../imgs/program/2-ball.webp">
+    <p>
+    Вставка растровых изображений в Wolgram Mathematica, экспорт и импорт изображений с каналом прозрачности. Выражение <code>Inset[]</code>, комбинирование растровых изображений с <a href="chapter-01.html#L05">векторными рисунками</a>.
+    <br>
+    Объединение <a href="chapter-01.html#WMexport-frames">последовательности кадров</a> в <code>.gif</code> анимацию. 
+    <br>
+    *Покадровая анимация, особая роль первого кадра.
+    </p>
+  </div>
+
+
+
+  <h2 id="Ls">Семинар *</h2>
+  <h3>Углубленные методы редактирования</h3>
+
+  <div class="section">
+    <img src="../imgs/02/Ls-Cat.gif">
+    <p>
+    Цветокоррекция: команды «Кривые» (<i>Curves</i>), «Цветовой тон/Насыщенность» (<i>Hue/Saturation</i>) и «Уровни» (<i>Levels</i>), гистограммы, инструменты «Осветлитель» (<i>Dodge</i>),  «Затемнитель» (<i>Burn</i>) и «Губка»&nbsp;(<i>Sponge</i>).
+    <br>
+    Неразрушающее редактирование: маски яркости и обтравочные маски, «Умные объекты» (<i>Smart objects</i>), «Корректирующие слои» (<i>Adjustment Layers</i>). Элементы векторной графики: инструменты «Фигуры» (<i>Shapes</i>), настройки для рисования стрелочек, векторные маски, панель «Пути» (<i>Paths</i>). Вёрстка: выравнивание и распределение слоёв, «Линейки» (<i>Rulers</i>) и «Направляющие» (<i>Guides</i>).
+    <br>
+    Ретушь изображений: инструменты «Штамп» (<i>Stamp</i>) и «Восстанавливающая кисть» (<i>Healing Brush</i>), заливка с учётом содержимого (<i>Content-Aware</i> <i>Fill</i>). Режимы наложения (<i>Blending modes</i>) слоёв и инструментов рисования, панель настроек «Кисть» (<i>Brush</i>). Панель «Каналы» (<i>Channels</i>): выделение областей, копирование и вставка каналов. Тонкости работы со сглаженными краями, небинарные выделения, устранение подтёков цвета.
+    <br>*Автоматизация действий: панель «Операции» (<i>Actions</i>), команды «Пакетная обработка» (<i>Batch</i>) и «Переменные» (<i>Variables</i>), применение и написание скриптов.
+<!--Nonlinear history, <i>History Brush</i> tool.-->
+    </p>
+  </div>
+
+  <ul class="references off">
+    <h4>Связанные темы</h4> 
+    <li><a href="chapter-03^.html#L02">Color Correction and Color Decomposition in Adobe Photoshop</a></li>
+    <li><a href="chapter-04^.html#wavelet">Frequency Decomposition in Adobe Photoshop</a></li>
+  </ul>
+
+
+
+  <h2 id="Lss">Семинар **</h2>
+  <h3>Растровая графика в Wolfram Mathematica</h3>
+
+  <div class="section">
+    <img src="../imgs/02/Lss-Newton.gif">
+    <p>
+    Выражение <code>Image[]</code>, конвертация массивов данных в растровые изображения, приведение данных к регулярной сетке при помощи выражения <code>Interpolation[]</code>, график <code>ArrayPlot[]</code>. Выражение <code>ImageData[]</code>, чтение данных из изображений.
+    <br>
+    Комбинирования растровых изображений: выражения <code>ImageAssemble[]</code> и <code>ImageCompose[]</code>, автоматическая верстка при помощи выражения <code>ImageCollage[]</code>, инфографика. 
+    <br>
+    Арифметика изображений: множитель яркости, гамма-коррекция, тональные кривые (<a href="#Ls"><i>Curves</i></a>), матричные преобразования цветов. Режимы наложения (<i>Blending modes</i>): выражения <code>ImageAdd[]</code>, <code>ImageSubtract[]</code>, <code>ImageDifference[]</code> и <code>ImageMultiply[]</code>.
+    </p>
+  </div>
+
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href="02/downloads/Newton basins.nb" download title="задача с примером">Newton basins.nb</a>
+  </fieldset>
+
+  <ul class="references">
+    <h4>Связанные темы</h4> 
+    <li class="off"><a href="chapter-04^.html#L01">Image Convolution in Wolfram Mathematica</a></li>
+    <li class="off"><a href="chapter-03^.html#L02">Blending Modes and Color Correction</a></li>
+    <li><a href="chapter-01.html#L05">Векторные рисунки в Wolfram Mathematica</a></li>
+  </ul>
+
 
   <script src="../scripts/main.js"></script>
 </body>
