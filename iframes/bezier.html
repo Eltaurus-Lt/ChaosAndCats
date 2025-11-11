@@ -11,108 +11,134 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="icon" type="image/svg+xml" href="">
 
-  <script type="text/javascript" async="" src="https://code.jquery.com/jquery-3.6.0.js" defer></script>
-  <script type="text/javascript" async="" src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" defer></script>
-
   <style>
     html, body {
- //     height: 420px;
-  //    width: 420px;
+        margin: 0;
+	height: 100vh;
+	inset: 0;
+        overflow: clip;
     }
+
+svg {
+    inset: 0;
+    margin: auto;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+
+    //border: lightgray 1px solid;
+    background: white;
+}
+
   </style>
 
 
   <style>
 
-.contrp {
-  position: absolute;
-//  transition: position .5s;
-//  cursor: grab;
+svg path {
+  fill: transparent;
+}
+svg path#spline {
+  stroke: red;
+  stroke-width: 5;
+}
+svg path[id^="tangent"] {
+  stroke: black;
+  stroke-width: 2;
 }
 
-.square {
-  padding: 4px;
-  background: white;
-  border: black solid 2px;
+svg rect {
+  fill: white;
+  stroke: black;
+  stroke-width: 2;
 }
-.circle {
-  padding: 6px;
-  background: black;
-  border-radius: 100px;
+svg :is(rect, circle) {
+  cursor: grab;
+}
+svg :is(rect, circle):active {
+  cursor: grabbing;
 }
 
   </style>
 </head>
 <body>
 
-<div class="contrp square" id="contr1"></div>  
-<div class="contrp circle" id="contr2"></div>  
-<div class="contrp circle" id="contr3"></div> 
-<div class="contrp square" id="contr4"></div>  
-
-<svg width='100%' height='100%' viewPort='0 0 100 100' id="svgcanvas">
-  <path id="spline"   stroke="red"   stroke-width="5" fill="transparent"/>
-  <path id="tangent1" stroke="black" stroke-width="2" fill="transparent"/>
-  <path id="tangent2" stroke="black" stroke-width="2" fill="transparent"/>
+<svg id="svgcanvas">
+  <path id="spline"/>
+  <path id="tangent1"/>
+  <path id="tangent2"/>
+  <rect x="25" y="25" width="10" height="10" />
+  <circle cx="110" cy="30" r="6" />
+  <circle cx="70" cy="150" r="6" />
+  <rect x="145" y="145" width="10" height="10" />
 </svg>
 
 <script>
+
+active = null;
+
+SVGRectElement.prototype.setPosition = function(x,y) {
+  const w = this.getAttribute("width");
+  this.setAttribute("x", Math.round(x - w / 2));
+  this.setAttribute("y", Math.round(y - w / 2));
+}
+SVGRectElement.prototype.getPosition = function() {
+  const w = this.getAttribute("width");
+  return [
+    Math.round(Number(this.getAttribute("x")) + w / 2),
+    Math.round(Number(this.getAttribute("y")) + w / 2)
+  ];
+}
+SVGCircleElement.prototype.setPosition = function(x,y) {
+  this.setAttribute("cx", x);
+  this.setAttribute("cy", y);
+}
+SVGCircleElement.prototype.getPosition = function() {
+  return [
+    this.getAttribute("cx"),
+    this.getAttribute("cy")
+  ];
+}
+
+const svgCanvas = document.querySelector("svg");
+const controls = [...svgCanvas.querySelectorAll("rect, circle")];
+
+svgCanvas.addEventListener("mousedown", (e)=>{
+  active = e.target;
+  if (!["rect", "circle"].includes(active.tagName)) {
+    active = null;
+  }
+});
+svgCanvas.addEventListener("mousemove", (e)=>{
+  if (! e.buttons & 1) {active = null};
+  if (!active) return;
+  active.setPosition(e.clientX, e.clientY);
+  splineUPD();
+});
 
 function randomin(xmin, xmax) {
   return xmin + Math.floor(Math.random() * (xmax - xmin + 1));
 }
 
-const randomizeSpline = setInterval(() => {
-  $(".contrp").each(function () {return $(this).animate({
-            left: randomin(50,550), 
-            top:  randomin(50,350)
-       } , {
-            step: SVGupdate,
-            duration: 500
-      })});
-}, 5000);
 
-$(".contrp").draggable({
-            containment : "#frame",
-            scroll: false,
-            cursor: "none",
-            drag: function() {
-                    SVGupdate();
-                    clearInterval(randomizeSpline);
-                  },
-            stop: SVGupdate
-         });
+function splineUPD() {
+  const P = controls.map(L => {
+    const xy = L.getPosition();
+    return `${xy[0]},${xy[1]}`;
+  });
 
-
-SVGupdate();
-
-function SVGupdate() {
-  var $controls = $(".contrp");
-  
-  xs = $controls.map(function(){ return (
-                                $(this).position().left + 
-                                parseInt($(this).css('padding-left').replace('px', '')) +
-                                parseInt($(this).css('border-left-width').replace('px', ''))
-                               )}).toArray();
-  ys = $controls.map(function(){ return (
-                                $(this).position().top + 
-                                parseInt($(this).css('padding-top').replace('px', '')) +
-                                parseInt($(this).css('border-top-width').replace('px', ''))
-                               )}).toArray();
- 
-  $("#spline").attr("d",  
-              "M " + xs[0]+","+ys[0] + 
-             " C " + xs[1]+","+ys[1] +
-               " " + xs[2]+","+ys[2] +
-               " " + xs[3]+","+ys[3]);
-  $("#tangent1").attr("d", 
-              "M " + xs[0]+","+ys[0] + 
-             " L " + xs[1]+","+ys[1]);
-  $("#tangent2").attr("d", 
-              "M " + xs[2]+","+ys[2] + 
-             " L " + xs[3]+","+ys[3]);
- 
+  document.getElementById("spline").setAttribute("d",  
+              `M ${P[0]} C ${P[1]} ${P[2]} ${P[3]}`
+  );
+  document.getElementById("tangent1").setAttribute("d", 
+              `M ${P[0]} L ${P[1]}`
+  );
+  document.getElementById("tangent2").setAttribute("d", 
+              `M ${P[3]} L ${P[2]}`
+  ); 
 }
+
+splineUPD();
 </script>
 
 </body>
