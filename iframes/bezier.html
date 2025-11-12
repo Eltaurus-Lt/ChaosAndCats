@@ -40,7 +40,7 @@ svg path {
 }
 svg path#spline {
   stroke: red;
-  stroke-width: 5;
+  stroke-width: 4;
 }
 svg path[id^="tangent"] {
   stroke: black;
@@ -67,15 +67,14 @@ svg :is(rect, circle):active {
   <path id="spline"/>
   <path id="tangent1"/>
   <path id="tangent2"/>
-  <rect x="25" y="25" width="10" height="10" />
-  <circle cx="110" cy="30" r="6" />
-  <circle cx="70" cy="150" r="6" />
-  <rect x="145" y="145" width="10" height="10" />
+  <rect x="25" y="25" width="8" height="8" />
+  <circle cx="110" cy="30" r="5" />
+  <circle cx="70" cy="150" r="5" />
+  <rect x="145" y="145" width="8" height="8" />
 </svg>
 
 <script>
-
-active = null;
+// general 
 
 SVGRectElement.prototype.setPosition = function(x,y) {
   const w = this.getAttribute("width");
@@ -95,31 +94,13 @@ SVGCircleElement.prototype.setPosition = function(x,y) {
 }
 SVGCircleElement.prototype.getPosition = function() {
   return [
-    this.getAttribute("cx"),
-    this.getAttribute("cy")
+    Number(this.getAttribute("cx")),
+    Number(this.getAttribute("cy"))
   ];
 }
 
 const svgCanvas = document.querySelector("svg");
 const controls = [...svgCanvas.querySelectorAll("rect, circle")];
-
-svgCanvas.addEventListener("mousedown", (e)=>{
-  active = e.target;
-  if (!["rect", "circle"].includes(active.tagName)) {
-    active = null;
-  }
-});
-svgCanvas.addEventListener("mousemove", (e)=>{
-  if (! e.buttons & 1) {active = null};
-  if (!active) return;
-  active.setPosition(e.clientX, e.clientY);
-  splineUPD();
-});
-
-function randomin(xmin, xmax) {
-  return xmin + Math.floor(Math.random() * (xmax - xmin + 1));
-}
-
 
 function splineUPD() {
   const P = controls.map(L => {
@@ -139,6 +120,87 @@ function splineUPD() {
 }
 
 splineUPD();
+</script>
+
+<script>
+// mouse interaction
+active = null;
+
+svgCanvas.addEventListener("mousedown", (e)=>{
+  active = e.target;
+  if (!["rect", "circle"].includes(active.tagName)) {
+    active = null;
+  }
+  svgCanvas.edited = performance.now();
+});
+svgCanvas.addEventListener("mousemove", (e)=>{
+  if (! e.buttons & 1) {active = null};
+  if (!active) return;
+  active.setPosition(e.clientX, e.clientY);
+  splineUPD();
+  svgCanvas.edited = performance.now();
+});
+</script>
+
+<script>
+// random animation
+
+function randomIN(xmin, xmax) {
+  return xmin + Math.floor(Math.random() * (xmax - xmin + 1));
+}
+
+function smoothstep(x) {
+  const u = Math.min(Math.max(x,0),1);
+  return u*u*(3-2*u);
+}
+
+function interpolate(from, to, prog) {
+  switch (true) {
+    case (typeof from === "number" && typeof to === "number"):
+      return from + (to - from) * smoothstep(prog);
+    case (Array.isArray(from) && Array.isArray(to) && from.length === 2 && to.length === 2):
+      return [interpolate(from[0], to[0], prog), interpolate(from[1], to[1], prog)];
+    case (Array.isArray(from) && Array.isArray(to) && from.length === to.length):
+      return from; //todo
+  }
+}
+
+setInterval(() => {
+  const start = performance.now();
+  console.log(svgCanvas.edited);
+  if (svgCanvas.edited && start < svgCanvas.edited + 15000) return;
+
+  svgCanvas.animationStart = start;
+  const duration = 500;
+
+  controls.forEach(L=>{
+    const dim = svgCanvas.getBoundingClientRect();
+    const pad = 5;
+    L.from = L.getPosition();
+    L.to = [
+        randomIN(pad, dim.width - pad),
+        randomIN(pad, dim.height - pad)
+      ];
+    // console.log(`${L.from} -> ${L.to}`);
+  });
+
+  function frame(now) {
+    const prog = (now - start) / duration;
+    controls.forEach(L=>{
+      const current = interpolate(L.from, L.to, prog).map(val=>Math.round(val));
+      // console.log(`${L.from} -> ${L.to}: ${current}`);
+      L.setPosition(current[0], current[1]);
+    });
+    splineUPD();
+    
+    if (prog < 1) {
+      requestAnimationFrame(frame);
+    }
+  }
+
+  requestAnimationFrame(frame);
+
+}, 5000);
 </script>
 
 </body>
