@@ -122,6 +122,7 @@ ul.references {
     [href$='.pdf'],
     [href$='.psd'],
     [href$='.ai'],
+    [href$='.blend'],
     [href$='.aep'],
     [href$='.pptx'],
 ) {
@@ -158,6 +159,9 @@ ul.references {
 }
 .downloads-block a[href$='.ai']::after {
     background-image: url("../imgs/file_icons/ai.png");
+}
+.downloads-block a[href$='.blend']::after {
+    background-image: url("../imgs/soft_icons/blender.png");
 }
 .downloads-block a[href$='.aep']::after {
     background-image: url("../imgs/file_icons/aep.png");
