@@ -39,7 +39,7 @@ svg path {
   fill: transparent;
 }
 svg path#spline {
-  stroke: red;
+  stroke: var(--accent-color, red);
   stroke-width: 4;
 }
 svg path[id^="tangent"] {
@@ -72,6 +72,16 @@ svg :is(rect, circle):active {
   <circle cx="70" cy="150" r="5" />
   <rect x="145" y="145" width="8" height="8" />
 </svg>
+
+<script>
+// setting color from parameters
+
+  const params = new URLSearchParams(window.location.search);
+  const color = params.get("color");
+  if (color) {
+    document.documentElement.style.setProperty("--accent-color", color);
+  }
+</script>
 
 <script>
 // general 
