@@ -197,6 +197,10 @@ p {
     margin: 0;
 }
 
+code {
+    font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
 iframe {
     width: 100%;
     height: 100%;
