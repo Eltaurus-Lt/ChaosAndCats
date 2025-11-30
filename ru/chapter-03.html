@@ -50,13 +50,17 @@
   <div class="section">
     <img src="../imgs/03/L01.webp" class="invis">
     <p>
-    Adobe Illustrator interface and document structure: similarities and differences with <a href="chapter-02.html#L01">Adobe Photoshop</a>, distinctions in the <i>Layers</i> panel, <i>Isolation mode</i>. Making and editing splines: <i>Pen</i> tool and its controls, inserting spline points, <i>Anchor Point</i> tool, joining splines. Compound paths: <i>Pathfinder</i> panel, <i>Shape Builder</i> tool. <i>Appearance</i> panel and <i>Expand Appearance</i> function.
+    Интерфейс, сравнение с <a href="chapter-02.html#L01">Adobe Photoshop</a>, панель «Слои» (<i>Layers</i>), инструменты выделения объектов и опорных точек. Создание и редактирование кривых Безье́: инструмент «Перо» (<i>Pen</i>), добавление и удаление точек, заострение и сглаживание углов, сшивка кривых.
+    <br>
+    Панель настроек внешнего вида (<i>Appearance</i>), параметры обводки, инструмент «Пипетка» (<i>Eyedropper</i>). Составные пути, панель <i>Pathfinder</i>, инструмент «Создание фигур» (<i>Shape Builder</i>), команды разворачивания стиля <i>Expand</i> и <i>Expand Appearance</i>.
+    <br>
+    *Трассировка растровых изображений. Инструменты векторной сетки (<i>Grid Tools</i>), деформации по сплайновой сетке (<i>Envelope deform</i>), смешивание (<i>Blend</i>) векторных объектов.
     </p>
   </div>
 
   <ol class="references">
     <h4>Внешние ресурсы</h4> 
-    <li><a href="https://www.vectorpea.com/" target="_blank">Vectorpea</a> ―  бесплатный браузерный упрощённый аналог</li>
+    <li><a href="https://www.vectorpea.com/" target="_blank">Vectorpea</a> ― бесплатный браузерный (упрощённый) аналог</li>
   </ol>
 
   <ul class="references">
@@ -68,16 +72,20 @@
 
 
   <h2 id="L02">Семинар 2</h2>
-  <h3>Embedding external files</h3>
+  <h3>Комбинированные иллюстрации</h3>
+    <!-- Композитные/гибридные изображения -->
   <div class="section">
     <img src="../imgs/03/L02.svg">
     <p>
-    Combining vector and raster images, <i>Links</i> panel, linking between <a href="#AI">Illustrator</a> and <a href="chapter-02.html#L01">Photoshop</a>, <i>Clipping Masks</i>.
-Importing and editing <a href="chapter-01.html#WMexport-pdf">Wolfram Mathematica graphics</a>, selecting objects by properties and types, stroke options <i>Dashing</i> and <i>arrowheads</i>.
-Dealing with font issues: selectively replacing missing fonts, <i>Flatten Transparency</i> function, fonts sources for Wolfram Mathematica. 
-Importing rendered LaTeX documents, font sources from CTAN and <code>.ttf</code> substitutes. In-place LaTeX expression rendering: plugin LaTeX2AI and alternative scripts. 
+    Привязка и встраивание внешних файлов, панель «Ссылки» (<i>Links</i>). 
+    Импорт растровых изображений и <a href="chapter-02.html#L01"><code>.psd</code></a> документов.
+    Импорт векторных изображений и <code>.pdf</code> файлов, встраивание с возможностью редактирования текста и внешнего вида векторных объектов, настройки автозамены отсутствующих шрифтов, встраивание с сохранением внешнего вида надписей и векторных стилей, команда «Сплющивание прозрачностей» (<i>Flatten Transparency</i>). 
     <br>
-    *Tracing raster images. 
+    Импорт и редактирование <a href="chapter-01.html#WMexport-pdf">графиков и рисунков</a> из Wolfram Mathematica. Импорт готовых LaTeX документов, рендер формул LaTeX в Adobe Illustrator.
+    <br>
+    Группирование объектов, <i>режим изоляции</i>, выделение групп по свойствам и типу объектов, сброс параметров внешнего вида. Построение размерных и выносных линий, углов, настройки внешнего вида для двойных <!-- offset path--> и пунктирных линий и стрелочек. Эффекты слоёв.
+    <br>
+    *Инструменты «График» (<i>Graph</i>) и «Размер» (<i>Dimension</i>), импорт и автообновление табличных данных.
     </p>
   </div>
 
@@ -85,20 +93,50 @@ Importing rendered LaTeX documents, font sources from CTAN and <code>.ttf</code>
     <legend>Материалы</legend>
     <a class="dwld" href="../en/03/downloads/Lesson 02.ai" download="Семинар 02.ai" title="документ семинара">Семинар 02.ai</a>
     <a class="dwld" href="../en/03/downloads/Lesson 02.pdf" download="Семинар 02.pdf" title="сплющенная версия для просмотра">Семинар 02.pdf</a>
+    <a class="dwld off" href="../en/03/downloads/.nb" title="экспорт табличных данных из Wolfram Mathematica">.nb</a>
   </fieldset>
 
+  <ol class="references">
+    <h4>Внешние ресурсы</h4> 
+    <li><a href="https://github.com/isteinbrecher/LaTeX2AI/releases" target="_blank">LaTeX2AI</a> ― Плагин для рендера LaTeX выражений в Adobe Illustrator</li>
+    <li><a href="https://www.ctan.org/tex-archive/fonts/cm/ps-type1/bakoma/ttf/" target="_blank">Шрифты LaTeX</a> (<code>.ttf</code> версии наиболее распространённых начертаний)</li>
+    <li><a href="https://www.ctan.org/tex-archive/fonts/" target="_blank">Полный архив LaTeX шрифтов</a> (формат Adobe Type 1 <b>не поддерживается</b> большинством современных графических редакторов и операционных систем)</li>
+  </ol>
+
+  <ul class="references">
+    <h4>Связанные темы</h4> 
+    <li><a href="chapter-02.html#L02">Комбинированные иллюстрации в Wolfram Mathematica</a></li>
+    <li><a href="chapter-01.html#L06">LaTeX выражения в Wolfram Mathematica</a></li>
+    <li><a href="chapter-02.html#Ls">Динамические связи с внешними файлами в Adobe Photoshop</a></li>
+    <li class="off"><a href="chapter-04A.html#WMCSVexport">Экспорт решений в формате табличных данных из Wolfram Mathematica</a></li>
+  </ul>
 
 <!--
   <h2 id="L03">Семинар 3</h2>
-  <h3>Poster Layout and Text</h3>
+  <h3>Гештальт принципы</h3>
   <div class="section">
-    <img src="../imgs/03/L03.webp" class="invis">
+    <img src="../imgs/03/gestalt_c.svg" style="background:white">
     <p>
-    <a href="chapter-02^.html">Foundational design principles</a>: repetition, contrast, proximity. Scalling strokes and patterns setting.
+    Принципы повторения, контраста и близости. Выражение через выравнивании, тексте и цветах.
+    </p>
+  </div>
+
+  <ol class="references">
+    <h4>Литература</h4> 
+    <li></li>
+  </ol>
+
+  <h3>Верстка и текст</h3>
+  <div class="section">
+    <img src="../imgs/03/L03_ru.svg" style="background:white">
+    <p>
+
+Сохранение стилей при масштабировании.
 Text layers, text block threading, typing along splines, convertion to outlines. Panels <code>Character</code> and <code>Paragraph</code>.
 Vector image formats, saving to <code>.ai</code> and <code>.pdf</code>, exporting as raster image.
+<i>Clipping Masks</i>, global color swatches
     <br>
-    *Exporting to <code>.eps</code> and <code>.svg</code>.
+    *Форматы файлов, экспорт в <code>.eps</code>, <code>.svg</code> и <code>.png</code>.
     </p>
   </div>
 -->
