@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta property="og:title" content="Хаос и Котики" />
+  <meta property="og:description" content="научная визуализация и дизайн" />
+  <meta property="og:image" content="../imgs/splash.png" />
+  <meta property="og:type" content="website" />
+
+  <title>4D. Трёхмерное моделирование</title>
+  <meta name="author" content="Eltaurus">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/chapterStyles.css">
+  <link rel="icon" type="image/svg+xml" href="">
+</head>
+<body>
+<div class="header">
+  <a class="button bck" href="chapter-04A.html">⮜ Назад</a>
+  <a class="button prg" href="program.html">⮝ Программа</a>
+  <select id="language-selector">
+    <option lang="ru" value="ru">Rus</option>
+    <option lang="en" value="en">Eng</option>
+  </select>
+  <a class="off" href="../ru/chapter-04D.html">eng</a>
+  <a class="button fwd" href="chapter-04B.html">Вперед ⮞</a>
+</div>
+
+
+
+  <h1>Трёхмерное моделирование</h1>
+
+  <h2 id="L01">Семинар 1</h2>
+  <h3 id="blender">Введение в Blender</h3>
+
+  <div class="section">
+    <img src="../imgs/04D/L01.png">
+    <p>
+    <!--Установка, оптимизация настроек, базовые аддоны.-->
+    Интерфейс, управление раскладой панелей. Панель 3D-вида (<i>Viewport</i>): управление камерой, режимы отображения, вспомогательные элементы. Панель «Иерархия» (<i>Outliner</i>).
+    <br>
+    Добавление и дублирование примитивов. Параметры положения, ориентации и масштаба объектов: панель свойств (<i>Properties</i>), <i>N-панель</i>, манипуляторы, инструменты, быстрые клавиши. Углы Эйлера и кватернионы. <i>3D-курсор</i>, перемещение полюсов объектов, фиксация трансформации.
+    <br>
+    Модификаторы «Зеркало» (<i>Mirror</i>), «Массив» (<i>Array</i>) и «Винт» (<i>Screw</i>), фиксация модификаторов.
+    </p>
+  </div>
+
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href="../en/04D/downloads/TOPEX-Poseidon.blend" download title="пример">TOPEX/Poseidon.blend</a>
+  </fieldset>
+
+
+
+  <h2 id="L02">Семинар 2</h2>
+  <h3>Boolean моделирование</h3>
+
+  <div class="section">
+    <img src="../imgs/04D/L02.png">
+    <p>
+    Модификатор <i>Boolean</i>, комбинация с модификаторами <i>Array</i> и <i>Mirror</i>. Неразрущающее редактирование, порядок применения модификаторов. Аддон <i>Bool Tool</i>, комбинации клавиш для динамических и зафиксированных булевых операций.
+    <br>
+    Группирование объектов, параметры отображения на панели 3D-вида (<i>Viewport Display</i>), временное и постоянное скрытие элементов.
+    </p>
+  </div>
+
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href="../en/04D/downloads/LEGO blueprints.pdf" download="Чертежи LEGO.pdf" title="чертежи с размерами деталей">Чертежи LEGO.pdf</a>
+  </fieldset>
+
+  <h3>Примеры</h3>
+<br>
+  <img class="centerpiece" src="../imgs/Examples/b3d/lego2.png">
+
+  <ul class="references">
+    <h4>Связанные темы</h4> 
+    <li><a href="chapter-03.html#illustrator">Boolean операции в векторной графике</a></li>
+    <li><a href="chapter-03.html#L02">Чертёжные линии в Adobe Illustrator</a></li>
+  </ul>
+
+
+<!--
+  <h2 id="L03">Семинар 3</h2>
+  <h3>Режим редактирования</h3>
+
+  <div class="section">
+    <img src="../imgs/04D/L03.png">
+    <p>
+Shading and normals: mathematical foundations, shading methods, dependence on mesh topology.
+    <i>Viewport</i> <i>Edit Mode</i>: manipulating indivisual verteces, edges, and faces. Extrude and inset, join and fill, inserting and selecting edge loops. Delete vs Dissolve vs Merge. 
+<i>Loop Tools</i> add-on.
+<i>Bevel</i>
+    </p>
+  </div>
+
+
+
+  <h2 id="L04">Семинар 4</h2>
+  <h3>SubD моделирование</h3>
+  <div class="section">
+    <p>
+Mathamtical foundations of the <i>Subdivision</i> modifier: B-splines and relation to <a href="chapter-03.html#bezier">Bézier curves</a>, <i>Catmull-Clark</i> algorythm. Controling edge sharpness: edge <i>crease</i>, support loops, beveling.
+    </p>
+  </div>
+
+  <h3>Примеры</h3>
+<br>
+  <video class="centerpiece" controls loop autoplay muted playsinline poster="../imgs/04D/L03-Nut_thumb.png">
+    <source src="https://eltaurus-lt.github.io/CnC/LFF/Videos/L03ex.mp4" type="video/mp4">
+  </video>
+
+  <ul class="references">
+    <h4>Связанные темы</h4> 
+    <li><a href="chapter-03.html#bezier">Сплайны Безье́</a></li>
+  </ul>
+
+-->
+
+  <h2>Связанные темы</h2>
+  <ul class="references">
+    <li><a href="chapter-04A.html">Трёхмерная анимация (Unreal Engine)</a></li>
+    <li hidden><a href="chapter-05^.html">Математические основы трёхмерной графики</a></li>
+  </ul>
+
+
+  <script src="../scripts/main.js"></script>
+</body>
+</html>
