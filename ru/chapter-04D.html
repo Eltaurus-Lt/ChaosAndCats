@@ -84,26 +84,41 @@
   </ul>
 
 
-<!--
-  <h2 id="L03">Семинар 3</h2>
-  <h3>Режим редактирования</h3>
 
+  <h2 id="L03">Семинар 3</h2>
+
+  <h3>Алгоритмы затенения</h3>
   <div class="section">
-    <img src="../imgs/04D/L03.png">
+    <img src="../imgs/04D/L03_shading.png">
     <p>
-Shading and normals: mathematical foundations, shading methods, dependence on mesh topology.
-    <i>Viewport</i> <i>Edit Mode</i>: manipulating indivisual verteces, edges, and faces. Extrude and inset, join and fill, inserting and selecting edge loops. Delete vs Dissolve vs Merge. 
-<i>Loop Tools</i> add-on.
-<i>Bevel</i>
+    Вершинные нормали, <a href="https://ru.wikipedia.org/wiki/Затенение_по_Фонгу">затенение по Фонгу</a>. Режимы «плоского» (<i>Flat</i>) и «гладкого» (<i>Smooth</i>) затенения, острые края, модификатор <i>Auto Smooth</i>. Артефакты затенения, связь с топологией сетки.
     </p>
   </div>
 
+  <h3>Режим редактирования</h3>
+  <div class="section">
+    <img src="../imgs/04D/L03.png">
+    <p>
+    Режим редактирования в панели 3D-вида: подрежимы выделения полигональных элементов, трансформация групп элементов, перемещение вдоль рёбер, операции с 3D-курсором. Непланарные грани.
+    <br> 
+    Выделение групп вершин, «рентгеновский просмотр» (<i>X-Ray</i> toggle). Добавление вершин: экструдирование (<i>Extrude</i>) и подразбиение (<i>Subdivide</i>). Удаление и слияние (<i>Merge</i>) вершин, слияние по расстоянию, автослияние при перемещении.
+    <br>
+    Добавление рёбер: соединение (<i>Join</i>) и заполнение (<i>Fill</i>) пар вершин, вставка петель рёбер (<i>Edge loops</i>), инструмент «Нож» (<i>Knife</i>). Удаление и растворение (<i>Dissolve</i>) рёбер, ограниченное растворение. Выделение кратчайших путей.
+    <br>
+    Добавление граней: заполнение по паре рёбер, заполнение по одному и трём рёбрам, мост между петлями рёбер (<i>Bridge Edge Loops</i>), заполнение сеткой (<i>Grid Fill</i>). Опции удаления граней.
+    <br>
+    *Режимы прилипания (<i>Snap</i>) при трансформации, симметричное и пропорциональное редактирование.
+    </p>
+  </div>
 
+<!--
 
   <h2 id="L04">Семинар 4</h2>
   <h3>SubD моделирование</h3>
   <div class="section">
     <p>
+<i>Loop Tools</i> add-on.
+Extrude and inset<i>Bevel</i>
 Mathamtical foundations of the <i>Subdivision</i> modifier: B-splines and relation to <a href="chapter-03.html#bezier">Bézier curves</a>, <i>Catmull-Clark</i> algorythm. Controling edge sharpness: edge <i>crease</i>, support loops, beveling.
     </p>
   </div>
