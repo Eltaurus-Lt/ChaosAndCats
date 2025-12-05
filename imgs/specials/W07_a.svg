@@ -2,10 +2,10 @@
 <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
   <style>
     :root {
-      --col2: #d5ab84;
-      --col1: #593c25;
-      --col4: #70c947;
-      --col3: #277012;
+      --col1: #d5ab84;
+      --col2: #593c25;
+      --col3: #70c947;
+      --col4: #277012;
     }
   </style>
   <defs>
