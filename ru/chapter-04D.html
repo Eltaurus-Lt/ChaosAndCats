@@ -20,14 +20,14 @@
 </head>
 <body>
 <div class="header">
-  <a class="button bck" href="chapter-04A.html">⮜ Назад</a>
+  <a class="button bck" href="chapter-03.html">⮜ Назад</a>
   <a class="button prg" href="program.html">⮝ Программа</a>
   <select id="language-selector">
     <option lang="ru" value="ru">Rus</option>
     <option lang="en" value="en">Eng</option>
   </select>
   <a class="off" href="../ru/chapter-04D.html">eng</a>
-  <a class="button fwd" href="chapter-04B.html">Вперед ⮞</a>
+  <a class="button fwd" href="chapter-04A.html">Вперед ⮞</a>
 </div>
 
 
@@ -111,15 +111,17 @@
     </p>
   </div>
 
-<!--
+
 
   <h2 id="L04">Семинар 4</h2>
   <h3>SubD моделирование</h3>
   <div class="section">
     <p>
-<i>Loop Tools</i> add-on.
-Extrude and inset<i>Bevel</i>
-Mathamtical foundations of the <i>Subdivision</i> modifier: B-splines and relation to <a href="chapter-03.html#bezier">Bézier curves</a>, <i>Catmull-Clark</i> algorythm. Controling edge sharpness: edge <i>crease</i>, support loops, beveling.
+    Операции «Экструзия» (<i>Extrude</i>) и «Вставка» (<i>Inset</i>) над индивидуальными гранями и группами граней. «Скос» (<i>Bevel</i>) рёбер и вершин.
+    <br>
+    Модификатор «Подразбиение» (<i>Subdivision</i>): математические основы, <a href="https://ru.wikipedia.org/wiki/Алгоритм_Катмулла_—_Кларка">алгоритм Катмулла — Кларка</a>, связь с <a href="https://ru.wikipedia.org/wiki/B-сплайн">B-сплайнами</a>, сравнение со <a href="chapter-03.html#bezier">сплайнами Безье́</a>. Управление сглаживанием при подразбиениях: поддерживающие петли (<i>supporting loops</i>), параметр «Складка» (<i>Crease</i>) для рёбер и вершин.
+    <br>
+    *Модификатор <i>Bevel</i> и параметр рёбер <i>Bevel Weight</i>, использование для добавления поддерживающих рёбер. Аддон <i>Loop Tools</i>.
     </p>
   </div>
 
@@ -129,16 +131,42 @@ Mathamtical foundations of the <i>Subdivision</i> modifier: B-splines and relati
     <source src="https://eltaurus-lt.github.io/CnC/LFF/Videos/L03ex.mp4" type="video/mp4">
   </video>
 
-  <ul class="references">
-    <h4>Связанные темы</h4> 
-    <li><a href="chapter-03.html#bezier">Сплайны Безье́</a></li>
-  </ul>
 
+<!--
+  <h2 id="L05s">Семинар 5*</h2>
+  <h3>Материалы и рендеринг</h3>
+  <div class="section">
+    <img src="../imgs/04D/L05s.png">
+    <p>
+    PBR materials: physical foundations, principal BSDF, basic parameters, Shader Nodes. Lighting and camera settings, HDRI environment maps. Eevee and Cycles rendering engines, GPU setup.
+    </p>
+  </div>
+
+  <ol class="references">
+    <h4>References</h4> 
+    <li><a href="https://www.youtube.com/watch?v=NIteHfxHA7I&list=PLsGl9GczcgBs6TtApKKK-L_0Nm6fovNPk" target="_blank">Procedural Materials (tutorial playlist)</a></li>
+  </ol>
+
+
+  <h2 id="Lss">Семинар **</h2>
+  <h3>Процедурная геометрия</h3>
+  <div class="section">
+    <img src="../imgs/04D/Lss.png">
+    <p>
+    Модификатор Геометрические ноды. Основные ноды. Нодные модификаторы. инстансы (экземпляры). циклы и симуляции. решение ОДУ.
+    </p>
+  </div>
+
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href="../en/04D/downloads/Procedural LEGO piece.blend" download="Процедурная LEGO деталь.blend" title="пример">Процедурная LEGO деталь.blend</a>
+  </fieldset>
 -->
 
   <h2>Связанные темы</h2>
   <ul class="references">
     <li><a href="chapter-04A.html">Трёхмерная анимация (Unreal Engine)</a></li>
+    <li hidden><a href="chapter-01.html#Lss">Трёхмерная графика в Wolfram Mathematica</a></li>
     <li hidden><a href="chapter-05^.html">Математические основы трёхмерной графики</a></li>
   </ul>
 
