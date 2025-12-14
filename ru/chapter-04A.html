@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta property="og:title" content="Chaos and Cats: 3D Graphics" />
+  <meta property="og:description" content="University course on Mathematical Modelling and Scientific Visualisation" />
+  <meta property="og:image" content="../imgs/splash.png" />
+  <meta property="og:type" content="website" />
+
+  <title>4A. 3D Graphics</title>
+  <meta name="author" content="Eltaurus">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/chapterStyles.css">
+  <link rel="icon" type="image/svg+xml" href="">
+</head>
+<body>
+<div class="header">
+  <a class="button bck" href="chapter-03.html">⮜ Back</a>
+  <a class="button prg" href="program.html">⮝ Program</a>
+  <select id="language-selector">
+    <option lang="en" value="en">Eng</option>
+    <option lang="ru" value="ru">Rus</option>
+  </select>
+  <a class="off" href="../ru/chapter-04A.html">rus</a>
+  <a class="button fwd" href="chapter-04B.html">Forward ⮞</a>
+</div>
+
+
+
+  <h1>Трёхмерная графика</h1>
+
+  <h2 id="L01">Семинар 1</h2>
+  <h3 id="unreal">Введение в Unreal Engine</h3>
+
+  <div class="section">
+    <img src="../imgs/04A/L01.webp">
+    <p>
+    Установка и настройка, параметры для минимальных системных требований.
+    <br>
+    «Окно просмотра» (<i>Viewport</i>): навигация и основные инструменты, левая(!) система координат, порядок углов Эйлера, панель «Сведения» (<i>Details</i>). Композиция: добавление геометрических примитивов в сцену, базовые параметры материалов, панель «Каталог ресурсов» (<i>Content Drawer</i>) и импорт трёхмерных моделей. Панель «Структура» (<i>Outliner</i>), группировка и привязка объектов, системы отсчёта и сложное движение. <!-- parenting -->
+    <br>
+    Панель видеоряда (<i>Sequencer</i>), анимация по ключевым кадрам (<a href="chapter-03.html#bezier">сплайны Безье́</a>).
+    </p>
+  </div>
+
+  <ol class="references">
+    <h4>Внешние ресурсы</h4> 
+    <li><a href="https://youtu.be/k-zMkzmduqI" target="_blank">Видеокурс Unreal Engine 5 для начинающих (English)</a></li>
+  </ol>
+
+
+
+  <h2 id="L02">Семинар 2</h2>
+  <h3>Визуальные скрипты (Blueprints)</h3>
+
+  <div class="section">
+    <img src="../imgs/04A/L02.webp">
+    <p>
+    «Акторы» (<i>Actors</i>), классы и «визуальные скрипты» (<i>Blueprints</i>), очерёдность исполнения узлов (<i>Nodes</i>), события <code>Tick</code> и <code>BeginPlay</code>. Математическое моделирование в Unreal Engine, интегрирование систем дифференциальных уравнений (ОДУ) в реальном времени. Визуализация траекторий при помощи системы <i>Niagara</i>.
+    <br>
+    *Импорт выражений LaTeX через <a href="chapter-03.html#AI">Adobe Illustrator</a>, «Виджеты» (<i>Widgets</i>), размещение текста и формул в экранном и трёхмерном пространствах.
+    <br>
+    **Симуляция физики твёрдых тел в Unreal Engine.
+    </p>
+  </div>
+
+  <ul class="references">
+    <h4>Связанные темы</h4> 
+    <li><a href="chapter-01.html#L04">Дифференциальные уравнения в Wolfram Mathematica</a></li>
+    <li><a href="chapter-03.html#latex2ai">LaTeX выражения в Adobe Illustrator</a></li>
+  </ul>
+
+
+
+  <h2 id="L03">Семинар 3</h2>
+  <h3>Динамические системы со связями</h3>
+
+  <div class="section">
+    <img src="../imgs/04A/L03.png">
+    <p>
+    Конструкторы класса (<i>Construction scripts</i>), переменные визуальных скриптов, настройка значений переменных из редактора уровня. Импорт 3D моделей, <a href="#WM3Dexport">сгенерированных в Wolfram Mathematica</a>. Освещение, настройки неба, «Область постобработки» (<i>Post Process Volume</i>), HDRI карты окружения.
+    <br>
+    *Доступ к конструкторам классов и переменным из панели видеоряда.
+    </p>
+  </div>
+
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href="../en/04A/downloads/spring.obj" download="пружина.obj" title="3D модель из Wolfram Mathematica">пружина.obj</a>
+  </fieldset>
+
+  <ul class="references">
+    <h4>Связанные темы</h4> 
+    <li><a href="chapter-04A.html#Lss">Трёхмерные графики в Wolfram Mathematica</a></li>
+  </ul>
+
+  <ol class="references">
+    <h4>Внешние ресурсы</h4> 
+    <li><a href="https://polyhaven.com/hdris" target="_blank">Poly Haven</a> — библиотека бесплатных HDRI карт, 3D моделей и физических материалов</li>
+  </ol>
+
+
+
+  <h2 id="L04">Семинар 4</h2>
+  <h3>Интеграция Unreal Engine и Wolfram Mathematica</h3>
+
+  <div class="section">
+    <img src="../imgs/04A/L04.webp">
+    <p>
+    Экспорт последовательностей таблиц данных и последовательностей временных значений из <a href="chapter-01.html#L01">Wolfram Mathematica</a>. Импорт таблиц в Unreal Engine<!-- curve tables, etc.-->.
+    <br>
+    Настройки камеры, плагин <i>Movie Render Queue</i>, рендер изображений при помощи <i>Pathtracer</i>, настройки для видео в высоком качестве. 
+    </p>
+  </div>
+
+  <h3 id="WMCSVexport">Экспорт последовательностей временных значений</h3>
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href="../en/04A/downloads/WMexport keyframes (CurveTable).nb" download title="exporting notebook">WMexport keyframes (CurveTable).nb</a>
+  </fieldset>
+
+  <ul class="references">
+    <h4>Связанные темы</h4> 
+    <li><a href="chapter-01.html#L06">Уравнения Лагранжа в Wolfram Mathematica</a></li>
+  </ul>
+
+  <ol class="references">
+    <h4>Внешние ресурсы</h4> 
+    <li><a href="https://youtu.be/X5zVhc5ahl0" target="_blank">Основы Pathtracer (видеоурок)</a></li>
+  </ol>
+
+
+
+  <h2 id="L05">Семинар 5*</h2>
+  <h3>Физические материалы и визуальные скрипты</h3>
+
+  <div class="section">
+    <img src="../imgs/04A/L05s.webp">
+    <p>
+    Параметры материалов в <a href="https://ru.wikipedia.org/wiki/Физически_корректный_рендеринг">физически-корректном рендеринге (PBR)</a>, «экземпляры материалов» (<i>Material Instances</i>).
+    <br>
+    «Визуальные скрипты материалов» (<i>Material Blueprints</i>) и математическое моделирование на видеокартах. Разделение задач между скриптами на центральном и графическом процессорах, «Коллекции параметров материалов» (<i>Material Parameter Collections</i>), узлы <code>Set Vector Parameter Value</code> и <code>Collection Parameter</code>.
+    </p>
+  </div>
+
+
+  <ul class="references off">
+    <h4>Связанные темы</h4> 
+    <li><a href="chapter-04E.html">GLSL шейдеры</a></li>
+  </ul>
+
+
+<!--
+  <h2 id="Lss">Семинар **</h2>
+  <h3>Управляемые системы</h3>
+
+  <div class="section">
+    <img src="../imgs/04A/">
+    <p>
+    PID and quaternion controllers
+    </p>
+  </div>
+-->
+
+
+  <h2 id="Lss">Семинар **</h2>
+  <h3>Трёхмерная графика в Wolfram Mathematica</h3>
+
+  <div class="section">
+    <img src="../imgs/04A/Lss.png">
+    <p>
+    Общее выражение <code>Graphics3D[]</code>, трёхмерные графические примитивы, выражение <code>Tube[]</code> и комбинация с трёхмерными стрелочками.
+Выражения <code>Plot3D[]</code> и <code>ParametricPlot3D[]</code> для построения поверхностей и параметрических линий в трёхмерном пространстве. Особенности <code>PlotRange</code>, параметры <code>SphericalRegion</code> и <code>RotationAction</code>. Настройки отображения координатных сеток, опция <code>Boxed</code>, параметры выражения <code>Mesh</code>. 
+    <br>
+    Параметры внешнего вида трёхмерных поверхностей: цвет, <code>Specularity[]</code>, <a href="chapter-04D.html#L05s">физически корректные материалы (<i>PBR</i>)</a>, настройки освещения.
+Выражения параметризации трёхмерного вида <code>ViewPoint</code>, <code>ViewCenter</code>  и <code>ViewVertical</code>. Альтернативная параметризация через <code>ViewVector</code>, абсолютные и масштабированные координаты. Угол обзора <code>ViewAngle</code>.
+    </p>
+  </div>
+
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href="../en/04A/downloads/Butterfly Effect.nb" download title="пример">Butterfly Effect.nb</a>
+  </fieldset>
+
+  <ol class="references">
+    <h4>Внешние ресурсы</h4> 
+    <li><a href="https://community.wolfram.com/groups/-/m/t/2417276" target="_blank">Настройки трёхмерного вида в Wolfram Mathematica (пост)</a></li>
+  </ol>
+
+  <h3 id="WM3Dexport">Экспорт трёхмерных моделей</h3>
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href="../en/04A/downloads/WMexport 3D (example).nb" download title="exporting notebook">WMexport 3D (example).nb</a>
+  </fieldset>
+
+  <ul class="references">
+    <h4>Связанные темы</h4> 
+    <li><a href="chapter-04A.html#L03">Импорт трёхмерных моделей в Unreal Engine</a></li>
+    <li><a href="chapter-04D.html">Трёхмерное моделирование (Blender 3D)</a></li>
+  </ul>
+
+  <h2>Связанные темы</h2>
+  <ul class="references">
+    <li><a href="chapter-04D.html">Трёхмерное моделирование (Blender 3D)</a></li>
+    <li><a href="chapter-01^.html#Lss">Трёхмерная анимация в Adobe After Effects</a></li>
+    <li hidden><a href="chapter-01.html#Lss">Трёхмерная графика в Wolfram Mathematica</a></li>
+  </ul>
+
+
+  <script src="../scripts/main.js"></script>
+</body>
+</html>
