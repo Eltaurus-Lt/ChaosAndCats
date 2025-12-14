@@ -2,6 +2,9 @@
 # navigation
 # imgs
 
+# forward<->backward links, ru<->eng links
+# title and meta
+
 import os
 from bs4 import BeautifulSoup as bs4
 from urllib.parse import urlparse
