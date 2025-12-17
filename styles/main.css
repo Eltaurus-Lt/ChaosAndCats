@@ -18,6 +18,13 @@
 
     --minwidth: 300px;min-content;
     --maxwidth: 860px;
+    
+    --body-pad: 1em;
+}
+@media (min-width: 500px) {
+    :root {
+        --body-pad: 2em;
+    }
 }
 
 img {
@@ -50,9 +57,10 @@ body:not([rnd="2"]) [rnd="2"] {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 5em;
     grid-template-rows: 100%;
+    gap: .25em;
 
     height: 1.5em;
-    width: calc(100% - 2 * 2em);
+    width: calc(100% - 2 * var(--body-pad));
     padding: .5em 2em;
 
     max-width: var(--maxwidth); 
@@ -155,7 +163,7 @@ body {
     max-width: var(--maxwidth);
     margin: 0 auto;
 
-    padding: 2em;
+    padding: var(--body-pad);
     padding-bottom: 6em;
 
     background: var(--bg-col);
@@ -169,6 +177,7 @@ body {
     font-size: 20px;
     color: var(--text-col);
 }
+
 
 h1, h2, h3, h4, h5 {
     font-family: "Noto Sans", Arial, sans-serif;
@@ -195,7 +204,9 @@ p {
     -webkit-hyphens: auto;
     hyphens: auto;
 
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 .section {
