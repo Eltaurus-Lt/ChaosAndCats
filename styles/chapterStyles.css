@@ -40,6 +40,15 @@ ul.references {
     list-style-type: square;
 }
 
+ol, ul {
+    padding-inline-start: 20px;
+}
+@media (min-width: 600px) {
+    ol, ul {
+        padding-inline-start: 40px;
+    }
+}
+
 /* content formats */
 
 .centerpiece {
