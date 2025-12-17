@@ -16,7 +16,7 @@
     --border-text-col: #556065;
     --hover-col: #2b2f37;#484b53;
 
-    --minwidth: min-content;
+    --minwidth: 300px;min-content;
     --maxwidth: 860px;
 }
 
@@ -93,6 +93,18 @@ body:not([rnd="2"]) [rnd="2"] {
 
     font-family: "Noto Sans", Arial, sans-serif;
     font-size: 13px;
+}
+
+.header .button.prg::before {
+    width: .8em;
+    height: .8em;
+    display: inline-block;
+
+    margin-right: .4em;
+
+    content: "";
+    clip-path: polygon(92% 100%, 50% 82%, 8% 100%, 50% 0%);
+    background-color: var(--text-col);
 }
 
 #language-selector {
@@ -179,6 +191,11 @@ h2 {
 p {  
     text-align: justify;
     text-justify: inter-word;
+
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
+    overflow-wrap: break-word;
 }
 
 .section {
