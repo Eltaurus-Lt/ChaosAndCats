@@ -71,44 +71,10 @@
 
 
 
-  function createProgram(vsSource, fsSource) {
-    function loadShader(type, source) {
-      const shader = gl.createShader(type);
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        const info = gl.getShaderInfoLog(shader);
-        console.error('Shader compile error:', info);
-        gl.deleteShader(shader);
-        return null;
-      }
-      return shader;
-    }
-
-    const vs = loadShader(gl.VERTEX_SHADER, vsSource);
-    const fs = loadShader(gl.FRAGMENT_SHADER, fsSource);
-    if (!vs || !fs) return null;
-
-    const prog = gl.createProgram();
-    gl.attachShader(prog, vs);
-    gl.attachShader(prog, fs);
-    gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-      const info = gl.getProgramInfoLog(prog);
-      console.error('Program link error:', info);
-      gl.deleteProgram(prog);
-      return null;
-    }
-    return prog;
-  }
-
-
   // Render loop
   function render() {
     resize();
-    if (!program) {
-      return;
-    }
+    if (!program) return;
 
     gl.useProgram(program);
 
@@ -138,8 +104,24 @@
     requestAnimationFrame(render);
   }
 
+
+  function loadShader(type, source) {
+    const shader = gl.createShader(type);
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      const info = gl.getShaderInfoLog(shader);
+      console.error('Shader compile error:', info);
+      gl.deleteShader(shader);
+      return null;
+    }
+    return shader;
+  }
+
   // File loading
-  fetch("../shaders/test.glsl")
+  const params = new URLSearchParams(window.location.search);
+
+  fetch(`../shaders/${params.get("main")}`)
     .then(r => r.text())
     .then(src => {
 
@@ -165,7 +147,20 @@
       `;
 
       // init program
-      program = createProgram(vertexSource, fragmentSource);
+      const vs = loadShader(gl.VERTEX_SHADER, vertexSource);
+      const fs = loadShader(gl.FRAGMENT_SHADER, fragmentSource);
+      if (!vs || !fs) return;
+
+      program = gl.createProgram();
+      gl.attachShader(program, vs);
+      gl.attachShader(program, fs);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        const info = gl.getProgramInfoLog(program);
+        console.error('Program link error:', info);
+        gl.deleteProgram(program);
+        return;
+      }
       gl.useProgram(program);
 
       // Fullscreen triangle
