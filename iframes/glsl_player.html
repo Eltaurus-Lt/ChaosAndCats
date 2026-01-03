@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>GLSL Player</title>
+  <meta name="author" content="Eltaurus">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/svg+xml" href="">
+
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: black;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<canvas id="GLSLcanvas"></canvas>
+
+<script>
+  const canvas = document.getElementById('GLSLcanvas');
+  const gl = canvas.getContext('webgl');
+  if (!gl) {
+    console.error('WebGL not supported');
+  }
+
+  // window resize handling
+  function resize() {
+    const displayWidth  = window.innerWidth;
+    const displayHeight = window.innerHeight;
+    if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+      canvas.width = displayWidth;
+      canvas.height = displayHeight;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+
+
+  let program = null;
+  let startTime = performance.now();
+  let frameCount = 0;
+  let mouse = { x: 0, y: 0, down: false, clickX: 0, clickY: 0 };
+  let iResolutionLoc, iTimeLoc, iFrameLoc, iMouseLoc;
+
+  // Mouse handling
+  canvas.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = canvas.height - (e.clientY - rect.top);
+  });
+  canvas.addEventListener('mousedown', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.down = true;
+    mouse.clickX = e.clientX - rect.left;
+    mouse.clickY = canvas.height - (e.clientY - rect.top);
+  });
+  canvas.addEventListener('mouseup', () => {
+    mouse.down = false;
+  });
+
+
+
+  function createProgram(vsSource, fsSource) {
+    function loadShader(type, source) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        const info = gl.getShaderInfoLog(shader);
+        console.error('Shader compile error:', info);
+        gl.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+
+    const vs = loadShader(gl.VERTEX_SHADER, vsSource);
+    const fs = loadShader(gl.FRAGMENT_SHADER, fsSource);
+    if (!vs || !fs) return null;
+
+    const prog = gl.createProgram();
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      const info = gl.getProgramInfoLog(prog);
+      console.error('Program link error:', info);
+      gl.deleteProgram(prog);
+      return null;
+    }
+    return prog;
+  }
+
+
+  // Render loop
+  function render() {
+    resize();
+    if (!program) {
+      return;
+    }
+
+    gl.useProgram(program);
+
+    const now = performance.now();
+    const time = (now - startTime) * 0.001;
+
+    if (iResolutionLoc) {
+      gl.uniform3f(iResolutionLoc, canvas.width, canvas.height, 1.0);
+    }
+    if (iTimeLoc) {
+      gl.uniform1f(iTimeLoc, time);
+    }
+    if (iFrameLoc) {
+      gl.uniform1i(iFrameLoc, frameCount);
+    }
+    if (iMouseLoc) {
+      const mx = mouse.x;
+      const my = mouse.y;
+      const cx = mouse.clickX;
+      const cy = mouse.clickY;
+      const w = mouse.down ? 1.0 : 0.0;
+      gl.uniform4f(iMouseLoc, mx, my, cx, cy * w);
+    }
+
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    frameCount++;
+    requestAnimationFrame(render);
+  }
+
+  // File loading
+  fetch("../shaders/test.glsl")
+    .then(r => r.text())
+    .then(src => {
+
+      const vertexSource = `
+        attribute vec2 aPosition;
+        void main() {
+          gl_Position = vec4(aPosition, 0.0, 1.0);
+        }
+      `;
+
+      const fragmentSource = `
+          precision highp float;
+          uniform vec3  iResolution;
+          uniform float iTime;
+          uniform int   iFrame;
+          uniform vec4  iMouse;
+
+          ${src}
+
+          void main() {
+            mainImage(gl_FragColor, gl_FragCoord.xy);
+          }
+      `;
+
+      // init program
+      program = createProgram(vertexSource, fragmentSource);
+      gl.useProgram(program);
+
+      // Fullscreen triangle
+      const vertices = new Float32Array([-1,-1,3,-1,-1,3]);
+      const buffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+      const aPosition = gl.getAttribLocation(program, 'aPosition');
+      gl.enableVertexAttribArray(aPosition);
+      gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+
+      iResolutionLoc = gl.getUniformLocation(program, 'iResolution');
+      iTimeLoc       = gl.getUniformLocation(program, 'iTime');
+      iFrameLoc      = gl.getUniformLocation(program, 'iFrame');
+      iMouseLoc      = gl.getUniformLocation(program, 'iMouse');
+      
+      requestAnimationFrame(render);
+    }).catch(err => console.error("glsl load error:", err));
+
+</script>
+
+</body>
+</html>
