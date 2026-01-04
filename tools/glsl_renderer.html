@@ -16,21 +16,35 @@
     html, body { height: 100%; margin: 0 !important; max-width: unset; padding: 0; outline: unset;}
     .split { display: flex; height: 100%; }
     .pane { flex: 1; }
+    .pane#right { flex: 0 0 250px; }
+
+    #shaderPane { position: relative; }
+    #shaderCanvas {
+      position: absolute;
+      display: block;
+      inset: 50%;
+      translate: -50% -50%;
+      background: black;
+
+      box-shadow: 5px 5px 25px #0005;
+    }
   </style>
 
 </head>
 <body>
   <div class="split" id="split">
-    <div class="pane bg" id="left">Shader canvas</div>
+    <div class="pane bg" id="shaderPane">
+      <canvas id="shaderCanvas"></canvas>
+    </div>
     <div class="divider v" id="divider"></div>
     <div class="pane" id="right">
       <h3>Directory</h3>
 
       <h3>Dimensions</h3>
       <div class="input-block">
-        <input id="width" name="width" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="1920" placeholder="px" required />
+        <input id="widthIn" name="width" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="1920" placeholder="px" required />
         <span>/</span>
-        <input id="height" name="height" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="1080" placeholder="px" required />
+        <input id="heightIn" name="height" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="1080" placeholder="px" required />
       </div>
 
       <h3>Duration</h3>
@@ -46,6 +60,9 @@
 
       <div class="progress-bar" id="renderProgress"></div>
       <button onclick="render()" id="renderButton">Render</button>
+      <br><br>
+      <button onclick="renderFrame()" id="frameButton">Render Frame</button>
+
     </div>
   </div>
 
@@ -73,6 +90,20 @@
       dragging = false;
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseup', onUp);
+    }
+  </script>
+
+  <script>
+    const widthL = document.getElementById('widthIn');
+    const heightL = document.getElementById('heightIn');
+    const shaderL = document.getElementById('shaderCanvas');
+    
+    widthL.addEventListener("change", resizeCanvas); // alt: "input" event
+    heightL.addEventListener("change", resizeCanvas);
+
+    function resizeCanvas() {
+      shaderL.width = widthL.value;
+      shaderL.height= heightL.value;
     }
   </script>
 

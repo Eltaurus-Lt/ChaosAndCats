@@ -315,6 +315,7 @@ h4, h5 {
 .pane {
     margin: 0 1em;
     background: var(--background-col);
+    overflow: hidden;
 
     user-select: none;       /* Standard */
     -webkit-user-select: none; /* Chrome/Safari */
@@ -325,6 +326,13 @@ h4, h5 {
     margin: 0;
     background: var(--substrate-col);
 }
+
+
+input:focus,
+button:focus-visible {
+    outline: 1px var(--accent-col) solid;
+}
+
 
 input {
     color: var(--text-col);
@@ -342,13 +350,12 @@ input[type=number] {
     -moz-appearance: textfield;
     width: 3.5em;
 }
-input:focus {
-    outline: 1px var(--accent-col) solid;
-}
 
 .input-block span {
     display: inline-block;
 }
+
+
 
 button {
     background: var(--bg-col);
@@ -366,6 +373,7 @@ button:active {
     background: var(--hover-col);
 }
 
+
 .divider {
     background: var(--border-col);
 } 
@@ -377,6 +385,7 @@ button:active {
     width: 4px;
     cursor: col-resize;
 }
+
 
 .progress-bar {
     width: 100%;
