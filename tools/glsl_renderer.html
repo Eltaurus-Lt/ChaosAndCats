@@ -204,9 +204,91 @@
   </script>
 
   <script>
+    const gl = shaderL.getContext('webgl');
+    let program = null, iResolutionLoc, iTimeLoc, iFrameLoc;
+    let startTime = performance.now();
+    let frameCount = 0;
+
+    function displayFrame() {
+      if (!program) return;
+
+      gl.useProgram(program);
+
+      const now = performance.now();
+      const time = (now - startTime) * 0.001;
+
+      if (iResolutionLoc) {
+        gl.uniform2f(iResolutionLoc, shaderL.width, shaderL.height);
+      }
+      if (iTimeLoc) {
+        gl.uniform1f(iTimeLoc, time);
+      }
+      if (iFrameLoc) {
+        gl.uniform1i(iFrameLoc, frameCount);
+      }
+
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      frameCount++;
+      requestAnimationFrame(displayFrame);
+    }
+
+    function loadShader(type, source) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        const info = gl.getShaderInfoLog(shader);
+        console.error('Shader compile error:', info);
+        gl.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+
     function compile() {
       const code = document.getElementById('glslcode').contentDocument.querySelector('.CodeMirror').CodeMirror.getValue();
-      console.log(code);
+      //console.log(code);
+
+      const vertexSource = `
+        attribute vec2 aPosition;
+        void main() {
+          gl_Position = vec4(aPosition, 0.0, 1.0);
+        }
+      `;
+
+      const fragmentSource = `${code}`;
+
+      // init program
+      const vs = loadShader(gl.VERTEX_SHADER, vertexSource);
+      const fs = loadShader(gl.FRAGMENT_SHADER, fragmentSource);
+      if (!vs || !fs) return;
+
+      program = gl.createProgram();
+      gl.attachShader(program, vs);
+      gl.attachShader(program, fs);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        const info = gl.getProgramInfoLog(program);
+        console.error('Program link error:', info);
+        gl.deleteProgram(program);
+        return;
+      }
+      gl.useProgram(program);
+
+      const buffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      const vertices = new Float32Array([-1,-1,3,-1,-1,3]);
+      gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+      const aPosition = gl.getAttribLocation(program, 'aPosition');
+      gl.enableVertexAttribArray(aPosition);
+      gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+
+      iResolutionLoc = gl.getUniformLocation(program, 'iResolution');
+      iTimeLoc       = gl.getUniformLocation(program, 'iTime');
+      iFrameLoc      = gl.getUniformLocation(program, 'iFrame');
+
+      requestAnimationFrame(displayFrame);
     }
   </script>
 </body>
