@@ -14,3 +14,7 @@
   height: 50px;
   opacity: .25;
 }
+
+.pane.Lt::after {
+  right: 0;
+}

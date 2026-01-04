@@ -351,6 +351,10 @@ input[type=number] {
     width: 3.5em;
 }
 
+.input-block {
+    margin-left: .1em;
+}
+
 .input-block span {
     display: inline-block;
 }
@@ -366,7 +370,7 @@ button {
     min-width: 5.5em;
 }
 button:hover {
-    background: #fff1;
+    background: var(--border-text-col);
     cursor: pointer;
 }
 button:active {

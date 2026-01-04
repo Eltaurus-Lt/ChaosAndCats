@@ -11,6 +11,7 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="icon" type="image/svg+xml" href="">
   <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/Lt.css">
 
   <style>
     html, body { height: 100%; margin: 0 !important; max-width: unset; padding: 0; outline: unset;}
@@ -20,7 +21,7 @@
     .pane#rendersettings { flex: 0 0 250px; }
     .pane#glslcode { flex: 0 0 250px; }
 
-    #shaderPane { position: relative; }
+    #shaderPane, #codePane { position: relative; }
     #shaderCanvas {
       position: absolute;
       display: block;
@@ -31,9 +32,14 @@
       box-shadow: 5px 5px 25px #0005;
     }
     
-    #glslcode {
+    #codePane {
       margin: 0;
       background: var(--hover-col);
+    }
+    #compileButton {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.5rem;
     }
   </style>
 
@@ -45,10 +51,13 @@
         <canvas id="shaderCanvas"></canvas>
       </div>
       <divider></divider>
-      <iframe class="pane" id="glslcode" src="glsl_editor.html"></iframe>
+      <div class="pane" id="codePane">
+        <button onclick="compile()" id="compileButton">Compile</button>
+        <iframe id="glslcode" src="glsl_editor.html"></iframe>
+      </div>
     </div>
     <divider></divider>
-    <div class="pane" id="rendersettings">
+    <div class="pane Lt" id="rendersettings">
       <h3>Directory</h3>
 
       <h3>Dimensions</h3>
@@ -194,5 +203,11 @@
     }
   </script>
 
+  <script>
+    function compile() {
+      const code = document.getElementById('glslcode').contentDocument.querySelector('.CodeMirror').CodeMirror.getValue();
+      console.log(code);
+    }
+  </script>
 </body>
 </html>
