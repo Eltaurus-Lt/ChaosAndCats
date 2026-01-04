@@ -14,9 +14,11 @@
 
   <style>
     html, body { height: 100%; margin: 0 !important; max-width: unset; padding: 0; outline: unset;}
-    .split { display: flex; height: 100%; }
+    .split.v { display: flex; height: 100%; }
+    .split.h { display: flex; width: 100%; flex-direction: column;}
     .pane { flex: 1; }
-    .pane#right { flex: 0 0 250px; }
+    .pane#rendersettings { flex: 0 0 250px; }
+    .pane#glslcode { flex: 0 0 250px; }
 
     #shaderPane { position: relative; }
     #shaderCanvas {
@@ -28,16 +30,25 @@
 
       box-shadow: 5px 5px 25px #0005;
     }
+    
+    #glslcode {
+      margin: 0;
+      background: var(--hover-col);
+    }
   </style>
 
 </head>
 <body>
-  <div class="split" id="split">
-    <div class="pane bg" id="shaderPane">
-      <canvas id="shaderCanvas"></canvas>
+  <div class="split v">
+    <div class="split h">
+      <div class="pane bg" id="shaderPane">
+        <canvas id="shaderCanvas"></canvas>
+      </div>
+      <divider></divider>
+      <div class="pane" id="glslcode"></div>
     </div>
-    <div class="divider v" id="divider"></div>
-    <div class="pane" id="right">
+    <divider></divider>
+    <div class="pane" id="rendersettings">
       <h3>Directory</h3>
 
       <h3>Dimensions</h3>
@@ -67,23 +78,34 @@
   </div>
 
   <script>
-    const split = document.getElementById('split');
-    const right = document.getElementById('right');
-    const divider = document.getElementById('divider');
-    let dragging = false, startX = 0, startWidth = 0;
+    let dragging = false, draggingDir, startCur, startVal;
+    [...document.querySelectorAll('.split')].forEach((split) => {
+      const divider = split.querySelector(':scope > divider');
+      const resizedPane = split.querySelector(':scope > divider + *');
 
-    divider.addEventListener('mousedown', e => {
-      dragging = true;
-      startX = e.clientX;
-      startWidth = right.getBoundingClientRect().width;
-      document.addEventListener('mousemove', onMove);
-      document.addEventListener('mouseup', onUp);
+      divider.addEventListener('mousedown', e => {
+        dragging = resizedPane;
+
+        if (split.classList.contains("v")) {
+          startCur = e.clientX;
+          startVal = resizedPane.getBoundingClientRect().width;
+          draggingDir = 'h';
+        } else {
+          startCur = e.clientY;
+          startVal = resizedPane.getBoundingClientRect().height;
+          draggingDir = 'v';
+        }
+
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+      });
+
     });
 
     function onMove(e) {
       if (!dragging) return;
-      const dx = startX - e.clientX;
-      right.style.flex = '0 0 ' + (startWidth + dx) + 'px';
+      currentCur = (draggingDir === 'h') ? e.clientX : e.clientY;
+      dragging.style.flex = '0 0 ' + (startVal + startCur - currentCur) + 'px';
     }
 
     function onUp() {

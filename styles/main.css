@@ -374,15 +374,18 @@ button:active {
 }
 
 
-.divider {
+divider {
     background: var(--border-col);
+    flex: 0 0 auto;
 } 
-.divider.h {
+.split.h > divider {
     height: 4px;
+    width: 100%;
     cursor: row-resize;
 } 
-.divider.v {
+.split.v > divider {
     width: 4px;
+    height: 100%;
     cursor: col-resize;
 }
 
