@@ -45,7 +45,7 @@
         <canvas id="shaderCanvas"></canvas>
       </div>
       <divider></divider>
-      <div class="pane" id="glslcode"></div>
+      <iframe class="pane" id="glslcode" src="glsl_editor.html"></iframe>
     </div>
     <divider></divider>
     <div class="pane" id="rendersettings">
@@ -96,15 +96,39 @@
           draggingDir = 'v';
         }
 
-        document.addEventListener('mousemove', onMove);
-        document.addEventListener('mouseup', onUp);
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onUp);
+        window.addEventListener('message', onMessage);
+
       });
 
     });
 
-    function onMove(e) {
+    const iframeLs = new Map();
+    document.querySelectorAll('iframe').forEach(iframeL => {
+      iframeLs.set(iframeL.contentWindow, iframeL); // same-origin only
+    });
+
+    function onMessage(e) {
+      const iframeL = iframeLs.get(e.source);
+    
+      switch (e.data.type) {
+        case 'mousemove':
+          onMove(e.data, iframeL);
+          break;
+        case 'mouseup':
+          onUp();
+          break;
+      }
+    }
+
+    function onMove(e, iframeL = null) {
       if (!dragging) return;
       currentCur = (draggingDir === 'h') ? e.clientX : e.clientY;
+      if (iframeL) {
+        const origin = iframeL.getBoundingClientRect();
+        currentCur += (draggingDir === 'h') ? origin.left : origin.top;
+      }
       dragging.style.flex = '0 0 ' + (startVal + startCur - currentCur) + 'px';
     }
 
@@ -112,6 +136,7 @@
       dragging = false;
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseup', onUp);
+      document.removeEventListener('message', onMessage);
     }
   </script>
 

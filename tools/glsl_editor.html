@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>GLSL Renderer</title>
+  <meta name="author" content="Eltaurus">
+
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+  <style>
+    body, html {
+      height: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      outline: none;
+      font-size: 1rem;
+    }
+    .CodeMirror {
+      height: 100%;
+      
+      color: var(--text-col);
+      background: var(--hover-col);
+    }
+    .CodeMirror-gutters {
+      background: var(--hover-col);
+      border-color: var(--border-col);
+    }
+    .CodeMirror-linenumber {
+      color: var(--border-col);
+    }
+ 
+    .CodeMirror-selected.CodeMirror-selected {
+      background-color: #884fd066;
+    }
+
+    /* syntax */
+    .cm-keyword.cm-keyword   { color: #fc0176; } /* in, out, uniform, etc. */
+    .cm-type.cm-type   { color: royalblue; }
+    .cm-atom.cm-atom   { color: gold; }
+    .cm-meta.cm-meta { color: #000b; } /* # */
+    .cm-builtin.cm-builtin   { color: forestgreen; }
+    .cm-variable.cm-variable  { color: white; }
+    .cm-operator { color: var(--header-col); }
+    .cm-number.cm-number    { color: var(--accent-col); }
+    .cm-def.cm-def       { color: red; } 
+    .cm-comment.cm-comment   { color: var(--border-text-col); font-style: italic; }
+    .cm-string.cm-string    { color: orange; }
+    .CodeMirror-cursor { border-color: white; }
+
+  </style>
+</head>
+<body>
+  <textarea id="editor">#version 300 es
+precision highp float;
+out vec4 outColor;
+uniform float iTime;
+uniform vec2 iResolution;
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / iResolution.xy;
+  outColor = vec4(uv, 0.5 + 0.5*sin(iTime), 1.0);
+}</textarea>
+
+  <script>
+    CodeMirror.fromTextArea(document.getElementById("editor"), {
+      mode: "x-shader/x-fragment",
+      lineNumbers: true,
+      matchBrackets: true,
+      indentUnit: 2
+    });
+  </script>
+
+  <script>
+   // send mouse events from inside iframe to the parent
+    document.addEventListener('mousemove', function (e) {
+      window.parent.postMessage({ type: 'mousemove', clientX: e.clientX, clientY: e.clientY }, '*');
+    });
+    document.addEventListener('mouseup', function () {
+      window.parent.postMessage({ type: 'mouseup' }, '*');
+    });
+  </script>
+</body>
+</html>
