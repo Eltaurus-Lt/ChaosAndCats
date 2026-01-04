@@ -44,7 +44,8 @@
 
       <br>
 
-      <button>Render</button>
+      <div class="progress-bar" id="renderProgress"></div>
+      <button onclick="render()" id="renderButton">Render</button>
     </div>
   </div>
 
@@ -75,6 +76,45 @@
     }
   </script>
 
+  <script>
+    var renderInterval;
+    const progBtn = document.getElementById("renderButton");
+    const progBar = document.getElementById("renderProgress");
+
+
+    function render() {
+      console.log("rendering...");
+
+      progBtn.innerText = "Stop";
+      progBtn.onclick = () => stopRender();
+
+      var prog = 0;
+      progBar.classList.add("inprogress");
+      progBar.classList.remove("done");
+      progBar.style.backgroundPosition = `${100 - prog}%`;
+      console.log(`progress: ${prog}%`);
+      
+      renderInterval = setInterval(() => {
+        prog += 13.5;
+
+        progBar.style.backgroundPosition = `${100 - prog}%`;
+        console.log(`progress: ${prog}%`);
+
+        if (prog >=100) {
+          prog = 100;
+          progBar.classList.add("done");
+          stopRender('done!');
+        }
+      }, 700);
+    }
+
+    function stopRender(msg = 'stopped by user') {
+      clearInterval(renderInterval);
+      console.log(msg);
+      progBtn.innerText = "Render";
+      progBtn.onclick = render;
+    }
+  </script>
 
 </body>
 </html>

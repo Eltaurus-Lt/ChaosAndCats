@@ -356,6 +356,7 @@ button {
     border: 2px var(--border-col) solid;
     border-radius: .25em;
     padding: .5em 1em;
+    min-width: 5.5em;
 }
 button:hover {
     background: #fff1;
@@ -369,11 +370,24 @@ button:active {
     background: var(--border-col);
 } 
 .divider.h {
-    height: 5px;
+    height: 4px;
     cursor: row-resize;
 } 
 .divider.v {
-    width: 5px;
+    width: 4px;
     cursor: col-resize;
 }
 
+.progress-bar {
+    width: 100%;
+    margin: .5em 0;
+    height: 3px;
+}
+.progress-bar.inprogress {
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, var(--accent-col) 50%, white 50%);
+    background-position: 34.5%;
+}
+.progress-bar.done {
+    background: forestgreen;
+}
