@@ -5,6 +5,8 @@
 
 
 :root {
+    --accent-col: #884fd0;
+
     --section-col: #eee;white;
     --subsection-col: #1c2027d0;slategray;
     --header-col: #eee;white;
@@ -40,7 +42,7 @@ img {
 
 ::selection {
     color: white;
-    background-color: #884fd0;
+    background-color: var(--accent-col);
 }
 
 body[rnd="1"] [rnd="0"],
@@ -307,3 +309,71 @@ h4, h5 {
     font-family: "Titillium Web", Roboto, sans-serif;
     font-weight: 300;
 }
+
+
+/*  interfaces  */
+.pane {
+    margin: 0 1em;
+    background: var(--background-col);
+
+    user-select: none;       /* Standard */
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
+}
+.pane.bg {
+    margin: 0;
+    background: var(--substrate-col);
+}
+
+input {
+    color: var(--text-col);
+    background: var(--substrate-col);
+    border-radius: .25em;
+    border: 1px var(--border-col) solid;
+    padding: .2em .5em;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+    width: 3.5em;
+}
+input:focus {
+    outline: 1px var(--accent-col) solid;
+}
+
+.input-block span {
+    display: inline-block;
+}
+
+button {
+    background: var(--bg-col);
+    color: var(--header-col);
+    border: 2px var(--border-col) solid;
+    border-radius: .25em;
+    padding: .5em 1em;
+}
+button:hover {
+    background: #fff1;
+    cursor: pointer;
+}
+button:active {
+    background: var(--hover-col);
+}
+
+.divider {
+    background: var(--border-col);
+} 
+.divider.h {
+    height: 5px;
+    cursor: row-resize;
+} 
+.divider.v {
+    width: 5px;
+    cursor: col-resize;
+}
+

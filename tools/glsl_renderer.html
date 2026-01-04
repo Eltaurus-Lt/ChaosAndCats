@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>GLSL Renderer</title>
+  <meta name="author" content="Eltaurus">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/svg+xml" href="">
+  <link rel="stylesheet" href="../styles/main.css">
+
+  <style>
+    html, body { height: 100%; margin: 0 !important; max-width: unset; padding: 0; outline: unset;}
+    .split { display: flex; height: 100%; }
+    .pane { flex: 1; }
+  </style>
+
+</head>
+<body>
+  <div class="split" id="split">
+    <div class="pane bg" id="left">Shader canvas</div>
+    <div class="divider v" id="divider"></div>
+    <div class="pane" id="right">
+      <h3>Directory</h3>
+
+      <h3>Dimensions</h3>
+      <div class="input-block">
+        <input id="width" name="width" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="1920" placeholder="px" required />
+        <span>/</span>
+        <input id="height" name="height" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="1080" placeholder="px" required />
+      </div>
+
+      <h3>Duration</h3>
+      <div class="input-block">
+        <input id="secondsIn" name="seconds" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="10" placeholder="sec" required />
+        <span style="translate: 0 2px">×</span>
+        <input id="fpsIn" name="fps" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="25" placeholder="fps" required />
+        <span style="translate: 0 2px">=</span>
+        <input id="framesIn" name="frames" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="250" placeholder="frames" required />
+      </div>
+
+      <br>
+
+      <button>Render</button>
+    </div>
+  </div>
+
+  <script>
+    const split = document.getElementById('split');
+    const right = document.getElementById('right');
+    const divider = document.getElementById('divider');
+    let dragging = false, startX = 0, startWidth = 0;
+
+    divider.addEventListener('mousedown', e => {
+      dragging = true;
+      startX = e.clientX;
+      startWidth = right.getBoundingClientRect().width;
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
+
+    function onMove(e) {
+      if (!dragging) return;
+      const dx = startX - e.clientX;
+      right.style.flex = '0 0 ' + (startWidth + dx) + 'px';
+    }
+
+    function onUp() {
+      dragging = false;
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    }
+  </script>
+
+
+</body>
+</html>
