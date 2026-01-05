@@ -21,7 +21,7 @@
     .pane#rendersettings { flex: 0 0 250px; }
     .pane#glslcode { flex: 0 0 250px; }
 
-    #shaderPane, #codePane { position: relative; }
+    #shaderPane, #codePane { position: relative; padding: 0 1em; }
     #shaderCanvas {
       position: absolute;
       display: block;
@@ -41,6 +41,14 @@
       right: 0.5rem;
       top: 0.5rem;
     }
+    
+    #FileName {
+      position: relative;
+      z-index: 9999;
+    }
+    #FileName:not(:focus-visible)::selection {
+      background-color: transparent;
+    }
   </style>
 
 </head>
@@ -48,6 +56,7 @@
   <div class="split v">
     <div class="split h">
       <div class="pane bg" id="shaderPane">
+        <h3 id="FileName" contenteditable="true" spellcheck="false">New File</h3>
         <canvas id="shaderCanvas"></canvas>
       </div>
       <divider></divider>

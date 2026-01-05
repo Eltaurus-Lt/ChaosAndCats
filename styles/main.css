@@ -313,9 +313,9 @@ h4, h5 {
 
 /*  interfaces  */
 .pane {
-    margin: 0 1em;
+    padding: 0 1em;
     background: var(--background-col);
-    overflow: hidden;
+    overflow: hidden; 
 
     user-select: none;       /* Standard */
     -webkit-user-select: none; /* Chrome/Safari */
@@ -329,7 +329,7 @@ h4, h5 {
 
 
 input:focus,
-button:focus-visible {
+:is(button, h1,h2,h3,h4,h5,p):focus-visible {
     outline: 1px var(--accent-col) solid;
 }
 
@@ -349,10 +349,6 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
     width: 3.5em;
-}
-
-.input-block {
-    margin-left: .1em;
 }
 
 .input-block span {
