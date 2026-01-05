@@ -34,6 +34,9 @@
       image-rendering: pixelated;   /* nearest-neighbour */
       image-rendering: crisp-edges; /* nearest-neighbour fallback */
     }
+    #viewportPane > :not(#shaderCanvas) {
+      z-index: 100;
+    }
     
     #codePane {
       padding: 0;
@@ -47,7 +50,6 @@
     
     #FileName {
       position: relative;
-      z-index: 9999;
     }
     #FileName:not(:focus-visible)::selection {
       background-color: transparent;
@@ -60,6 +62,19 @@
     <div class="split h">
       <div class="pane bg" id="viewportPane">
         <h3 id="FileName" contenteditable="true" spellcheck="false">New File</h3>
+        <div id="viewportNavigation" class="btnGrid top right">
+          <button class="btn">-</button>
+          <select id="zoomMenu"></select>
+          <button class="btn">+</button>
+          <button class="btn"><img src="../imgs/site_icons/viewport_expand.svg"/></button>
+          <button class="btn">1:1</button>
+        </div>
+        <div id="playbackControls" class="btnGrid bottom center">
+          <button class="btn">|&lt;</button>
+          <button class="btn">&lt;</button>
+          <button class="btn">|&gt;</button>
+          <button class="btn">&gt;</button>
+        </div>
         <canvas id="shaderCanvas"></canvas>
       </div>
       <divider></divider>

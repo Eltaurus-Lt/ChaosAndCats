@@ -373,6 +373,37 @@ button:active {
     background: var(--hover-col);
 }
 
+.btnGrid {
+    position: absolute;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: .25em;
+}
+
+.btnGrid.top { top: 1em; }
+.btnGrid.right { right: 1em; }
+.btnGrid.bottom { bottom: 1em; }
+.btnGrid.left { left: 1em; }
+.btnGrid.center:is(.bottom, .top) {
+    left: 50%;
+    translate: -50% 0;
+}
+.btnGrid.center:is(.left, .right) {
+    top: 50%;
+    translate: 0 -50%;
+}
+
+
+button.btn {
+    width: 2em;
+    height: 2em;
+    padding: 0;
+    min-width: unset;
+}
+button.btn img {
+    width: 100%;
+    height: 100%;
+}
 
 divider {
     background: var(--border-col);
