@@ -17,4 +17,5 @@
 
 .pane.Lt::after {
   right: 0;
+  bottom: 1em;
 }

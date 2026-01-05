@@ -212,6 +212,7 @@
     function displayFrame() {
       if (!program) return;
 
+      gl.viewport(0, 0, shaderL.width, shaderL.height);
       gl.useProgram(program);
 
       const now = performance.now();
@@ -247,7 +248,6 @@
 
     function compile() {
       const code = document.getElementById('glslcode').contentDocument.querySelector('.CodeMirror').CodeMirror.getValue();
-      //console.log(code);
 
       const vertexSource = `
         attribute vec2 aPosition;
