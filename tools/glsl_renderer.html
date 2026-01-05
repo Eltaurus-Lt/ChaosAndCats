@@ -300,5 +300,34 @@
       requestAnimationFrame(displayFrame);
     }
   </script>
+
+  <script>
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+
+      /* avoid triggering when editing text */
+      const tag = (e.target.tagName || '').toLowerCase();
+      const editable = e.target.isContentEditable || tag === 'input' || tag === 'textarea';
+
+      const ctrlKey = e.ctrlKey || e.metaKey; /* ctrl || mac cmd */
+      if (editable && !ctrlKey) return;
+      const shiftKey = e.shiftKey;
+      const key = e.key;
+
+      /* Save */
+      if (ctrlKey && !shiftKey && key === 's') {
+        e.preventDefault();
+        console.log('saving...');
+        return;
+      }
+
+      if (ctrlKey && key === 'Enter') {
+        e.preventDefault();
+        compile();
+        return;
+      }
+
+    });
+  </script>
 </body>
 </html>
