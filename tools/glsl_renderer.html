@@ -242,10 +242,10 @@
   </script>
 
   <script>
-    const gl = shaderL.getContext('webgl');
+    const gl = shaderL.getContext("webgl", { preserveDrawingBuffer: true });
     let program = null, iResolutionLoc, iTimeLoc, iFrameLoc;
     let startTime = performance.now();
-    let frameCount = 0;
+    let currentFrame = 0;
 
     function displayFrame() {
       if (!program) return;
@@ -263,11 +263,11 @@
         gl.uniform1f(iTimeLoc, time);
       }
       if (iFrameLoc) {
-        gl.uniform1i(iFrameLoc, frameCount);
+        gl.uniform1i(iFrameLoc, currentFrame);
       }
 
       gl.drawArrays(gl.TRIANGLES, 0, 3);
-      frameCount++;
+      currentFrame++;
       requestAnimationFrame(displayFrame);
     }
 
@@ -301,6 +301,10 @@
       const fs = loadShader(gl.FRAGMENT_SHADER, fragmentSource);
       if (!vs || !fs) return;
 
+      if (program) {
+        gl.useProgram(null);
+        gl.deleteProgram(program);
+      }
       program = gl.createProgram();
       gl.attachShader(program, vs);
       gl.attachShader(program, fs);
@@ -327,6 +331,27 @@
       iFrameLoc      = gl.getUniformLocation(program, 'iFrame');
 
       requestAnimationFrame(displayFrame);
+    }
+  </script>
+
+  <script>
+    // Exporting
+
+    function frameNumber(frame = '') {
+      if (!frame) {
+        frame = currentFrame;
+      }
+      return String(frame).padStart(4, '0');
+    }
+
+    function saveFrame(path = '') {
+
+      //gl.flush();
+
+      const tempL = document.createElement("a");
+      tempL.download = path ? path : `${document.getElementById('FileName').innerText}_${frameNumber()}.png`;
+      tempL.href = shaderL.toDataURL("image/png");
+      tempL.click();
     }
   </script>
 
