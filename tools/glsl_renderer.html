@@ -34,7 +34,9 @@
       image-rendering: pixelated;   /* nearest-neighbour */
       image-rendering: crisp-edges; /* nearest-neighbour fallback */
     }
-    #viewportPane > :not(#shaderCanvas) {
+    #viewportPane > :not(#shaderCanvas),
+    #codePane > :not(#glslcode) {
+      position: absolute;
       z-index: 100;
     }
     
@@ -42,18 +44,25 @@
       padding: 0;
       background: var(--hover-col);
     }
-    #compileButton {
-      position: absolute;
-      right: 0.5rem;
-      top: 0.5rem;
-    }
+
     
     #FileName {
       position: relative;
     }
-    #FileName:not(:focus-visible)::selection {
+    #FileName:not(:focus-visible):not(:active)::selection {
       background-color: transparent;
     }
+    #FileName:not([contenteditable="true"]) {
+      user-select: text;          /* Standard */
+      -webkit-user-select: text;  /* Chrome/Safari */
+      -moz-user-select: text;     /* Firefox */
+      -ms-user-select: text;      /* IE/Edge */
+    }
+
+    #frameButton {
+      position: absolute;
+    }
+
   </style>
 
 </head>
@@ -61,10 +70,10 @@
   <div class="split v">
     <div class="split h">
       <div class="pane bg" id="viewportPane">
-        <h3 id="FileName" contenteditable="true" spellcheck="false">New File</h3>
+        <h3 id="FileName" contenteditable="false" spellcheck="false">New File</h3>
         <div id="viewportNavigation" class="btnGrid top right">
-          <button class="btn">-</button>
-          <select id="zoomMenu"></select>
+          <button class="btn merge">-</button>
+          <select id="zoomMenu" class="merge"></select>
           <button class="btn">+</button>
           <button class="btn"><img src="../imgs/site_icons/viewport_expand.svg"/></button>
           <button class="btn">1:1</button>
@@ -72,14 +81,17 @@
         <div id="playbackControls" class="btnGrid bottom center">
           <button class="btn">|&lt;</button>
           <button class="btn">&lt;</button>
+          <button class="btn sticky">∫</button>
+          <input />
           <button class="btn">|&gt;</button>
           <button class="btn">&gt;</button>
         </div>
+        <button onclick="saveFrame()" id="frameButton" class="bottom right">Save Frame</button>
         <canvas id="shaderCanvas"></canvas>
       </div>
       <divider></divider>
       <div class="pane" id="codePane">
-        <button onclick="compile()" id="compileButton">Compile</button>
+        <button onclick="compile()" id="compileButton" class="top right">Compile</button>
         <iframe id="glslcode" src="glsl_editor.html"></iframe>
       </div>
     </div>
@@ -107,8 +119,7 @@
 
       <div class="progress-bar" id="renderProgress"></div>
       <button onclick="render()" id="renderButton">Render</button>
-      <br><br>
-      <button onclick="renderFrame()" id="frameButton">Render Frame</button>
+      <br>
 
     </div>
   </div>
