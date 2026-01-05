@@ -21,7 +21,7 @@
     .pane#rendersettings { flex: 0 0 250px; }
     .pane#glslcode { flex: 0 0 250px; }
 
-    #shaderPane, #codePane { position: relative; padding: 0 1em; }
+    #viewportPane, #codePane { position: relative; padding: 0 1em; }
     #shaderCanvas {
       position: absolute;
       display: block;
@@ -30,10 +30,13 @@
       background: black;
 
       box-shadow: 5px 5px 25px #0005;
+
+      image-rendering: pixelated;   /* nearest-neighbour */
+      image-rendering: crisp-edges; /* nearest-neighbour fallback */
     }
     
     #codePane {
-      margin: 0;
+      padding: 0;
       background: var(--hover-col);
     }
     #compileButton {
@@ -55,7 +58,7 @@
 <body>
   <div class="split v">
     <div class="split h">
-      <div class="pane bg" id="shaderPane">
+      <div class="pane bg" id="viewportPane">
         <h3 id="FileName" contenteditable="true" spellcheck="false">New File</h3>
         <canvas id="shaderCanvas"></canvas>
       </div>
@@ -302,6 +305,40 @@
   </script>
 
   <script>
+    // Viewport navigation
+
+    zoomList = [10, 25, 50, 100, 200, 400, 700, 1000];
+    let zoomLevel;
+    zoom();
+  
+    const viewportL = document.getElementById('viewportPane');
+
+    viewportL.addEventListener("wheel", e => {
+      zoomLevel -= Math.sign(e.deltaY);
+      zoom(zoomLevel);
+    });
+
+    function zoom(zoomTarget) {
+      if (zoomTarget === undefined) {
+        const defaultZoom = 100;
+        zoomLevel = 0;
+        let closest = Math.abs(zoomList[0] - defaultZoom);
+        for (let i = 1; i < zoomList.length; i++) {
+          const diff = Math.abs(zoomList[i] - defaultZoom);
+          if (diff < closest) {
+            closest = diff;
+            zoomLevel = i;
+          }
+        }
+      } else {
+        zoomLevel = Math.min(Math.max(Math.round(zoomTarget), 0), zoomList.length);
+      }
+      shaderL.style.scale = `${zoomList[zoomLevel]}%`;
+    } 
+
+  </script>
+
+  <script>
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
 
@@ -312,12 +349,20 @@
       const ctrlKey = e.ctrlKey || e.metaKey; /* ctrl || mac cmd */
       if (editable && !ctrlKey) return;
       const shiftKey = e.shiftKey;
+      const altKey = e.altKey;
       const key = e.key;
 
       /* Save */
       if (ctrlKey && !shiftKey && key === 's') {
         e.preventDefault();
         console.log('saving...');
+        return;
+      }
+
+      /* Reset zoom */
+      if (altKey && key === 's') {
+        e.preventDefault();
+        zoom();
         return;
       }
 
