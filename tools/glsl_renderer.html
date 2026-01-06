@@ -15,10 +15,6 @@
 
   <style>
     html, body { height: 100%; margin: 0 !important; max-width: unset; padding: 0; outline: unset;}
-    .split.v { display: flex; height: 100%; }
-    .split.h { display: flex; width: 100%; flex-direction: column;}
-    .pane { flex: 1; }
-    .split > :not(divider) { flex: 1 1 0; box-sizing: border-box;}
 
     #viewportPane, #codePane, #logPane { position: relative; padding: 0 1em; }
     #shaderCanvas {
@@ -48,6 +44,7 @@
     
     #FileName {
       position: relative;
+      /* margin: 0; */
     }
     #FileName:not(:focus-visible):not(:active)::selection {
       background-color: transparent;
@@ -57,6 +54,10 @@
       -webkit-user-select: text;  /* Chrome/Safari */
       -moz-user-select: text;     /* Firefox */
       -ms-user-select: text;      /* IE/Edge */
+    }
+    #FileButtons {
+      left: 1.25rem;
+      top: 3.5rem;
     }
 
     #frameButton {
@@ -73,7 +74,11 @@
   <div class="split v">
     <div class="split h">
       <div class="pane bg" id="viewportPane">
-        <h3 id="FileName" contenteditable="false" spellcheck="false">New File</h3>
+        <h3 id="FileName" contenteditable="true" spellcheck="false">New File</h3>
+        <div id="FileButtons" class="btnGrid top left h">
+          <button onclick="" id="openButton" class="btn wide merge">Open</button>
+          <button onclick="" id="saveButton" class="btn wide">Save</button>
+        </div>
         <div id="viewportNavigation" class="btnGrid top right">
           <button class="btn merge">-</button>
           <select id="zoomMenu" class="merge"></select>
@@ -83,9 +88,9 @@
         </div>
         <div id="playbackControls" class="btnGrid bottom center">
           <button class="btn">|&lt;</button>
-          <button class="btn">&lt;</button>
-          <button class="btn sticky">∫</button>
-          <input />
+          <button class="btn merge">&lt;</button>
+          <button class="btn sticky merge">∫</button>
+          <input class=""/>
           <button class="btn">|&gt;</button>
           <button class="btn">&gt;</button>
         </div>
@@ -95,17 +100,11 @@
       <divider></divider>
       <div class="split v" id="codeSection" style="flex: 0 0 350px;">
         <div class="pane" id="logPane" style="flex: 0 0 40%;">
-          <div class="buttonGrid top right">
-            <button onclick="clear()" id="clearButton">Clear</button>
-            <button onclick="compile()" id="compileButton">Compile</button>
-          </div>
+          <button onclick="clear()" id="clearButton" class="top right">Clear</button>
         </div>
         <divider></divider>
         <div class="pane" id="codePane">
-          <div class="buttonGrid top right">
-            <button onclick="" id="saveButton">Save</button>
-            <button onclick="" id="openButton">Open</button>
-          </div>
+          <button onclick="compile()" id="compileButton" class="top right">Compile</button>
           <iframe id="glslcode" src="glsl_editor.html"></iframe>
         </div>
       </div>

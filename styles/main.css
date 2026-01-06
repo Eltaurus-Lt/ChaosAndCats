@@ -331,6 +331,7 @@ h4, h5 {
 input:focus,
 :is(button, h1,h2,h3,h4,h5,p):focus-visible {
     outline: 1px var(--accent-col) solid;
+    z-index: 10;
 }
 
 
@@ -374,6 +375,18 @@ button:active {
     background: var(--hover-col);
 }
 
+.buttonGrid {
+    display: grid;
+    grid-gap: .5em;
+    grid-template-columns: auto;
+}
+.buttonGrid.h {
+    grid-auto-flow: column;
+}
+.buttonGrid.v {
+    grid-auto-flow: row;
+}
+
 .btnGrid {
     display: grid;
     grid-auto-flow: column;
@@ -399,11 +412,14 @@ button:active {
 .btnGrid > .merge {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    margin-right: -1px;
 }
 .btnGrid > .merge + * {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    margin-left: -1px;
 }
+
 
 
 button.btn {
@@ -416,6 +432,16 @@ button.btn img {
     width: 100%;
     height: 100%;
 }
+button.btn.wide {
+    min-width: 3.5rem;
+    width: 100%;
+}
+
+
+.split.v { display: flex; height: 100%; }
+.split.h { display: flex; width: 100%; flex-direction: column;}
+.pane { flex: 1; }
+.split > :not(divider) { flex: 1 1 0; box-sizing: border-box;}
 
 divider {
     background: var(--border-col);
