@@ -13,6 +13,15 @@
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/Lt.css">
 
+    <!-- CodeMirror -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+    <!-- CodeMirror addons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/searchcursor.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/search.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/keymap/sublime.min.js"></script>
+
   <style>
     html, body { height: 100%; margin: 0 !important; max-width: unset; padding: 0; outline: unset;}
 
@@ -39,6 +48,7 @@
     #codePane {
       padding: 0;
       background: var(--hover-col);
+      height: 100%;
     }
 
     
@@ -69,6 +79,56 @@
     }
   </style>
 
+  <style>
+    #codeSection {
+      min-height: 0; /* important! */
+    }
+    #glslcode {
+      height: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      outline: none;
+      font-size: 18px;
+    }
+
+    .CodeMirror {
+      height: 100%;
+      
+      color: var(--text-col);
+      background: var(--hover-col);
+    }
+    .CodeMirror-scroll {
+      overflow: auto !important;
+    }
+
+    .CodeMirror-gutters {
+      background: var(--hover-col);
+      border-color: var(--border-col);
+    }
+    .CodeMirror-linenumber {
+      color: var(--border-col);
+    }
+ 
+    .CodeMirror-selected.CodeMirror-selected {
+      background-color: #884fd066;
+    }
+
+    /* syntax */
+    .cm-keyword.cm-keyword   { color: gold; } /* in, out, uniform, etc. */
+    .cm-type.cm-type   { color: var(--accent-col); }
+    .cm-atom.cm-atom   { color: #fc0176; }
+    .cm-meta.cm-meta { color: #000b; } /* # */
+    .cm-builtin.cm-builtin   { color: royalblue; }
+    .cm-variable.cm-variable  { color: white; }
+    .cm-operator { color: var(--header-col); }
+    .cm-number.cm-number    { color: forestgreen; }
+    .cm-def.cm-def       { color: red; } 
+    .cm-comment.cm-comment   { color: var(--border-text-col); font-style: italic; }
+    .cm-string.cm-string    { color: orange; }
+    .CodeMirror-cursor { border-color: white; }
+
+  </style>
 </head>
 <body>
   <div class="split v">
@@ -105,7 +165,23 @@
         <divider></divider>
         <div class="pane" id="codePane">
           <button onclick="compile()" id="compileButton" class="top right">Compile</button>
-          <iframe id="glslcode" src="glsl_editor.html"></iframe>
+          <div id="glslcode"><textarea id="editor">precision highp float;
+uniform float iTime;
+uniform vec2 iResolution;
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / iResolution.xy;
+  vec3 col = vec3(uv, 0.5 + 0.5*sin(iTime));
+  vec3 plot;
+  
+  if (uv.y > .5 + 0.2 * sin(10.* uv.x + iTime) ) {
+    plot = col;
+  } else {
+    plot = vec3(0);
+  }
+
+  gl_FragColor = vec4(plot, 1.0);
+}</textarea></div>
         </div>
       </div>
     </div>
@@ -197,7 +273,7 @@ console.log();
         const origin = iframeL.getBoundingClientRect();
         currentCur += (dragging === 'h') ? origin.left : origin.top;
       }
-      resizedPane.style.flex = `0 0 ${Math.max(startVal + draggingSign * (startCur - currentCur), 50)}px`;
+      resizedPane.style.flex = `0 0 ${Math.max(startVal + draggingSign * (startCur - currentCur), 62)}px`;
     }
 
     function onUp() {
@@ -206,6 +282,20 @@ console.log();
       document.removeEventListener('mouseup', onUp);
       document.removeEventListener('message', onMessage);
     }
+  </script>
+
+  <script>
+    CodeMirror.fromTextArea(document.getElementById("editor"), {
+      mode: "x-shader/x-fragment",
+      lineNumbers: true,
+      matchBrackets: true,
+      keyMap: "sublime",
+      extraKeys: {
+        "Ctrl-D": "selectNextOccurrence",
+        "Ctrl-Enter": cm => cm.state.keyEvent?.preventDefault()
+      },
+      indentUnit: 2
+    });
   </script>
 
   <script>
@@ -306,7 +396,7 @@ console.log();
     }
 
     function compile() {
-      const code = document.getElementById('glslcode').contentDocument.querySelector('.CodeMirror').CodeMirror.getValue();
+      const code = document.getElementById('glslcode').querySelector('.CodeMirror').CodeMirror.getValue();
 
       const vertexSource = `
         attribute vec2 aPosition;
