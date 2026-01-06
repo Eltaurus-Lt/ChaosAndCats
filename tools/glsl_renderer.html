@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>GLSL Renderer</title>
+  <title>GLSL Renderer</title> 
   <meta name="author" content="Eltaurus">
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -18,10 +18,9 @@
     .split.v { display: flex; height: 100%; }
     .split.h { display: flex; width: 100%; flex-direction: column;}
     .pane { flex: 1; }
-    .pane#rendersettings { flex: 0 0 250px; }
-    .pane#glslcode { flex: 0 0 250px; }
+    .split > :not(divider) { flex: 1 1 0; box-sizing: border-box;}
 
-    #viewportPane, #codePane { position: relative; padding: 0 1em; }
+    #viewportPane, #codePane, #logPane { position: relative; padding: 0 1em; }
     #shaderCanvas {
       position: absolute;
       display: block;
@@ -35,7 +34,8 @@
       image-rendering: crisp-edges; /* nearest-neighbour fallback */
     }
     #viewportPane > :not(#shaderCanvas),
-    #codePane > :not(#glslcode) {
+    #codePane > :not(#glslcode),
+    #logPane > * {
       position: absolute;
       z-index: 100;
     }
@@ -63,6 +63,9 @@
       position: absolute;
     }
 
+    #logPane {
+      background: color-mix(in srgb, black, var(--substrate-col));
+    }
   </style>
 
 </head>
@@ -90,13 +93,25 @@
         <canvas id="shaderCanvas"></canvas>
       </div>
       <divider></divider>
-      <div class="pane" id="codePane">
-        <button onclick="compile()" id="compileButton" class="top right">Compile</button>
-        <iframe id="glslcode" src="glsl_editor.html"></iframe>
+      <div class="split v" id="codeSection" style="flex: 0 0 350px;">
+        <div class="pane" id="logPane" style="flex: 0 0 40%;">
+          <div class="buttonGrid top right">
+            <button onclick="clear()" id="clearButton">Clear</button>
+            <button onclick="compile()" id="compileButton">Compile</button>
+          </div>
+        </div>
+        <divider></divider>
+        <div class="pane" id="codePane">
+          <div class="buttonGrid top right">
+            <button onclick="" id="saveButton">Save</button>
+            <button onclick="" id="openButton">Open</button>
+          </div>
+          <iframe id="glslcode" src="glsl_editor.html"></iframe>
+        </div>
       </div>
     </div>
     <divider></divider>
-    <div class="pane Lt" id="rendersettings">
+    <div class="pane Lt" id="rendersettings" style="flex: 0 0 250px;">
       <h3>Directory</h3>
 
       <h3>Dimensions</h3>
@@ -125,24 +140,31 @@
   </div>
 
   <script>
-    let dragging = false, draggingDir, startCur, startVal;
+    let resizedPane = false, dragging, draggingSign, startCur, startVal;
     [...document.querySelectorAll('.split')].forEach((split) => {
       const divider = split.querySelector(':scope > divider');
-      const resizedPane = split.querySelector(':scope > divider + *');
+      const firstPane = split.querySelector(':scope > :first-child');
+      const lastPane = split.querySelector(':scope > :last-child');
 
       divider.addEventListener('mousedown', e => {
-        dragging = resizedPane;
+        if (firstPane.style.flexBasis) { // decide which half gets a fixed width depending on flex-basis value
+          draggingSign = -1;
+          resizedPane = firstPane; 
+        } else {
+          draggingSign = 1;
+          resizedPane = lastPane; 
+        }
 
         if (split.classList.contains("v")) {
           startCur = e.clientX;
           startVal = resizedPane.getBoundingClientRect().width;
-          draggingDir = 'h';
+          dragging = 'h';
         } else {
           startCur = e.clientY;
           startVal = resizedPane.getBoundingClientRect().height;
-          draggingDir = 'v';
+          dragging = 'v';
         }
-
+console.log();
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', onUp);
         window.addEventListener('message', onMessage);
@@ -170,17 +192,17 @@
     }
 
     function onMove(e, iframeL = null) {
-      if (!dragging) return;
-      currentCur = (draggingDir === 'h') ? e.clientX : e.clientY;
+      if (!resizedPane) return;
+      currentCur = (dragging === 'h') ? e.clientX : e.clientY;
       if (iframeL) {
         const origin = iframeL.getBoundingClientRect();
-        currentCur += (draggingDir === 'h') ? origin.left : origin.top;
+        currentCur += (dragging === 'h') ? origin.left : origin.top;
       }
-      dragging.style.flex = '0 0 ' + (startVal + startCur - currentCur) + 'px';
+      resizedPane.style.flex = `0 0 ${Math.max(startVal + draggingSign * (startCur - currentCur), 50)}px`;
     }
 
     function onUp() {
-      dragging = false;
+      resizedPane = false;
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseup', onUp);
       document.removeEventListener('message', onMessage);

@@ -380,10 +380,10 @@ button:active {
 /*    grid-gap: .25em; */
 }
 
-.top { top: 1em; }
-.right { right: 1em; }
-.bottom { bottom: 1em; }
-.left { left: 1em; }
+.top { top: 1rem; }
+.right { right: 1rem; }
+.bottom { bottom: 1rem; }
+.left { left: 1rem; }
 .center:is(.bottom, .top) {
     left: 50%;
     translate: -50% 0;
@@ -394,7 +394,7 @@ button:active {
 }
 
 .btnGrid > :not(.merge):not(:last-child) {
-    margin-right: .25em;
+    margin-right: 5px;
 }
 .btnGrid > .merge {
     border-top-right-radius: 0;
