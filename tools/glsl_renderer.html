@@ -76,6 +76,10 @@
     #logPane {
       background: color-mix(in srgb, black, var(--substrate-col));
     }
+    
+    select {
+      cursor: pointer;
+    }
   </style>
 
   <style>
@@ -139,21 +143,21 @@
           <button onclick="saveFile()" id="saveButton" class="btn wide">Save</button>
         </div>
         <div id="viewportNavigation" class="btnGrid top right">
-          <button class="btn merge">-</button>
-          <select id="zoomMenu" class="merge"></select>
-          <button class="btn">+</button>
-          <button class="btn"><img src="../imgs/site_icons/viewport_expand.svg"/></button>
-          <button class="btn">1:1</button>
+          <button onclick = "zoom(zoomLevel - 1)"class="btn merge">-</button>
+          <select id="zoomMenu" onchange="zoom(this.selectedIndex)" class="merge"></select>
+          <button onclick = "zoom(zoomLevel + 1)" class="btn">+</button>
+          <button onclick="zoomFit()" class="btn"><img src="../imgs/site_icons/viewport_expand.svg"/></button>
+          <button onclick="zoom(closestLevel(100))" class="btn">1:1</button>
         </div>
         <div id="playbackControls" class="btnGrid bottom center">
           <button class="btn">|&lt;</button>
           <button class="btn merge">&lt;</button>
           <button class="btn sticky merge">∫</button>
           <input class=""/>
-          <button class="btn">|&gt;</button>
+          <button class="btn" style="padding-bottom: 1px;">▶</button>
           <button class="btn">&gt;</button>
         </div>
-        <button onclick="saveFrame()" id="frameButton" class="bottom right">Save Frame</button>
+        <button onclick="saveFrame()" id="frameButton" class="bottom right">Snapshot</button>
         <canvas id="shaderCanvas"></canvas>
       </div>
       <divider></divider>
@@ -186,13 +190,13 @@ void main() {
     </div>
     <divider></divider>
     <div class="pane Lt" id="rendersettings" style="flex: 0 0 250px;">
-      <h3>Directory</h3>
+      <h3 hidden>Directory</h3>
 
       <h3>Dimensions</h3>
       <div class="input-block">
-        <input id="widthIn" name="width" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="1920" placeholder="px" required />
+        <input id="widthIn" name="width" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="960" placeholder="px" required />
         <span>/</span>
-        <input id="heightIn" name="height" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="1080" placeholder="px" required />
+        <input id="heightIn" name="height" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="540" placeholder="px" required />
       </div>
 
       <h3>Duration</h3>
@@ -351,6 +355,8 @@ console.log();
       shaderL.width = widthL.value;
       shaderL.height= heightL.value;
     }
+
+    resizeCanvas();
   </script>
 
   <script>
@@ -511,6 +517,15 @@ console.log();
     // Viewport navigation
 
     zoomList = [10, 25, 50, 100, 200, 400, 700, 1000];
+
+    const zoomMenu = document.getElementById('zoomMenu');    
+    zoomList.forEach(zoomLevel => {
+      const zoomItem = document.createElement("option");
+      zoomItem.value = zoomLevel;
+      zoomItem.textContent = `${zoomLevel}%`;
+      zoomMenu.appendChild(zoomItem);
+    })
+
     let zoomLevel;
     zoom();
   
@@ -521,23 +536,38 @@ console.log();
       zoom(zoomLevel);
     });
 
-    function zoom(zoomTarget) {
-      if (zoomTarget === undefined) {
-        const defaultZoom = 100;
-        zoomLevel = 0;
-        let closest = Math.abs(zoomList[0] - defaultZoom);
+    function closestLevel(targetZoom) {
+        let closestI = 0;
+        let closest = Math.abs(zoomList[0] - targetZoom);
         for (let i = 1; i < zoomList.length; i++) {
-          const diff = Math.abs(zoomList[i] - defaultZoom);
+          const diff = Math.abs(zoomList[i] - targetZoom);
           if (diff < closest) {
             closest = diff;
-            zoomLevel = i;
+            closestI = i;
           }
         }
+        return closestI;
+    }
+
+    function zoom(zoomTarget) {
+      if (zoomTarget === undefined) {
+        zoomLevel = closestLevel(100);
       } else {
-        zoomLevel = Math.min(Math.max(Math.round(zoomTarget), 0), zoomList.length);
+        zoomLevel = Math.min(Math.max(Math.round(zoomTarget), 0), zoomList.length - 1);
       }
+      zoomMenu.selectedIndex = zoomLevel;
       shaderL.style.scale = `${zoomList[zoomLevel]}%`;
-    } 
+    }
+ 
+    function zoomFit() {
+      const dimensions = document.getElementById('viewportPane').getBoundingClientRect(); 
+      const idealZoom = 100 * Math.min(
+        dimensions.width / shaderL.width,
+        dimensions.height / shaderL.height
+      );
+      const targetLevel = closestLevel(idealZoom);
+      zoom(zoomList[targetLevel] <= idealZoom ? targetLevel : targetLevel-1 );
+    }
 
   </script>
 
@@ -570,6 +600,26 @@ console.log();
       if (ctrlKey && !shiftKey && key === 's') {
         e.preventDefault();
         saveFile();
+        return;
+      }
+
+      /* zoom+ */
+      if (key === '=') {
+        e.preventDefault();
+        zoom(zoomLevel + 1);
+        return;
+      }
+      /* zoom- */
+      if (key === '-') {
+        e.preventDefault();
+        zoom(zoomLevel - 1);
+        return;
+      }
+
+      /* zoom to fit */
+      if ((ctrlKey || altKey) && !shiftKey && key === 'f') {
+        e.preventDefault();
+        zoomFit();
         return;
       }
 
