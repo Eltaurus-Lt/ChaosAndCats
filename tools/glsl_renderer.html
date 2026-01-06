@@ -51,7 +51,6 @@
       height: 100%;
     }
 
-    
     #FileName {
       position: relative;
       /* margin: 0; */
@@ -89,7 +88,7 @@
       margin: 0;
       padding: 0;
       outline: none;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .CodeMirror {
@@ -114,8 +113,8 @@
       background-color: #884fd066;
     }
 
-    /* syntax */
-    .cm-keyword.cm-keyword   { color: gold; } /* in, out, uniform, etc. */
+    /* syntax highlights */
+    .cm-keyword.cm-keyword   { color: gold; } /* in, out, uniform, if, for, etc. */
     .cm-type.cm-type   { color: var(--accent-col); }
     .cm-atom.cm-atom   { color: #fc0176; }
     .cm-meta.cm-meta { color: #000b; } /* # */
@@ -136,8 +135,8 @@
       <div class="pane bg" id="viewportPane">
         <h3 id="FileName" contenteditable="true" spellcheck="false">New File</h3>
         <div id="FileButtons" class="btnGrid top left h">
-          <button onclick="" id="openButton" class="btn wide merge">Open</button>
-          <button onclick="" id="saveButton" class="btn wide">Save</button>
+          <button onclick="openFile()" id="openButton" class="btn wide merge">Open</button>
+          <button onclick="saveFile()" id="saveButton" class="btn wide">Save</button>
         </div>
         <div id="viewportNavigation" class="btnGrid top right">
           <button class="btn merge">-</button>
@@ -297,6 +296,48 @@ console.log();
       indentUnit: 2
     });
   </script>
+  
+  <script>
+    function getCode() {
+      return document.getElementById('glslcode').querySelector('.CodeMirror').CodeMirror.getValue()
+    }
+
+    function getName() {
+      return document.getElementById('FileName').innerText;
+    }
+
+    function nameCleanup(name) {
+      return name.replace(/\.[^.]+$/, "").replace(/\(\d+\)$/, "");
+    }
+
+    function openFile() {
+      // console.log('opening...');
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = ".glsl,.frag";
+
+      input.onchange = () => {
+        const file = input.files[0];
+        const reader = new FileReader();
+        reader.onload = e => {
+          document.getElementById('FileName').innerText = nameCleanup(file.name);
+          document.querySelector(".CodeMirror").CodeMirror.setValue(e.target.result);
+        }
+        reader.readAsText(file)
+      }
+
+      input.click();
+
+    }
+    
+    function saveFile() {
+      // console.log('saving...');
+      const url = URL.createObjectURL(new Blob([getCode()], {type:"text/plain"}));
+      const tempL = Object.assign(document.createElement("a"), {href:url, download: `${getName()}.glsl`});
+      tempL.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
 
   <script>
     const widthL = document.getElementById('widthIn');
@@ -396,7 +437,7 @@ console.log();
     }
 
     function compile() {
-      const code = document.getElementById('glslcode').querySelector('.CodeMirror').CodeMirror.getValue();
+      const code = getCode();
 
       const vertexSource = `
         attribute vec2 aPosition;
@@ -460,7 +501,7 @@ console.log();
       //gl.flush();
 
       const tempL = document.createElement("a");
-      tempL.download = path ? path : `${document.getElementById('FileName').innerText}_${frameNumber()}.png`;
+      tempL.download = path ? path : `${getName()}_${frameNumber()}.png`;
       tempL.href = shaderL.toDataURL("image/png");
       tempL.click();
     }
@@ -509,15 +550,26 @@ console.log();
       const editable = e.target.isContentEditable || tag === 'input' || tag === 'textarea';
 
       const ctrlKey = e.ctrlKey || e.metaKey; /* ctrl || mac cmd */
-      if (editable && !ctrlKey) return;
       const shiftKey = e.shiftKey;
       const altKey = e.altKey;
       const key = e.key;
+      if (key === 'Enter' && e.target.id === 'FileName') {
+        e.preventDefault();
+        e.target.blur();
+      }
+      if (editable && !ctrlKey) return;
+
+      /* Open */
+      if (ctrlKey && !shiftKey && key === 'o') {
+        e.preventDefault();
+        openFile();
+        return;
+      }
 
       /* Save */
       if (ctrlKey && !shiftKey && key === 's') {
         e.preventDefault();
-        console.log('saving...');
+        saveFile();
         return;
       }
 
