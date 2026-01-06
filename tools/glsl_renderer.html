@@ -40,7 +40,7 @@
     }
     #viewportPane > :not(#shaderCanvas),
     #codePane > :not(#glslcode),
-    #logPane > * {
+    #clearButton {
       position: absolute;
       z-index: 100;
     }
@@ -71,7 +71,44 @@
 
     #logPane {
       background: color-mix(in srgb, black, var(--substrate-col));
+      padding: 0;
     }
+    #log {
+      font-size: 1rem;
+      font-family: monospace;
+      height: 100%;
+      overflow-y: auto;
+      margin: 0;
+      padding: 4em 1em 1em 2em;
+      box-sizing: border-box;
+   
+      list-style: none;
+      counter-reset: item;
+    }
+    #log > li {
+      color: white;
+      opacity: .5;
+      margin-bottom: 0.5em;
+      padding: .5em;
+      border-radius: .25em; 
+ 
+      counter-increment: item;
+      position: relative;
+    }
+    #log li::before {
+      content: counter(item);
+      position: absolute;
+      right: calc(100% + .5em);
+    }
+    #log > .error {
+      color: color-mix(in srgb, red, white);
+      background: #8f1402;
+    }
+    #log > .success {
+      color: color-mix(in srgb, limegreen, white);
+      background: forestgreen;
+    }
+
 
     #settingsButton {
       bottom: 3.5rem;
@@ -167,7 +204,8 @@
       <divider></divider>
       <div class="split v" id="codeSection" style="flex: 0 0 350px;">
         <div class="pane" id="logPane" style="flex: 0 0 40%;">
-          <button onclick="clear()" id="clearButton" class="top right">Clear</button>
+          <button id="clearButton" onclick="clearLog()" class="top right">Clear</button>
+          <ol id="log"></ol>
         </div>
         <divider></divider>
         <div class="pane Lt" id="codePane">
@@ -245,7 +283,7 @@ void main() {
           startVal = resizedPane.getBoundingClientRect().height;
           dragging = 'v';
         }
-console.log();
+
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', onUp);
         window.addEventListener('message', onMessage);
@@ -448,7 +486,7 @@ console.log();
       gl.compileShader(shader);
       if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
         const info = gl.getShaderInfoLog(shader);
-        console.error('Shader compile error:', info);
+        log(`${info}`, 'error'); // Shader compile error: 
         gl.deleteShader(shader);
         return null;
       }
@@ -482,7 +520,7 @@ console.log();
       gl.linkProgram(program);
       if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
         const info = gl.getProgramInfoLog(program);
-        console.error('Program link error:', info);
+        log(`Program link error: ${info}`, 'error');
         gl.deleteProgram(program);
         return;
       }
@@ -501,7 +539,27 @@ console.log();
       iTimeLoc       = gl.getUniformLocation(program, 'iTime');
       iFrameLoc      = gl.getUniformLocation(program, 'iFrame');
 
+      log("Compiled successfully!", 'success');
+
       requestAnimationFrame(displayFrame);
+    }
+  </script>
+
+  <script>
+    // Log
+    function log(message, classList = '') {
+      const logEntry = document.createElement("li");
+      logEntry.textContent = message;
+      logEntry.classList.add(classList);
+
+      const logL = document.getElementById('log');
+      logL.appendChild(logEntry);
+      logL.scrollTop = logL.scrollHeight;
+    }
+
+    function clearLog() {
+console.log('clearing...');
+      document.getElementById('log').innerHTML = "";
     }
   </script>
 
@@ -643,9 +701,17 @@ console.log();
         return;
       }
 
+      /* Compile */
       if (ctrlKey && key === 'Enter') {
         e.preventDefault();
         compile();
+        return;
+      }
+
+      /* Clear log */
+      if (ctrlKey && key === 'l') {
+        e.preventDefault();
+        clearLog();
         return;
       }
 
