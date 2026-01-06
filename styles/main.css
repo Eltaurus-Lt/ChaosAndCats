@@ -433,8 +433,9 @@ button.btn img {
     height: 100%;
 }
 button.btn.wide {
-    min-width: 3.5rem;
-    width: 100%;
+  /*  min-width: 4rem; */
+    width: max-content;
+    padding: 0 0.75rem; 
 }
 
 

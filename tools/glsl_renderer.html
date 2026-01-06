@@ -69,12 +69,12 @@
       top: 3.5rem;
     }
 
-    #frameButton {
-      position: absolute;
-    }
-
     #logPane {
       background: color-mix(in srgb, black, var(--substrate-col));
+    }
+
+    #settingsButton {
+      bottom: 3.5rem;
     }
     
     select {
@@ -152,12 +152,16 @@
         <div id="playbackControls" class="btnGrid bottom center">
           <button class="btn">|&lt;</button>
           <button class="btn merge">&lt;</button>
-          <button class="btn sticky merge">∫</button>
+          <button class="btn toggle merge">∫</button>
           <input class=""/>
           <button class="btn" style="padding-bottom: 1px;">▶</button>
           <button class="btn">&gt;</button>
         </div>
-        <button onclick="saveFrame()" id="frameButton" class="bottom right">Snapshot</button>
+        <button id="settingsButton" class="btn toggle merge wide bottom right">Settings</button>
+        <div class="buttonGrid bottom right h">
+          <button id="frameButton" onclick="saveFrame()" class="merge">Snapshot</button>
+          <button id="renderButton" onclick="render()">Render</button>
+        </div>
         <canvas id="shaderCanvas"></canvas>
       </div>
       <divider></divider>
@@ -166,7 +170,7 @@
           <button onclick="clear()" id="clearButton" class="top right">Clear</button>
         </div>
         <divider></divider>
-        <div class="pane" id="codePane">
+        <div class="pane Lt" id="codePane">
           <button onclick="compile()" id="compileButton" class="top right">Compile</button>
           <div id="glslcode"><textarea id="editor">precision highp float;
 uniform float iTime;
@@ -189,7 +193,7 @@ void main() {
       </div>
     </div>
     <divider></divider>
-    <div class="pane Lt" id="rendersettings" style="flex: 0 0 250px;">
+    <div class="pane" id="rendersettings" style="flex: 0 0 250px;">
       <h3 hidden>Directory</h3>
 
       <h3>Dimensions</h3>
@@ -201,9 +205,9 @@ void main() {
 
       <h3>Duration</h3>
       <div class="input-block">
-        <input id="secondsIn" name="seconds" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="10" placeholder="sec" required />
+        <input id="secondsIn" name="seconds" type="number" inputmode="numeric" pattern="\d*" min="1" step="any" value="10" placeholder="sec" required />
         <span style="translate: 0 2px">×</span>
-        <input id="fpsIn" name="fps" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="25" placeholder="fps" required />
+        <input id="fpsIn" name="fps" type="number" inputmode="numeric" pattern="\d*" min="1" step="0.01" value="25" placeholder="fps" required />
         <span style="translate: 0 2px">=</span>
         <input id="framesIn" name="frames" type="number" inputmode="numeric" pattern="\d*" min="1" step="1" value="250" placeholder="frames" required />
       </div>
@@ -211,7 +215,6 @@ void main() {
       <br>
 
       <div class="progress-bar" id="renderProgress"></div>
-      <button onclick="render()" id="renderButton">Render</button>
       <br>
 
     </div>
@@ -357,6 +360,16 @@ console.log();
     }
 
     resizeCanvas();
+  </script>
+
+  <script>
+    const secondsL = document.getElementById('secondsIn');
+    const fpsL = document.getElementById('fpsIn');
+    const framesL = document.getElementById('framesIn');
+
+    secondsL.addEventListener("change", ()=>{ framesL.value = Math.round(fpsL.value * secondsL.value); }); 
+    fpsL.addEventListener("change", ()=>{ framesL.value = Math.round(fpsL.value * secondsL.value); }); 
+    framesL.addEventListener("change", ()=>{ secondsL.value = Number((framesL.value / fpsL.value).toFixed(4)); }); 
   </script>
 
   <script>
