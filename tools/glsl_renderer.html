@@ -111,10 +111,6 @@
       background: forestgreen;
     }
 
-
-    #settingsButton {
-      bottom: 3.5rem;
-    }
     
     select {
       cursor: pointer;
@@ -196,10 +192,8 @@
           <button class="btn" style="padding-bottom: 1px;">▶</button>
           <button class="btn">&gt;</button>
         </div>
-        <button id="settingsButton" class="btn toggle merge wide bottom right">Settings</button>
         <div class="buttonGrid bottom right h">
           <button id="frameButton" onclick="saveFrame()" class="merge">Snapshot</button>
-          <button id="renderButton" onclick="render()">Render</button>
         </div>
         <canvas id="shaderCanvas"></canvas>
       </div>
@@ -210,7 +204,7 @@
           <ol id="log"></ol>
         </div>
         <divider></divider>
-        <div class="pane Lt" id="codePane">
+        <div class="pane" id="codePane">
           <button onclick="compile()" id="compileButton" class="top right">Compile</button>
           <div id="glslcode"><textarea id="editor">precision highp float;
 uniform float iTime;
@@ -234,7 +228,7 @@ void main() {
       </div>
     </div>
     <divider></divider>
-    <div class="pane" id="rendersettings" style="flex: 0 0 250px;">
+    <div class="pane Lt" id="rendersettings" style="flex: 0 0 250px;">
       <h3 hidden>Directory</h3>
 
       <h3>Dimensions</h3>
@@ -254,9 +248,8 @@ void main() {
       </div>
 
       <br>
-
       <div class="progress-bar" id="renderProgress"></div>
-      <br>
+      <button id="renderButton" onclick="render()">Render</button>
 
     </div>
   </div>
