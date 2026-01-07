@@ -90,8 +90,10 @@
       opacity: .5;
       margin-bottom: 0.5em;
       padding: .5em;
-      border-radius: .25em; 
- 
+      border-radius: .25em;
+
+      white-space: pre-wrap;
+
       counter-increment: item;
       position: relative;
     }
@@ -174,7 +176,7 @@
   <div class="split v">
     <div class="split h">
       <div class="pane bg" id="viewportPane">
-        <h3 id="FileName" contenteditable="true" spellcheck="false">New File</h3>
+        <h3 id="FileName" contenteditable="true" spellcheck="false">Untitled</h3>
         <div id="FileButtons" class="btnGrid top left h">
           <button onclick="openFile()" id="openButton" class="btn wide merge">Open</button>
           <button onclick="saveFile()" id="saveButton" class="btn wide">Save</button>
@@ -187,7 +189,7 @@
           <button onclick="zoom(closestLevel(100))" class="btn">1:1</button>
         </div>
         <div id="playbackControls" class="btnGrid bottom center">
-          <button class="btn">|&lt;</button>
+          <button class="btn">|◀</button>
           <button class="btn merge">&lt;</button>
           <button class="btn toggle merge">∫</button>
           <input class=""/>
@@ -212,6 +214,7 @@
           <button onclick="compile()" id="compileButton" class="top right">Compile</button>
           <div id="glslcode"><textarea id="editor">precision highp float;
 uniform float iTime;
+uniform float iFrame;
 uniform vec2 iResolution;
 
 void main() {
@@ -354,6 +357,11 @@ void main() {
     function nameCleanup(name) {
       return name.replace(/\.[^.]+$/, "").replace(/\(\d+\)$/, "");
     }
+   
+    function setNameAndCode(name, code) {
+      document.getElementById('FileName').innerText = nameCleanup(name);
+      document.querySelector(".CodeMirror").CodeMirror.setValue(code);
+    }
 
     function openFile() {
       // console.log('opening...');
@@ -365,8 +373,7 @@ void main() {
         const file = input.files[0];
         const reader = new FileReader();
         reader.onload = e => {
-          document.getElementById('FileName').innerText = nameCleanup(file.name);
-          document.querySelector(".CodeMirror").CodeMirror.setValue(e.target.result);
+          setNameAndCode(file.name, e.target.result);
         }
         reader.readAsText(file)
       }
@@ -382,6 +389,7 @@ void main() {
       tempL.click();
       URL.revokeObjectURL(url);
     }
+ 
   </script>
 
   <script>
@@ -397,7 +405,6 @@ void main() {
       shaderL.height= heightL.value;
     }
 
-    resizeCanvas();
   </script>
 
   <script>
@@ -598,7 +605,6 @@ console.log('clearing...');
     })
 
     let zoomLevel;
-    zoom();
   
     const viewportL = document.getElementById('viewportPane');
 
@@ -640,6 +646,26 @@ console.log('clearing...');
       zoom(zoomList[targetLevel] <= idealZoom ? targetLevel : targetLevel-1 );
     }
 
+  </script>
+
+  <script>
+    // INIT
+
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get("src");
+    if (source) {
+      fetch(`../shaders/${source}`)
+         .then(r => r.text())
+        .then(srcCode => {
+          setNameAndCode(source, srcCode);
+        });
+    }
+    if (params.get("width")) {widthL.value = Math.round(params.get("width"));}
+    if (params.get("height")) {heightL.value = Math.round(params.get("height"));}
+
+    resizeCanvas();
+    zoom();
+    setTimeout(compile, 500);
   </script>
 
   <script>
