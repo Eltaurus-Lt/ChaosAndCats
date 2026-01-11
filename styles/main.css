@@ -372,7 +372,16 @@ button:hover {
     cursor: pointer;
 }
 button:active {
-    background: var(--hover-col);
+    box-shadow: 0 0 10px -5px black inset;
+    background: var(--hover-col) !important;
+}
+
+button.toggle.pressed {
+    background: color-mix(in srgb, var(--bg-col) 25%, var(--hover-col) 75%);
+}
+button.toggle.pressed :first-child,
+button.toggle:not(.pressed) :last-child {
+    display: none;
 }
 
 .buttonGrid {
@@ -420,6 +429,10 @@ button:active {
     margin-left: -1px;
 }
 
+.btnGrid input {
+    width: 2.5em;
+    text-align: right;
+}
 
 
 button.btn {

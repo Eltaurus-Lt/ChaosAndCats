@@ -96,6 +96,14 @@
 
       counter-increment: item;
       position: relative;
+
+      user-select: text;          /* Standard */
+      -webkit-user-select: text;  /* Chrome/Safari */
+      -moz-user-select: text;     /* Firefox */
+      -ms-user-select: text;      /* IE/Edge */
+    }
+    #log > li::selection {
+      background-color: #fff5;
     }
     #log li::before {
       content: counter(item);
@@ -120,10 +128,11 @@
   <style>
     #codeSection {
       min-height: 0; /* important! */
+      min-width: 0;
     }
     #glslcode {
       height: 100%;
-      max-width: 100%;
+      width: 100%;
       margin: 0;
       padding: 0;
       outline: none;
@@ -132,6 +141,7 @@
 
     .CodeMirror {
       height: 100%;
+      width: 100%;
       
       color: var(--text-col);
       background: var(--hover-col);
@@ -185,11 +195,11 @@
           <button onclick="zoom(closestLevel(100))" class="btn">1:1</button>
         </div>
         <div id="playbackControls" class="btnGrid bottom center">
-          <button class="btn">|◀</button>
+          <button class="btn" style="padding-bottom: 1px;">|◀</button>
           <button class="btn merge">&lt;</button>
-          <button class="btn toggle merge">∫</button>
-          <input class=""/>
-          <button class="btn" style="padding-bottom: 1px;">▶</button>
+          <button class="btn toggle merge"><span>f(t)</span><span>∫</span></button>
+          <input id="frameCount" class=""/>
+          <button id="playbackBtn" toggleCallback="togglePlayback" class="btn toggle" style="padding-bottom: 1px;"><span>▶</span><span>||</span></button>
           <button class="btn">&gt;</button>
         </div>
         <div class="buttonGrid bottom right h">
@@ -550,7 +560,9 @@ void main() {
     function log(message, classList = '') {
       const logEntry = document.createElement("li");
       logEntry.textContent = message;
-      logEntry.classList.add(classList);
+      if (classList) {
+        logEntry.classList.add(classList);
+      }
 
       const logL = document.getElementById('log');
       logL.appendChild(logEntry);
@@ -642,6 +654,24 @@ console.log('clearing...');
   </script>
 
   <script>
+    [...document.querySelectorAll("button.toggle")].forEach((btnL)=>{
+      btnL.addEventListener('click', () => {
+        btnL.classList.toggle('pressed');
+        const callbackFunction = window[btnL.getAttribute('toggleCallback')];
+        if (typeof callbackFunction === "function") {
+          callbackFunction();
+        }
+      });
+    })
+
+    let playback = false;
+    const playbackL = document.getElementById('playbackBtn');
+    function togglePlayback() {
+      playback = playbackL.classList.contains('pressed');
+    }
+  </script>
+
+  <script>
     // INIT
 
     const params = new URLSearchParams(window.location.search);
@@ -658,7 +688,10 @@ console.log('clearing...');
 
     resizeCanvas();
     zoom();
-    setTimeout(compile, 500);
+    setTimeout(()=>{
+      compile();
+      playbackL.click();
+    }, 500);
   </script>
 
   <script>
