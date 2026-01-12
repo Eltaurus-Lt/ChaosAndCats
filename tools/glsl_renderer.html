@@ -195,12 +195,12 @@
           <button onclick="zoom(closestLevel(100))" class="btn">1:1</button>
         </div>
         <div id="playbackControls" class="btnGrid bottom center">
-          <button class="btn" style="padding-bottom: 1px;">|◀</button>
-          <button class="btn merge">&lt;</button>
-          <button class="btn toggle merge"><span>f(t)</span><span>∫</span></button>
-          <input id="frameCount" class=""/>
+          <button onclick="setFrame(0)" class="btn" style="padding-bottom: 1px;">|◀</button>
+          <button onclick="setFrame(currentFrame-1)" class="btn merge">&lt;</button>
+          <button class="btn toggle merge"><span>(t)</span><span>∫</span></button>
+          <input id="frameCount" name="frame" inputmode="numeric" pattern="\d*" step="1" required class=""/>
           <button id="playbackBtn" toggleCallback="togglePlayback" class="btn toggle" style="padding-bottom: 1px;"><span>▶</span><span>||</span></button>
-          <button class="btn">&gt;</button>
+          <button onclick="setFrame(currentFrame+1)" class="btn">&gt;</button>
         </div>
         <div class="buttonGrid bottom right h">
           <button id="frameButton" onclick="saveFrame()" class="merge">Snapshot</button>
@@ -218,7 +218,7 @@
           <button onclick="compile()" id="compileButton" class="top right">Compile</button>
           <div id="glslcode"><textarea id="editor">precision highp float;
 uniform float iTime;
-uniform float iFrame;
+uniform int iFrame;
 uniform vec2 iResolution;
 
 void main() {
@@ -332,6 +332,18 @@ void main() {
       document.removeEventListener('mouseup', onUp);
       document.removeEventListener('message', onMessage);
     }
+  </script>
+
+  <script>
+    [...document.querySelectorAll("button.toggle")].forEach((btnL)=>{
+      btnL.addEventListener('click', () => {
+        btnL.classList.toggle('pressed');
+        const callbackFunction = window[btnL.getAttribute('toggleCallback')];
+        if (typeof callbackFunction === "function") {
+          callbackFunction();
+        }
+      });
+    })
   </script>
 
   <script>
@@ -461,10 +473,41 @@ void main() {
   </script>
 
   <script>
+    // playback functions
+    let currentFrame = 0;
+
+    function cleanNumber(numberString, isInteger = false) {
+      const number = parseFloat(numberString.replace(/[^0-9.]/g,""));
+      return isInteger ? Math.round(number) : number;
+    }
+
+    function setFrame(newFrame) {
+      currentFrame = newFrame;
+      requestAnimationFrame(displayFrame);
+    }
+
+    const frameCountL = document.getElementById('frameCount');
+    frameCountL.addEventListener("change", ()=>{
+      const cleanFrameCount = cleanNumber(frameCountL.value, true);
+      frameCountL.blur();
+      setFrame(cleanFrameCount);
+    }); 
+
+    let playback = false;
+    const playbackL = document.getElementById('playbackBtn');
+    function togglePlayback() {
+      playback = playbackL.classList.contains('pressed');
+      if (playback) {
+        requestAnimationFrame(displayFrame);
+      }
+    }
+  </script>
+
+  <script>
     const gl = shaderL.getContext("webgl", { preserveDrawingBuffer: true });
     let program = null, iResolutionLoc, iTimeLoc, iFrameLoc;
     let startTime = performance.now();
-    let currentFrame = 0;
+
 
     function displayFrame() {
       if (!program) return;
@@ -472,8 +515,10 @@ void main() {
       gl.viewport(0, 0, shaderL.width, shaderL.height);
       gl.useProgram(program);
 
-      const now = performance.now();
-      const time = (now - startTime) * 0.001;
+      // const now = performance.now();
+      // const time = (now - startTime) * 0.001;
+
+      const time = currentFrame / fpsL.value;
 
       if (iResolutionLoc) {
         gl.uniform2f(iResolutionLoc, shaderL.width, shaderL.height);
@@ -485,9 +530,12 @@ void main() {
         gl.uniform1i(iFrameLoc, currentFrame);
       }
 
+      frameCountL.value = currentFrame;
       gl.drawArrays(gl.TRIANGLES, 0, 3);
-      currentFrame++;
-      requestAnimationFrame(displayFrame);
+      if (playback) {
+        currentFrame++;
+        requestAnimationFrame(displayFrame);
+      }
     }
 
     function loadShader(type, source) {
@@ -654,24 +702,6 @@ console.log('clearing...');
   </script>
 
   <script>
-    [...document.querySelectorAll("button.toggle")].forEach((btnL)=>{
-      btnL.addEventListener('click', () => {
-        btnL.classList.toggle('pressed');
-        const callbackFunction = window[btnL.getAttribute('toggleCallback')];
-        if (typeof callbackFunction === "function") {
-          callbackFunction();
-        }
-      });
-    })
-
-    let playback = false;
-    const playbackL = document.getElementById('playbackBtn');
-    function togglePlayback() {
-      playback = playbackL.classList.contains('pressed');
-    }
-  </script>
-
-  <script>
     // INIT
 
     const params = new URLSearchParams(window.location.search);
@@ -766,6 +796,28 @@ console.log('clearing...');
         clearLog();
         return;
       }
+
+      /* playback */
+      if (key === ' ') {
+        playbackL.click();
+      }
+      if (key === '<' || key === ',' || key === 'ArrowLeft') {
+        e.preventDefault();
+        setFrame(currentFrame-1);
+      }
+      if (key === '>' || key === '.' || key === 'ArrowRight') {
+        e.preventDefault();
+        setFrame(currentFrame+1);
+      }
+      if (key === 'ArrowDown') {
+        e.preventDefault();
+        setFrame(0);
+      }
+      if (key === 'ArrowUp') {
+        e.preventDefault();
+        setFrame(cleanNumber(framesL.value,true));
+      }
+
 
     });
   </script>

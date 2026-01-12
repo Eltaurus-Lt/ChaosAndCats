@@ -422,15 +422,17 @@ button.toggle:not(.pressed) :last-child {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     margin-right: -1px;
+    padding-right: 1px;
 }
 .btnGrid > .merge + * {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     margin-left: -1px;
+    padding-left: 1px;
 }
 
 .btnGrid input {
-    width: 2.5em;
+    width: 3em;
     text-align: right;
 }
 
