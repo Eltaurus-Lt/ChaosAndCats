@@ -1,7 +1,7 @@
 // todo : antialiasing
 precision highp float;
 uniform float iTime;
-uniform float iFrame;
+uniform int iFrame;
 uniform vec2 iResolution;
 const float pi = 3.14159265358979;
 
@@ -33,11 +33,11 @@ float integrate() {
 float density(vec4 q) {
   float R = q.y;
   //return 1./R;
-  const float h = .01;
+  const float h = .15;
   float az = abs(q.w - pi/2.);
   if (R < 3.) return 0.;
   if (az > h) return 0.;
-  return (1. + (0.612372*log( (sqrt(2.*R)+1.732) / (sqrt(2.*R)-1.732) ) - 2.8115)/sqrt(R) ) / ((R-1.5)*pow(R, 2.)) * (1.-az/h);
+  return (1. + (0.612372*log( (sqrt(2.*R)+1.732) / (sqrt(2.*R)-1.732) ) - 2.8115)/sqrt(R) ) / ((R-1.5)*pow(R, 2.)) * (1.-az/h) * mod(.5*(q.z - .02*float(iFrame))/pi,1.);
 }
 
 vec4 rhw(vec4 q, vec4 v) { // w = v̇ (not the covariant w)
@@ -66,7 +66,7 @@ vec4 rk4(vec4 q) {
 }
 
 vec4 rayMarch(vec4 q0, vec4 v0) {
-  const float hdh = .02; // half integration step
+  const float hdh = .01; // half integration step
   const float da = 1.; // affine parameter
   float A; // accumulated albedo
   //vec3 uduf; // Binet phase variables: u=1/r, u'(φ), φ
@@ -80,7 +80,7 @@ vec4 rayMarch(vec4 q0, vec4 v0) {
   vec4 w; float dl;
   
   for( int i = 0 ; i < 10000; i++) { // discarding inside the photone sphere and further than specified radial distance
-    if (q.y > 100. || q.y < 1.5) {
+    if (q.y > 100. || q.y < 1.1) {
         break;
     }
     w = rhw(q, v);
@@ -95,10 +95,10 @@ vec4 rayMarch(vec4 q0, vec4 v0) {
   return vec4(A);
 }
 
-vec4 colorize(float A) {
+vec3 colorize(float A) {
   //return vec4(A);
   //return vec4(A+.55, (A-.1)*(A+.95),1.25 ,1) * A;
-  return vec4((A-.1)*(A+.95), 1.5, A+.25,1) * A;
+  return vec3((A-.1)*(A+.95), 1.5, A+.25) * A;
 }
 
 vec4 gii(vec4 q) { // diagonal metric tensor
@@ -112,10 +112,10 @@ void main() {
   // camera
   //mat3 Mc = RM(0., 1.);
   //vec3 xyz = Mc * vec3(0,0,50); // worldspace cartesian initial location
-  vec4 q0 = vec4(iTime, 35, 0, 1.45); // τrφθ
+  vec4 q0 = vec4(iTime, 35, 0, 1.5); // τrφθ
   //vec3 exyz = Mc * normalize(vec3(fovtan * XY, -1)); // worldspace cartesian direction
   vec4 v0 = vec4(-1, normalize( vec3(-1, fovtan * XY * vec2(1,-1) ) )) * inversesqrt(abs(gii(q0)));
 
-  gl_FragColor = colorize(1700.*rayMarch(q0, v0).x); // colorize(1000. * density(vec3(25.*XY,0)));
+  gl_FragColor = vec4(colorize(120.*rayMarch(q0, v0).x), 1); // colorize(1000. * density(vec3(25.*XY,0)));
   //gl_FragColor = vec4(density(vec4(0, length(XY) * 50., 0., pi/2.)));
 }
