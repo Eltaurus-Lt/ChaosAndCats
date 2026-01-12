@@ -50,6 +50,16 @@
       position: absolute;
       z-index: 100;
     }
+
+    #rendersettings {
+      min-width: 110px;
+      max-width: 350px;
+    }
+    #codeSection {
+      min-height: 125px;
+      max-height: calc(100% - 125px);
+    }
+    
     
     #codePane {
       padding: 0;
@@ -78,6 +88,12 @@
     #logPane {
       background: color-mix(in srgb, black, var(--substrate-col));
       padding: 0;
+  
+      min-width: 125px;
+      max-width: calc(100% - 125px);
+    }
+    #codePane {
+      min-width: 100px;
     }
     #log {
       font-size: 1rem;
@@ -132,10 +148,6 @@
   </style>
 
   <style>
-    #codeSection {
-      min-height: 0; /* important! */
-      min-width: 0;
-    }
     #glslcode {
       height: 100%;
       width: 100%;
@@ -510,7 +522,7 @@ void main() {
   </script>
 
   <script>
-    const gl = shaderL.getContext("webgl", { preserveDrawingBuffer: true });
+    const gl = shaderL.getContext("webgl2", { preserveDrawingBuffer: true });
     let program = null, iResolutionLoc, iTimeLoc, iFrameLoc;
     let startTime = performance.now();
 
