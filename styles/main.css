@@ -333,6 +333,9 @@ input:focus,
     outline: 1px var(--accent-col) solid;
     z-index: 10;
 }
+button:hover {
+    z-index: 10;
+}
 
 
 input {
@@ -418,12 +421,14 @@ button.toggle:not(.pressed) :last-child {
 .btnGrid > :not(.merge):not(:last-child) {
     margin-right: 5px;
 }
+.single-choice > :not(:last-child),
 .btnGrid > .merge {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     margin-right: -1px;
     padding-right: 1px;
 }
+.single-choice > :not(:first-child),
 .btnGrid > .merge + * {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -435,6 +440,12 @@ button.toggle:not(.pressed) :last-child {
     width: 3.5em;
     text-align: right;
 }
+
+.single-choice > * {
+    position: relative;
+}
+
+
 
 
 button.btn {
