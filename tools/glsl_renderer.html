@@ -534,7 +534,9 @@ void main() {
 
     function setFrame(newFrame) {
       currentFrame = newFrame;
-      requestAnimationFrame(displayFrame);
+      if (!state["playback"]) {
+        requestAnimationFrame(displayFrame);
+      }
     }
 
     const frameCountL = document.getElementById('frameCount');
