@@ -242,7 +242,10 @@
         <divider></divider>
         <div class="pane" id="codePane">
           <button onclick="compile()" id="compileButton" class="top right">Compile</button>
-          <div id="glslcode"><textarea id="editor">precision highp float;
+          <div id="glslcode"><textarea id="editor">#version 300 es
+precision highp float;
+out vec4 fragColor;
+
 uniform float iTime;
 uniform int iFrame;
 uniform vec2 iResolution;
@@ -258,7 +261,7 @@ void main() {
     plot = vec3(0);
   }
 
-  gl_FragColor = vec4(plot, 1.0);
+  fragColor = vec4(plot, 1.0);
 }</textarea></div>
         </div>
       </div>
@@ -607,8 +610,10 @@ void main() {
     function compile() {
       const code = getCode();
 
-      const vertexSource = `
-        attribute vec2 aPosition;
+      const vertexSource = `#version 300 es
+        precision highp float;
+
+        in vec2 aPosition;
         void main() {
           gl_Position = vec4(aPosition, 0.0, 1.0);
         }
