@@ -12,12 +12,12 @@ void main() {
   float col = 0.;
   float r, R;
 
-  for (int i = 0; i <= frame; ++i) {
+  for (int i = 0; i < frame; ++i) {
     R = .2 / sqrt( float(frame) );
     if ( frame <= 1 ) {
       r = 0.;
     } else {
-      r = .9 * sqrt( float(i - 1) / float(frame - 1) );
+      r = .9 * sqrt( float(i) / float(frame - 1) );
   	}
   
     float phi = float(i) * goldenAngle;
