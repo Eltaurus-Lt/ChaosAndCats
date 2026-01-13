@@ -222,9 +222,10 @@
         <div id="playbackControls" class="btnGrid bottom center">
           <button onclick="setFrame(0)" class="btn" style="padding-bottom: 1px;">|◀</button>
           <button onclick="setFrame(currentFrame-1)" class="btn merge">&lt;</button>
-          <button class="btn toggle merge"><span>(t)</span><span>∫</span></button>
+          <button class="btn toggle merge" state="integration"><span>(t)</span><span>∫</span></button>
           <input id="frameCount" name="frame" inputmode="numeric" pattern="\d*" step="1" required class=""/>
-          <button id="playbackBtn" toggleCallback="togglePlayback" class="btn toggle" style="padding-bottom: 1px;"><span>▶</span><span>||</span></button>
+          <button class="btn toggle merge" state="looping"><span>∞</span><span style="padding-bottom: 1px;">⟳</span></button>
+          <button id="playbackBtn" state="playback" toggleCallback="togglePlayback" class="btn toggle" style="padding-bottom: 1px;"><span>▶</span><span>||</span></button>
           <button onclick="setFrame(currentFrame+1)" class="btn">&gt;</button>
         </div>
         <div class="buttonGrid bottom right h">
@@ -283,8 +284,8 @@ void main() {
       </div>
 
       <h3>Format</h3>
-      <div id="formatSelect" class="input-block single-choice">
-        <button class="merge btn wide">PNG</button><button class="btn wide">EXR</button>
+      <div id="formatSelect" class="input-block single-choice" state="format">
+        <button value="png" class="merge btn wide pressed">PNG</button><button value="exr" class="btn wide">EXR</button>
       </div>
 
       <br>
@@ -365,15 +366,34 @@ void main() {
   </script>
 
   <script>
+    // toggles and states
+    const state = {};
+
     [...document.querySelectorAll("button.toggle")].forEach((btnL)=>{
+      const btnState = btnL.getAttribute("state");
+      state[btnState] = btnL.classList.contains('pressed');
       btnL.addEventListener('click', () => {
-        btnL.classList.toggle('pressed');
+        state[btnState] = !state[btnState];
+        btnL.classList.toggle('pressed', state[btnState]);
         const callbackFunction = window[btnL.getAttribute('toggleCallback')];
         if (typeof callbackFunction === "function") {
           callbackFunction();
         }
       });
-    })
+    });
+
+    [...document.querySelectorAll(".single-choice")].forEach((choiceL)=>{
+      const choiceState = choiceL.getAttribute("state");
+      state[choiceState] = choiceL.querySelector("button.pressed").getAttribute("value");
+      const choiceButtons = [...choiceL.querySelectorAll("button")];
+      choiceButtons.forEach((choiceButton)=>{
+        choiceButton.addEventListener('click', ()=>{
+          choiceButtons.forEach(btnL=>btnL.classList.remove('pressed'));
+          choiceButton.classList.add('pressed');
+           state[choiceState] = choiceButton.getAttribute("value");
+        });
+      });
+    });
   </script>
 
   <script>
@@ -504,6 +524,7 @@ void main() {
 
   <script>
     // playback functions
+    const playbackL = document.getElementById("playbackBtn");
     let currentFrame = 0;
 
     function cleanNumber(numberString, isInteger = false) {
@@ -523,11 +544,8 @@ void main() {
       setFrame(cleanFrameCount);
     }); 
 
-    let playback = false;
-    const playbackL = document.getElementById('playbackBtn');
     function togglePlayback() {
-      playback = playbackL.classList.contains('pressed');
-      if (playback) {
+      if (state["playback"]) {
         requestAnimationFrame(displayFrame);
       }
     }
@@ -562,8 +580,11 @@ void main() {
 
       frameCountL.value = currentFrame;
       gl.drawArrays(gl.TRIANGLES, 0, 3);
-      if (playback) {
+      if (state["playback"]) {
         currentFrame++;
+        if (state["looping"]) {
+          currentFrame = currentFrame % cleanNumber(framesL.value,true);
+        }
         requestAnimationFrame(displayFrame);
       }
     }

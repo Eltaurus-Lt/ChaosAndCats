@@ -371,7 +371,7 @@ button {
     box-sizing: border-box;
 }
 button:hover {
-    background: var(--border-text-col);
+    background: var(--border-text-col) !important;
     cursor: pointer;
 }
 button:active {
@@ -379,12 +379,21 @@ button:active {
     background: var(--hover-col) !important;
 }
 
+.single-choice button.pressed,
 button.toggle.pressed {
-    background: color-mix(in srgb, var(--bg-col) 25%, var(--hover-col) 75%);
+    background: var(--hover-col);
 }
 button.toggle.pressed :first-child,
 button.toggle:not(.pressed) :last-child {
     display: none;
+}
+
+button.toggle span {
+    display: block;
+}
+
+.single-choice button:not(.pressed) {
+    color: var(--text-col);
 }
 
 .buttonGrid {
@@ -426,14 +435,13 @@ button.toggle:not(.pressed) :last-child {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     margin-right: -1px;
-    padding-right: 1px;
+    padding-left: 1px;
 }
 .single-choice > :not(:first-child),
 .btnGrid > .merge + * {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     margin-left: -1px;
-    padding-left: 1px;
 }
 
 .btnGrid input {
@@ -441,6 +449,9 @@ button.toggle:not(.pressed) :last-child {
     text-align: right;
 }
 
+.single-choice {
+    width: max-content;
+}
 .single-choice > * {
     position: relative;
 }
