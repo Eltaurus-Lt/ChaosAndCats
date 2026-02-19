@@ -1,0 +1,12 @@
+a.section h3 {
+  transition: 1s;
+
+  outline: solid 2px transparent;
+  border-radius: 4px;
+}
+
+a.section:has( + div.section:hover) h3,
+a.section:hover h3 {
+  background: var(--accent-col);
+  outline-color: var(--accent-col);
+}

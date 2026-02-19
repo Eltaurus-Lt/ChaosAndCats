@@ -211,14 +211,14 @@ p {
     word-break: break-word;
 }
 
-.section {
+div.section {
     margin: 1em 0 2.5em;
     display: grid;
     gap: 1em;
 }
 
 @media (min-width: 50em) {
-    .section:has(img+p, video+p, .iframe-container+p) {
+    div.section:has(img+p, video+p, .iframe-container+p) {
         grid-template-columns: min-content 1fr;
     }
 }
@@ -267,6 +267,7 @@ a {
     background: #ffffff24;
     color: white;
 
+    margin: 2em 1em 4em;
     padding: 1em;
     border-radius: 1em;
     border: .2em var(--accent-col) solid;
