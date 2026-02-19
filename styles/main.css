@@ -263,7 +263,14 @@ a {
     color: inherit !important;
 }
 
+.alert {
+    background: #ffffff24;
+    color: white;
 
+    padding: 1em;
+    border-radius: 1em;
+    border: .2em var(--accent-col) solid;
+}
 
 h1:first-of-type {
     margin-top: 1.75em;
