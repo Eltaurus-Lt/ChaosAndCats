@@ -1,13 +1,15 @@
+#version 300 es
 precision highp float;
+out vec4 fragColor;
+
 uniform float iTime;
-uniform float iFrame;
 uniform vec2 iResolution;
 
-const int n = 12;
+const int n = 20;
 const float a = 3.;
 const float pi = 3.141592653589793;
-const float lambda = 2.5;
-const float nu = .1;
+const float lambda = 2.2;
+const float nu = 2.;
 
 
 vec4 quadMix(vec4 colm, vec4 col, float alpha) {
@@ -35,27 +37,24 @@ vec2 px2phys(vec2 coord) {
 }
 
 void main() {
-    gl_FragColor = vec4(0);
+    fragColor = vec4(0);
     
     vec2 E = vec2(0);
     
     for(int i = 0; i < n; ++i) {
         vec2 slitCoord = vec2( 0, a * (float(i) - float(n / 2)) );
-        gl_FragColor = mix(gl_FragColor, vec4(0,1,0,0), 
+        fragColor = mix(fragColor, vec4(0,1,0,0), 
                 smoothstep( 10., 5., length(gl_FragCoord.xy - phys2px(slitCoord) ) )
             );
         
-        float phase = nu * float(iFrame) - length(px2phys(gl_FragCoord.xy) - slitCoord);
+        float phase = nu * iTime - length(px2phys(gl_FragCoord.xy) - slitCoord);
         
         E += vec2( cos(phase), sin(phase) );
     }
     
-    // vec2 slitCoord = vec2( 0 );      
-    // float phase = nu * float(iFrame) - length(px2phys(gl_FragCoord.xy) - slitCoord);
     
-    
-    //gl_FragColor = coloring(cos( atan(E.y, E.x) ));
-    gl_FragColor = coloring(E.x / float(n));
-    //gl_FragColor = coloring(length(E) / float(n));
+    //fragColor = coloring(cos( atan(E.y, E.x) ));
+    fragColor = coloring(E.x / float(n));
+    //fragColor = coloring(length(E) / float(n));
     
 }
