@@ -6,14 +6,6 @@ h4 {
     font-family: Arial, sans-serif;
 }
 
-/* slides */
-
-.slide {
-    background: white;
-    border-radius: 3px;
-    margin: .5em 0;
-    width: 100%;
-}
 
 /* references */
 
@@ -64,6 +56,26 @@ ol, ul {
     width: 100%;
 }
 
+.slide {
+    background: white;
+    border-radius: 3px;
+    margin: .5em 0;
+    width: 100%;
+}
+
+.free {
+    display: block;
+    margin: auto;
+}
+
+[playbutton]::after {
+    content: '';
+    top: 50%;
+    left: 50%;
+    height: 50px;
+    width: 50px;
+    background: red;
+}
 
 /* downloads */
 
