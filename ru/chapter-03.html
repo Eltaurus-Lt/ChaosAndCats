@@ -16,7 +16,7 @@
 <body>
 <div class="header">
   <a class="button bck" href="chapter-02.html">⮜ Назад</a>
-  <a class="button prg" href="program.html">⮝ Программа</a>
+  <a class="button prg" href="program.html">Программа</a>
   <select id="language-selector">
     <option lang="ru" value="ru">Rus</option>
     <option lang="en" value="en">Eng</option>
@@ -33,7 +33,7 @@
   <h3 id="bezier">Кривые Безье́</h3>
   <div class="section">
     <div class="iframe-container">
-      <iframe class="iframe-content square" src="../iframes/bezier.html?color=%23124fa3"></iframe>
+      <iframe class="iframe-content square" src="../iframes/bezier.html?color=%23f68302"></iframe>
     </div>
     <p>
     Математические основы и вывод из первых принципов. Квадратичные и кубические кривые. Сплайны, касательные и условия гладкости.
@@ -45,17 +45,22 @@
     <a class="dwld" href="03/downloads/Сплайны и кривые Безье́.nb" download title="конспект теории">Сплайны и кривые Безье́.nb</a>
   </fieldset>
 
+  <ol class="references">
+    <h4>Литература</h4> 
+    <li><a href="https://spencermortensen.com/articles/bezier-circle/" target="_blank">Аппроксимация окружности сплайнами Безье́</a></li>
+  </ol>
+
   <ul class="references">
     <h4>Связанные темы</h4> 
-    <li><a href="chapter-04D.html#L04">B-сплайны в трёхмерной графике</a></li>
+    <li><a href="chapter-04D.html#L04">Сплайны в трёхмерной графике</a></li>
   </ul>
 
 
   <h3 id="illustrator">Введение в Adobe Illustrator</h3>
   <div class="section">
-    <img src="../imgs/03/L01.webp" class="invis">
+    <img src="../imgs/03/L01.svg" style="background: white;">
     <p>
-    Интерфейс, сравнение с <a href="chapter-02.html#L01">Adobe Photoshop</a>, панель «Слои» (<i>Layers</i>), инструменты выделения объектов и опорных точек. Создание и редактирование кривых Безье́: инструмент «Перо» (<i>Pen</i>), добавление и удаление точек, заострение и сглаживание углов, сшивка кривых. <!--инструмент Anchor Point-->
+    Интерфейс, сравнение с <a href="chapter-02.html#L01">Adobe Photoshop</a>, панель «Слои» (<i>Layers</i>) и структура документа, инструменты выделения объектов и их составляющих. Создание и редактирование кривых Безье́: инструмент «Перо» (<i>Pen</i>), добавление и удаление опроных точек, инструмент «Опорная точка» (<i>Anchor Point</i>), заострение и сглаживание углов, сшивка кривых.
     <br>
     Панель настроек внешнего вида (<i>Appearance</i>), параметры обводки и прозрачности, команды разворачивания стиля <i>Expand</i> и <i>Expand Appearance</i>. Составные пути, панель «Обработка контуров» (<i>Pathfinder</i>), инструмент «Создание фигур» (<i>Shape Builder</i>).
     <br>
@@ -75,10 +80,9 @@
 
 
 
-
   <h2 id="L02">Семинар 2</h2>
-  <h3>Комбинированные иллюстрации</h3>
-    <!-- Композитные/гибридные изображения -->
+  <h3>Композитные иллюстрации</h3>
+    <!-- Комбинированные/гибридные изображения -->
   <div class="section">
     <img src="../imgs/03/L02.svg">
     <p>
@@ -98,14 +102,15 @@
     <legend>Материалы</legend>
     <a class="dwld" href="../en/03/downloads/Lesson 02.ai" download="Семинар 02.ai" title="документ семинара">Семинар 02.ai</a>
     <a class="dwld" href="../en/03/downloads/Lesson 02.pdf" download="Семинар 02.pdf" title="сплющенная версия для просмотра">Семинар 02.pdf</a>
-    <a class="dwld off" href="../en/03/downloads/.nb" title="экспорт табличных данных из Wolfram Mathematica">.nb</a>
+    <a class="dwld off todo" href="../en/03/downloads/.nb" title="экспорт табличных данных из Wolfram Mathematica">.nb</a>
   </fieldset>
 
   <ol class="references" id="latex2ai">
     <h4>Внешние ресурсы</h4> 
-    <li><a href="https://github.com/isteinbrecher/LaTeX2AI/releases" target="_blank">LaTeX2AI</a> ― Плагин для рендера LaTeX выражений в Adobe Illustrator</li>
+    <li><a href="https://github.com/isteinbrecher/LaTeX2AI/releases" target="_blank">LaTeX2AI</a> ― Плагин для рендера LaTeX выражений в Adobe Illustrator</li> <!-- alternative scripts -->
     <li><a href="https://www.ctan.org/tex-archive/fonts/cm/ps-type1/bakoma/ttf/" target="_blank">Шрифты LaTeX</a> (<code>.ttf</code> версии основных начертаний)</li>
     <li><a href="https://www.ctan.org/tex-archive/fonts/" target="_blank">Полный архив LaTeX шрифтов</a> (формат Adobe Type 1 <b>не поддерживается</b> большинством современных графических редакторов и операционных систем)</li>
+<!-- fonts sources for Wolfram Mathematica. -->
   </ol>
 
   <ul class="references">
@@ -113,8 +118,9 @@
     <li><a href="chapter-02.html#L02">Комбинированные иллюстрации в Wolfram Mathematica</a></li>
     <li><a href="chapter-01.html#L06">LaTeX выражения в Wolfram Mathematica</a></li>
     <li><a href="chapter-02.html#Ls">Динамические связи с внешними файлами в Adobe Photoshop</a></li>
-    <li class="off"><a href="chapter-04A.html#WMCSVexport">Экспорт решений в формате табличных данных из Wolfram Mathematica</a></li>
+    <li class="off todo"><a href="chapter-04A.html#WMCSVexport">Экспорт решений в формате табличных данных из Wolfram Mathematica</a></li>
   </ul>
+
 
 
   <h2 id="L03">Семинар 3</h2>
@@ -138,7 +144,7 @@
     <li>Уильямс, Р.: <a href="https://isbnsearch.org/isbn/9785446111275">Дизайн. Книга для недизайнеров.</a> Принципы оформления и типографики для начинающих. — СПб.: Питер, 1994 (2018)</li>
   </ol>
 
-  <ul class="references off">
+  <ul class="references off todo">
     <h4>Связанные темы</h4> 
     <li><a href="chapter-02^.html">подробный дизайн, теория цвета, ...</a></li>
   </ul>
@@ -149,7 +155,7 @@
     <p>
     Панель «Выравнивание» (<i>Align</i>), выравнивание по монтажной области и ключевому объекту. Линейки, направляющие, умные направляющие и привязка к сетке. «Обтравочные маски» (<i>Clipping Masks</i>).
     <br>
-    Текстовые слои, связывание текстовых блоков, текст вдоль пути. Панели «Character» (<i>Graph</i>) и «Абзац» (<i>Paragraph</i>), параметры текстовой области (<i>Area Type Options</i>), вертикальный отступ первой строки. Векторизация текстовых слоёв.
+    Текстовые слои, связывание текстовых блоков, текст вдоль пути. Панели «Символ» (<i>Character</i>) и «Абзац» (<i>Paragraph</i>), параметры текстовой области (<i>Area Type Options</i>) и вертикальный отступ первой строки. Векторизация текстовых слоёв.
     <br>
     Форматы векторных файлов, параметры сохранения в <code>.ai</code> и <code>.pdf</code>.
     <br>
@@ -160,7 +166,7 @@
   <ul class="references">
     <h4>Связанные темы</h4> 
     <li><a href="chapter-02.html#Ls">Обтравочные маски в Adobe Photoshop</a></li>
-    <li hidden><a href="chapter-02^.html">классификация шрифтов</a></li>
+    <li hidden class="todo"><a href="chapter-02^.html">классификация шрифтов</a></li>
   </ul>
 
   <script src="../scripts/main.js"></script>

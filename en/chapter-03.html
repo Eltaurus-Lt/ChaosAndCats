@@ -16,7 +16,7 @@
 <body>
 <div class="header">
   <a class="button bck" href="chapter-02.html">⮜ Back</a>
-  <a class="button prg" href="program.html">⮝ Program</a>
+  <a class="button prg" href="program.html">Program</a>
   <select id="language-selector">
     <option lang="en" value="en">Eng</option>
     <option lang="ru" value="ru">Rus</option>
@@ -33,18 +33,37 @@
   <h3 id="bezier">Bézier curves</h3>
   <div class="section">
     <div class="iframe-container">
-      <iframe class="iframe-content square" src="../iframes/bezier.html"></iframe>
+      <iframe class="iframe-content square" src="../iframes/bezier.html?color=%23124fa3"></iframe>
     </div>
     <p>
-    Mathematical foundations and derivation. Quadratic and cubic curves. Combining into splines, tangent continuity.
+    Mathematical foundations and derivation from first principles. Quadratic and cubic curves. Combining curves into splines, tangent continuity, smoothness condition.
     </p>
   </div>
 
+  <fieldset class="downloads-block off todo">
+    <legend>Downloads</legend>
+    <a class="dwld" href="03/downloads/Сплайны и кривые Безье́.nb" download title="конспект теории">Сплайны и кривые Безье́.nb</a>
+  </fieldset>
+
+  <ol class="references">
+    <h4>References</h4> 
+    <li><a href="https://spencermortensen.com/articles/bezier-circle/" target="_blank">Approximate a circle with cubic Bézier splines</a></li>
+  </ol>
+
+  <ul class="references">
+    <h4>Linked Lessons</h4> 
+    <li><a href="chapter-04D.html#L04">Splines in 3D graphics</a></li>
+  </ul>
+
   <h3 id="AI">Introduction to Adobe Illustrator</h3>
   <div class="section">
-    <img src="../imgs/03/L01.webp" class="invis">
+    <img src="../imgs/03/L01.svg" style="background: white;">
     <p>
-    Adobe Illustrator interface and document structure: similarities and differences with <a href="chapter-02.html#L01">Adobe Photoshop</a>, distinctions in the <i>Layers</i> panel, <i>Isolation mode</i>. Making and editing splines: <i>Pen</i> tool and its controls, inserting spline points, <i>Anchor Point</i> tool, joining splines. Compound paths: <i>Pathfinder</i> panel, <i>Shape Builder</i> tool. <i>Appearance</i> panel and <i>Expand Appearance</i> function.
+    Interface, comparison with <a href="chapter-02.html#L01">Adobe Photoshop</a>, <i>Layers</i> panel and document structure, selecting objects and their constituents. Making and editing Bézier splines: <i>Pen</i> tool, inserting and deleting control points, <i>Anchor Point</i> tool, controlling anchor sharpness and smoothness, joining splines. 
+    <br>
+    <i>Appearance</i> panel, stroke and opacity parameters, commands <i>Expand</i> and  <i>Expand Appearance</i>. Compound paths, <i>Pathfinder</i> panel, <i>Shape Builder</i> tool.
+    <br>
+    *Raster image tracing. <i>Grid Tools</i>, <i>Envelope deform</i> command, <i>Blend</i> between two object.
     </p>
   </div>
 
@@ -53,17 +72,27 @@
     <li><a href="https://www.vectorpea.com/" target="_blank">Vectorpea</a> (free simplified online alternative)</li>
   </ol>
 
+  <ul class="references">
+    <h4>Linked Lessons</h4> 
+    <li><a href="chapter-01.html#L05">Vector graphics in Wolfram Mathematica</a></li>
+  </ul>
+
+
+
   <h2 id="L02">Lesson 2</h2>
-  <h3>Embedding external files</h3>
+  <h3>Composite illustrations</h3>
   <div class="section">
     <img src="../imgs/03/L02.svg">
     <p>
-    Combining vector and raster images, <i>Links</i> panel, linking between <a href="#AI">Illustrator</a> and <a href="chapter-02.html#L01">Photoshop</a>, <i>Clipping Masks</i>.
-Importing and editing <a href="chapter-01.html#WMexport-pdf">Wolfram Mathematica graphics</a>, selecting objects by properties and types, stroke options <i>Dashing</i> and <i>arrowheads</i>.
-Dealing with font issues: selectively replacing missing fonts, <i>Flatten Transparency</i> function, fonts sources for Wolfram Mathematica. 
-Importing rendered LaTeX documents, font sources from CTAN and <code>.ttf</code> substitutes. In-place LaTeX expression rendering: plugin LaTeX2AI and alternative scripts. 
+    Linking and embedding external files, <i>Links</i> panel.
+    Importing raster images and <a href="chapter-02.html#L01"><code>.psd</code></a> documents.
+    Importing vector images and <code>.pdf</code> files, embed preserving text-editing capabilities and vector object structure, selective replacement of missing fonts, embed preserving appearance of text and vector objects, command <i>Flatten Transparency</i>.
     <br>
-    *Tracing raster images. 
+    Importing and editing <a href="chapter-01.html#WMexport-pdf">vector graphics and plots</a> from Wolfram Mathematica. Embedding LaTeX: importing prerendered <code>.pdf</code>s, rendering expressions with Adobe Illustrator plugins.
+    <br>
+    Grouping objects, <i>Isolation mode</i>, selecting objects by common properties and object types, <i>Clear Appearance</i> command. Plotting dimension lines and angles, appearance settings for double lines, dashed lines, and arrowheads. Layer effects.
+    <br>
+    *<i>Graph</i> and <i>Dimension</i> tools, importing and refreshing table data.
     </p>
   </div>
 
@@ -73,19 +102,62 @@ Importing rendered LaTeX documents, font sources from CTAN and <code>.ttf</code>
     <a class="dwld" href="03/downloads/Lesson 02.pdf" download title="flattened preview">Lesson 02.pdf</a>
   </fieldset>
 
+  <ol class="references" id="latex2ai">
+    <h4>Resources</h4> 
+    <li><a href="https://github.com/isteinbrecher/LaTeX2AI/releases" target="_blank">LaTeX2AI</a> ― plugin for rendering LaTeX expressions directly in Adobe Illustrator</li> <!-- alternative scripts -->
+    <li><a href="https://www.ctan.org/tex-archive/fonts/cm/ps-type1/bakoma/ttf/" target="_blank">LaTeX fonts</a> (the most common typefaces converted to <code>.ttf</code> format)</li>
+    <li><a href="https://www.ctan.org/tex-archive/fonts/" target="_blank">Complete archive of LaTeX fonts</a> (Adobe Type 1 fonts are <b>not supported</b> by the majority of modern graphic editors and operating systems)</li>
+  </ol>
+
+  <ul class="references">
+    <h4>Linked Lessons</h4> 
+    <li><a href="chapter-02.html#L02">Composite illustrations in Wolfram Mathematica</a></li>
+    <li><a href="chapter-01.html#L06">LaTeX expressions in Wolfram Mathematica</a></li>
+    <li><a href="chapter-02.html#Ls">Live links to external files in Adobe Photoshop</a></li>
+  </ul>
+
+
 
   <h2 id="L03">Lesson 3</h2>
-  <h3>Poster Layout and Text</h3>
+  <h3>Gestalt principles</h3>
   <div class="section">
-    <img src="../imgs/03/L03.webp" class="invis">
+    <img src="../imgs/03/gestalt_c.svg" style="background:white">
     <p>
-    <a href="chapter-02^.html">Foundational design principles</a>: repetition, contrast, proximity. Scalling strokes and patterns setting.
-Text layers, text block threading, typing along splines, convertion to outlines. Panels <code>Character</code> and <code>Paragraph</code>.
-Vector image formats, saving to <code>.ai</code> and <code>.pdf</code>, exporting as raster image.
+    Principles of repetition, contrast, and proximity. Expression via alignment, color, and text formatting.
     <br>
-    *Exporting to <code>.eps</code> and <code>.svg</code>.
+    Means for ensuring repetition in Adobe Illustrator: <i>Eyedropper</i> tool, appearance scaling preferences<!-- stoke and patterns -->, Global <i>Swatches</i>.
     </p>
   </div>
+
+  <fieldset class="downloads-block todo off">
+    <legend>Downloads</legend>
+    <a class="dwld" href="03/downloads/Принципы гештальта.pdf" download title="конспект теории">Принципы гештальта.pdf</a>
+  </fieldset>
+
+  <ol class="references">
+    <h4>References</h4> 
+    <li>Williams, Robin. <a href="https://isbnsearch.org/isbn/9780133966343">The Non-designer's Design Book</a> : Design and Typographic Principles for the Visual Novice. Berkeley, CA : Peachpit Press, 1994</li>
+  </ol>
+
+  <h3>Layout and Text</h3>
+  <div class="section">
+    <img src="../imgs/03/L03_en.svg">
+    <p>
+    <i>Align</i> panel, aligning to artboard and to key object. Rulers, Guides, Smart Guides and snapping to Grid. <i>Clipping Masks</i>.
+    <br>
+    Text layers, text block threading, typing on a path. Panels <i>Character</i> and <i>Paragraph</i>, window <i>Area Type Options</i> and first-baseline offset. Converting text to outlines.
+    <br>
+    Vector image formats, save options for <code>.ai</code> and <code>.pdf</code>.
+    <br>
+    *Export to <code>.eps</code> and <code>.svg</code>, rasterisation to <code>.png</code>.
+    </p>
+  </div>
+
+  <ul class="references">
+    <h4>Linked Lessons</h4> 
+    <li><a href="chapter-02.html#Ls">Clipping Masks in Adobe Photoshop</a></li>
+    <li hidden class="todo"><a href="chapter-02^.html">typeface classification</a></li>
+  </ul>
 
   <script src="../scripts/main.js"></script>
 </body>
