@@ -21,12 +21,12 @@
 <body>
 <div class="header">
   <a class="button bck" href="chapter-03.html">⮜ Назад</a>
-  <a class="button prg" href="program.html">⮝ Программа</a>
+  <a class="button prg" href="program.html">Программа</a>
   <select id="language-selector">
     <option lang="ru" value="ru">Rus</option>
     <option lang="en" value="en">Eng</option>
   </select>
-  <a class="off" href="../ru/chapter-04D.html">eng</a>
+  <a class="off" href="../eng/chapter-04D.html">eng</a>
   <a class="button fwd" href="chapter-04A.html">Вперед ⮞</a>
 </div>
 
@@ -34,13 +34,14 @@
 
   <h1>Трёхмерное моделирование</h1>
 
+
   <h2 id="L01">Семинар 1</h2>
   <h3 id="blender">Введение в Blender</h3>
 
   <div class="section">
     <img src="../imgs/04D/L01.png">
     <p>
-    <!--Установка, оптимизация настроек, базовые аддоны.-->
+    <!-- Установка, оптимизация настроек, базовые аддоны. -->
     Интерфейс, управление раскладой панелей. Панель 3D-вида (<i>Viewport</i>): управление камерой, режимы отображения, вспомогательные элементы. Панель «Иерархия» (<i>Outliner</i>).
     <br>
     Добавление и дублирование примитивов. Параметры положения, ориентации и масштаба объектов: панель свойств (<i>Properties</i>), <i>N-панель</i>, манипуляторы, инструменты, быстрые клавиши. Углы Эйлера и кватернионы. <i>3D-курсор</i>, перемещение полюсов объектов, фиксация трансформации.
@@ -107,7 +108,7 @@
     <br>
     Добавление граней: заполнение по паре рёбер, заполнение по одному и трём рёбрам, мост между петлями рёбер (<i>Bridge Edge Loops</i>), заполнение сеткой (<i>Grid Fill</i>). Опции удаления граней.
     <br>
-    *Режимы прилипания (<i>Snap</i>) при трансформации, симметричное и пропорциональное редактирование.
+    *Режимы прилипания (<i>Snapping</i>) при трансформации, симметричное и пропорциональное редактирование.
     </p>
   </div>
 
@@ -119,7 +120,7 @@
     <p>
     Операции «Экструзия» (<i>Extrude</i>) и «Вставка» (<i>Inset</i>) над индивидуальными гранями и группами граней. «Скос» (<i>Bevel</i>) рёбер и вершин.
     <br>
-    Модификатор «Подразбиение» (<i>Subdivision</i>): математические основы, <a href="https://ru.wikipedia.org/wiki/Алгоритм_Катмулла_—_Кларка">алгоритм Катмулла — Кларка</a>, связь с <a href="https://ru.wikipedia.org/wiki/B-сплайн">B-сплайнами</a>, сравнение со <a href="chapter-03.html#bezier">сплайнами Безье́</a>. Управление сглаживанием при подразбиениях: поддерживающие петли (<i>supporting loops</i>), параметр «Складка» (<i>Crease</i>) для рёбер и вершин.
+    Модификатор «Подразбиение» (<i>Subdivision</i>): математические основы, <a href="https://ru.wikipedia.org/wiki/Алгоритм_Катмулла_—_Кларка">алгоритм Катмулла — Кларка</a>, связь с <a href="https://ru.wikipedia.org/wiki/B-сплайн">B-сплайнами</a>, сравнение со <a href="chapter-03.html#bezier">сплайнами Безье́</a>. Управление сглаживанием при подразбиениях: поддерживающие петли (<i>support loops</i>), параметр «Складка» (<i>Crease</i>) для рёбер и вершин.
     <br>
     *Модификатор <i>Bevel</i> и параметр рёбер <i>Bevel Weight</i>, использование для добавления поддерживающих рёбер. Аддон <i>Loop Tools</i>.
     </p>
@@ -132,13 +133,14 @@
   </video>
 
 
-<!--
+
   <h2 id="L05s">Семинар 5*</h2>
   <h3>Материалы и рендеринг</h3>
-  <div class="section">
+  <div class="section todo">
     <img src="../imgs/04D/L05s.png">
     <p>
     PBR materials: physical foundations, principal BSDF, basic parameters, Shader Nodes. Lighting and camera settings, HDRI environment maps. Eevee and Cycles rendering engines, GPU setup.
+PBR materials: physical foundations, basic parameters, <i>Shader Nodes</i>. Lighting and camera settings, HDRI environment maps. Eevee and Cycles rendering engines, GPU setup.
     </p>
   </div>
 
@@ -161,6 +163,18 @@
     <legend>Материалы</legend>
     <a class="dwld" href="../en/04D/downloads/Procedural LEGO piece.blend" download="Процедурная LEGO деталь.blend" title="пример">Процедурная LEGO деталь.blend</a>
   </fieldset>
+
+  <h3>Примеры</h3>
+<br>
+  <video class="centerpiece" controls loop autoplay muted playsinline poster="">
+    <source src="https://eltaurus-lt.github.io/CnC/LFF/Videos/Strange Cattractor.mp4" type="video/mp4">
+  </video>
+
+
+<!--
+*Keyframe animation, <i>Timeline</i> and <i>Graph Editor</i> panel. Importing animation keyframes and 3D meshes from Wolfram Mathematica, importing and animating LaTeX expressions.
+<br>
+**Rigid-body and fluid simulations. Scripting, <i>Drivers</i>,  trajectory visualization.
 -->
 
   <h2>Связанные темы</h2>

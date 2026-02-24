@@ -15,20 +15,19 @@
 </head>
 <body>
 <div class="header">
-  <a class="button bck" href="chapter-04C.html">⮜ Back</a>
+  <a class="button bck" href="chapter-04A.html">⮜ Back</a>
   <a class="button prg" href="program.html">⮝ Program</a>
   <select id="language-selector">
     <option lang="en" value="en">Eng</option>
     <option lang="ru" value="ru">Rus</option>
   </select>
   <a class="off" href="../ru/chapter-04D.html">rus</a>
-  <a class="button fwd" href="chapter-04E.html">Forward ⮞</a>
+  <a class="button fwd" href="chapter-04B.html">Forward ⮞</a>
 </div>
 
 
 
   <h1>3D Modeling</h1>
-
 
 
   <h2 id="L01">Lesson 1</h2>
@@ -37,7 +36,11 @@
   <div class="section">
     <img class="" src="../imgs/04D/L01.png">
     <p>
-	General interface: opening, closing, switching, and rearranging panels, <i>Outliner</i> and <i>Properties</i> panels. <i>Viewport</i> panel: navigation, modes, display regimes, overlays. Adding and manipulating objects: <i>N-Panel</i>, gizmos, shortcuts. Object rotation: Euler angles vs quaternions, geometry origin and pivot points, <i>3D-cursor</i>.
+    Interface, panel layout. <i>Viewport</i> panel: navigation, modes, display regimes, overlays. <i>Outliner</i> panel.
+    <br>
+    Adding and duplicating mesh primitives. Object transform: <i>Properties</i> panel, <i>N-Panel</i>, gizmos, tools, and shortcuts. Euler angles vs quaternions. <i>3D-cursor</i>, geometry origin, and pivot points. Applying transform.
+    <br>
+    Modifiers <i>Mirror</i>, <i>Array</i>, and <i>Screw</i>. Applying modifiers.
     </p>
   </div>
 
@@ -47,26 +50,72 @@
   </fieldset>
 
 
+
   <h2 id="L02">Lesson 2</h2>
-  <h3>Modeling basics</h3>
+  <h3>Boolean modeling</h3>
 
   <div class="section">
     <img src="../imgs/04D/L02.png">
     <p>
-	Object modeling: <i>Array</i>, <i>Bevel</i>, and <i>Boolean</i> modifiers. Shading and normals: mathematical foundations, shading methods, dependence on mesh topology. Hiding and unhiding objects and their elements.
+    <i>Boolean</i> modifier, non-destructive modeling with <i>Array</i> and <i>Mirror</i>, order of modifiers. <i>Bool Tool</i> add-on, shortcuts for live and applied booleans.
+    <br>
+    Object parenting, <i>Viewport Display</i> properties, hiding and disabling objects.
     </p>
   </div>
+
+  <fieldset class="downloads-block">
+    <legend>Downloads</legend>
+    <a class="dwld" href="04D/downloads/LEGO blueprints.pdf" download title="dimensions for lego pieces">LEGO blueprints.pdf</a>
+  </fieldset>
+
+  <h3>Examples</h3>
+<br>
+  <img class="centerpiece" src="../imgs/Examples/b3d/lego2.png">
+
+  <ul class="references">
+    <h4>Linked Lessons</h4> 
+    <li><a href="chapter-03.html#illustrator">Boolean operations in vector graphics</a></li>
+    <li><a href="chapter-03.html#L02">Dimension lines in Adobe Illustrator</a></li>
+  </ul>
 
 
 
   <h2 id="L03">Lesson 3</h2>
-  <h3>SubD workflow</h3>
-	
-  <div class="section">
 
+  <h3>Shading</h3>
+  <div class="section">
+    <img src="../imgs/04D/L03_shading.png">
     <p>
-	<i>Viewport</i> <i>Edit Mode</i>: manipulating indivisual verteces, edges, and faces. Extrude and inset, join and fill, inserting and selecting edge loops. Delete vs Dissolve vs Merge. Mathamtical foundations of the <i>Subdivision</i> modifier: B-splines and relation to <a href="chapter-03.html#bezier">Bézier curves</a>, <i>Catmull-Clark</i> algorythm. Controling edge sharpness: edge <i>crease</i>, support loops, beveling.
-<i>Loop Tools</i> add-on.
+    Mathematical foundations: face and vertex normals, <a href="https://en.wikipedia.org/wiki/Phong_shading">Phong shading</a>. <i>Flat</i> and <i>Smooth</i> shading modes, sharp edges, <i>Auto Smooth</i> modifier. Shading artefacts, dependence on mesh topology.
+    </p>
+  </div>
+
+  <h3>Edit mode</h3>
+  <div class="section">
+    <img src="../imgs/04D/L03.png">
+    <p>
+    <i>Viewport</i> object interaction modes, <i>Edit Mode</i> select modes, <i>3D-cursor</i> and element transform in <i>Edit Mode</i>, sliding elements along edges. Non-planar faces.
+    <br> 
+    Selecting multiple vertices, <i>X-Ray</i> toggle, hiding and unhiding. Adding vertices: <i>Extrude</i> and <i>Subdivide</i>. <i>Merge</i> vertices at center, by distance, auto merge on move. Deleting verteces.
+    <br>
+    Adding edges: <i>Join</i> vs <i>Fill</i> vertex pairs, inserting <i>Edge loops</i>, <i>Knife</i> tool. Delete edges vs <i>Dissolve</i>, limited dissolve. Selecting edge loops, rings, and shortest paths.
+    <br>
+    Adding faces: <i>Fill</i> an edge pair, filling based on one and three edges, commands <i>Bridge Edge Loops</i> and <i>Grid Fill</i>. <i>Delete Faces</i> command variants.
+    <br>
+    *<i>Snapping</i> settings, <i>Proportional Editing</i>, mesh symmetry toggles.
+    </p>
+  </div>
+
+
+  <h2 id="L04">Lesson 4</h2>
+  <h3>SubD modeling</h3>
+  <div class="section">
+    <p>
+    Commands <i>Extrude</i> and <i>Inset</i> on individual and multiple faces. <i>Bevel</i> on edges and vertices.
+    <br>
+    <i>Subdivision</i> modifier: mathematical foundations, <a href="https://en.wikipedia.org/wiki/Catmull–Clark_subdivision_surface">Catmull–Clark algorithm</a>, relation to <a href="https://en.wikipedia.org/wiki/B-spline">B-splines</a>, comparison with <a href="chapter-03.html#bezier">Bézier splines</a>. Adjusting subdivision smoothing: <i>support loops</i>, edge and vertex <i>Crease</i>.
+    <br>
+    *<i>Bevel</i> modifier and <i>Bevel Weight</i> parameter, use for adding support edges. <i>Loop Tools</i> add-on.
     </p>
   </div>
 
@@ -74,16 +123,17 @@
 <br>
   <video class="centerpiece" controls loop autoplay muted playsinline poster="../imgs/04D/L03-Nut_thumb.png">
     <source src="https://eltaurus-lt.github.io/CnC/LFF/Videos/L03ex.mp4" type="video/mp4">
-  </video> 
+  </video>
 
 
 
-  <h2 id="L04">Lesson 4</h2>
+  <h2 id="L05s">Lesson 5*</h2>
   <h3>Materials and rendering</h3>
   <div class="section">
-    <img src="../imgs/04D/L04.png">
+    <img src="../imgs/04D/L05s.png">
     <p>
-	PBR materials: physical foundations, principal BSDF, basic parameters, <i>Shader Nodes</i>. Lighting and camera settings, HDRI environment maps. Eevee and Cycles rendering engines, GPU setup.
+    PBR materials: physical foundations, <i>Principled BSDF</i>, basic parameters, <i>Shader Nodes</i>. Lighting and camera settings, HDRI environment maps. Eevee and Cycles rendering engines: mathematical foundations, GPU setup.
+PBR materials: physical foundations, basic parameters, <i>Shader Nodes</i>. Lighting and camera settings, HDRI environment maps. Eevee and Cycles rendering engines, GPU setup.
     </p>
   </div>
 
@@ -94,10 +144,32 @@
 
 
 
-  <h2 id="L05">Lesson 5*</h2>
-  <h3>Animation</h3>
-
+  <h2 id="Lss">Lesson **</h2>
+  <h3>Procedural geometry</h3>
   <div class="section">
+    <img class="todo" src="../imgs/04D/Lss.png">
+    <p>
+    <i>Geometry Nodes</i> modifier, basic nodes, stock node-based modifiers. Mesh instances, <i>Realize Instances</i> node. Loops and simulation zone, use for solving ODE and visualizing trajectories.
+    </p>
+  </div>
+
+  <fieldset class="downloads-block">
+    <legend>Downloads</legend>
+    <a class="dwld" href="04D/downloads/Procedural LEGO piece.blend" download title="example">Procedural LEGO piece.blend</a>
+  </fieldset>
+
+  <h3>Examples</h3>
+<br>
+  <video class="centerpiece" controls loop autoplay muted playsinline poster="">
+    <source src="https://eltaurus-lt.github.io/CnC/LFF/Videos/Strange Cattractor.mp4" type="video/mp4">
+  </video>
+
+
+
+
+  <h2 id="L05" class="todo off">Lesson 5*</h2>
+  <h3 class="todo off">Animation</h3>
+  <div class="section todo off">
     <img class="invis" src="../imgs/04D/L05s.webp">
     <p>
 	Keyframe animation, <i>Timeline</i> and <i>Graph Editor</i> panel (<a href="chapter-03.html#bezier">Bézier splines</a>). Importing animation keyframes and 3D meshes from Wolfram Mathematica.
@@ -109,14 +181,16 @@
 
 
 
-  <h2 id="Lss">Lesson **</h2>
-  <h3>Physics simulations and Scripting</h3>
-  <div class="section">
+  <h2 id="Lss" class="todo off">Lesson **</h2>
+  <h3 class="todo off">Physics simulations and Scripting</h3>
+  <div class="section todo off">
     <img class="invis" src="../imgs/04D/Lss.webp">
     <p>
-	Rigid-body simulations: body properties, <i>Rigid Body World</i> properties, initial conditions, constrains, baking. Liquid and gas simulations, Dynamic paint. Volumetric shaders. 
-	<br>
-	Procedural geometry with <i>Geometry Nodes</i>. <i>Drivers</i>. Visualizing trajectories with particles and with Geometry Nodes. *<i>Python Console</i> scripts.
+    Rigid-body simulations: body properties, <i>Rigid Body World</i> properties, initial conditions, constrains, baking. Liquid and gas simulations, Dynamic paint. Volumetric shaders. 
+    <br>
+    <i>Drivers</i>. Visualizing trajectories with particles.
+    <br>
+    *<i>Python Console</i> scripts.
     </p>
   </div>
 
