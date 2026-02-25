@@ -37,6 +37,8 @@
   <a class="button fwd" href="chapter-01.html">Start ⮞</a>
 </div>
 
+
+
   <h1>Program</h1>
 
 
@@ -50,10 +52,14 @@
     <img rnd="0" src="../imgs/program/1-wheel.gif">
     <img rnd="1" src="../imgs/program/1-ball.gif">
     <p>
-    Mathematical notation and special-character aliases. <i>Everything is an expression</i>: operators, functions, data structures. Symbolic computation principles.
-Patterns and replacement rules, variables and functions as global replacements. Functional programming, listable functions, higher-order functions. Localized replacement rules. Solving algebraic and differential equations. Plots, graphics, dynamic outputs and interactive expressions. Parametric animation and spline animation, exporting frame sequences. Converting expressions to and from LaTeX code, rendering formulae (MaTeX paclet).
+    Using mathematical notation, autoconversion to and from LaTeX. Operators, functions, and data structures as expressions. Symbolic computation principles and functional programming basics.
+    <br>
+    Solving algebraic and differential equations. Plots and graphics. Interactive expressions and parametric animation. Automated derivation of Lagrange equations. Numerical computations on a grid, procedural raster images.
+    <br>
+    *Native 3D graphics, generating and exporting 3D models. Spline animation. Raster image processing.
     </p>
   </div>
+
 
   <a class="section" href="chapter-02.html">
     <h3>2. Raster Graphics</h3>
@@ -63,9 +69,16 @@ Patterns and replacement rules, variables and functions as global replacements. 
     <img rnd="0" src="../imgs/program/2-wheel.gif">
     <img rnd="1" src="../imgs/program/2-ball.webp">
     <p>
-    Adobe Photoshop interface and document structure, shortcuts for navigation and layer manipulation directly from the document window. <i>Navigator</i>, <i>History</i>, <i>Layers</i>, and <i>Tools</i> panels. Drawing basics: <i>Brush</i> and <i>Eraser</i> tools, <i>Fill</i> options, plotting arrows. Changing image and canvas size, <i>Free Transform</i> mode. Selecting and cutting image regions, <i>Marquee</i> and <i>Polygonal Lasso</i> tools. Layer alignment and distribution. Nondestructive editing: <i>Masks</i>, <i>Vector masks</i>, and <i>Clipping masks</i>, <i>Smart objects</i>, <i>Paths</i>. Making use of RGB <i>Channels</i>. Brightness adjustments: <i>Curves</i> and <i>Levels</i> functions, <i>Adjustment Layers</i>, <i>Histogram</i>, <i>Dodge</i> and <i>Burn</i> tools. Retouching: <i>Stamp</i> and <i>Healing Brush</i> tools, <i>Content-Aware</i> <i>Fill</i>. Nonlinear history, <i>History Brush</i> tool. Assembling animations from frame sequences. Automation: <i>Actions</i> panel, <i>Batch</i> and <i>Variables</i> functions, scripting.
+    Photoshop document structure. Complying with print requirements, image resolution (<code>dpi</code>), raster image formats and compression. Cropping, resizing, and resampling images.
+    <br>
+    Basic drawing tools, layer transparency, <i>Fill</i> options. Selecting and cutting image fragments, image compositing. Brightness adjustments and color correction.
+    <br>
+    Exporting images with transparency to Wolfram Mathematica. Frame animation (<code>.gif</code>), assembling from image sequences.
+    <br>
+    *Retouching tools. Sharpening filters. Automating actions, batch processing, and scripting.
     </p>
   </div>
+
 
   <a class="section" href="chapter-03.html">
     <h3>3. Vector Graphics</h3>
@@ -76,46 +89,95 @@ Patterns and replacement rules, variables and functions as global replacements. 
     <img rnd="1" src="../imgs/program/3-cat.svg" style="background: white">
     <img rnd="2" src="../imgs/program/3-ball+cat.svg" style="background: white">
     <p>
-    Mathematical foundations, <i>Bézier curves</i>. Adobe Illustrator interface and document structure: similarities and differences with Adobe Photoshop, distinctions in the <i>Layers</i> panel, <i>Isolation mode</i>. Making and editing splines: <i>Pen</i> tool and its controls, inserting spline points, <i>Anchor Point</i> tool, joining splines. Compound paths: <i>Pathfinder</i> panel, <i>Shape Builder</i> tool, <i>Clipping Masks</i>. <i>Appearance</i> panel, dashing and arrowheads, <i>Expand Appearance</i>, selecting objects by properties and types. Text layers, text block threading, typing along splines, convertion to outlines. 
-Embedding external files, combining vector and raster images, linking between Illustrator and Photoshop, tracing raster images. Importing rendered LaTeX documents, dealing with font issues (font sources from CTAN, selectively replacing missing fonts, <i>Flatten Transparency</i>), in-place LaTeX expression rendering (plugin LaTeX2AI and scripts). Vector image formats, exporting as raster image.
+    Mathematical foundations, <i>Bézier curves</i>. Creating and editing vector paths, appearance settings, compound shapes. 
+    <br>
+    Combining raster and vector assets, live file links, importing <code>.pdf</code> files, dealing with font issues, appearance-preserving embedding. Vectorizing raster images. LaTeX expressions.
+    <br>
+    Gestalt principles in graphic design. Working with text blocks, character and paragraph settings. Poster layout, object alignment and distribution. Vector image formats, complying with print requirements, format conversion, exporting to raster formats.
     </p>
   </div>
 
 
 
-  <h2>Advanced chapters (alternative choice)</h2>
+  <h2>Advanced chapters</h2>
+
+
+  <a class="section" href="chapter-04D.html">
+    <h3>4. 3D Modeling</h3>
+    <h5>Blender</h5>
+  </a>
+  <div class="section">
+    <img rnd="0" class="" src="../imgs/program/4D-nut.gif">
+    <p>
+    Navigation in 3D space, <i>Viewport</i> shading modes. 3D mesh primitives and transform properties: location, rotation, and scale. Object parenting, active vs passive transformation. 
+    <br>
+    <i>Edit Mode</i>, manipulating indivisual verteces, edges, and faces of a polygonal object. Vertex normals and shading, dependence on mesh topology<!--, cleanup-->. Modifiers. Subdivision modeling: mathematical foundations, managing subdivision smoothing.
+    <br>
+    *Physically based rendering, material properties, physical foundations, shaders. Procedural geometry. Importing data from Wolfram Mathematica and LaTeX.
+    <br>
+    **Rigid-body and fluid simulations. Spline animation. Python scripts. 
+    </p>
+  </div>
+
 
   <a class="section" href="chapter-04A.html">
-    <h3>4A. 3D Graphics</h3>
+    <h3>5. 3D Animation</h3>
     <h5>Unreal Engine</h5>
   </a>
   <div class="section">
     <img rnd="0" src="../imgs/program/4A-wheel.webp">
     <img rnd="1" src="../imgs/program/4A-ball.webp">
     <p>
-    Unreal Engine interface: <i>Viewport</i> navigation and basic tools, <i>Outliner</i>, <i>Details</i>, and <i>Content Drawer</i> panels. Setup for low-end PC. Adding basic shapes and scene composition: left-handed coordinate system!, the order of Euler angles, object parenting. Keyframe animation (Bézier splines), <i>Sequencer</i> panel, <i>Movie Render Queue</i> plugin, render settings for high-quality video. <i>Actors</i>, programming with <i>Blueprints</i>, real-time physics simulations. Importing animation keyframes, table data, and 3D meshes from Wolfram Mathematica. Importing LaTeX expressions via Adobe Illustrator, <i>Widgets</i>, 2D and 3D rendering of text and imported formulae. Trajectory visualization with <i>Niagara</i>. Materials: basic properties, <i>Blueprints</i>, <i>Material Instances</i>. Lighting and camera settings, <i>Post Process Volume</i>, HDRI environment maps.
-Native 3D graphics in Wolfram Mathematica: materials and lighting, generating and exporting 3D meshes.
+    <i>Viewport</i> navigation, adding primitives and importing 3D models, basic tools for scene composition. Spline (keyframe) animation. Importing data from Wolfram Mathematica and LaTeX.
+    <br>
+    Programming with <i>Blueprint</i>s, mechanical systems and constraints, real-time ODE integration. Trajectory visualization.
+    <br>
+    Optimizing settings for low-end PCs. High-quality video rendering: export settings, <i>Pathtracer</i>, physically based materials, lighting and camera setup.
+    <br>
+    *Native Unreal Engine physics, mathematical modelling on GPU using <i>Material Bluerprints</i>, interactive visualizations.
     </p>
   </div>
 
+
   <a class="section" href="chapter-04B.html">
-    <h3>4B. Generative Neural Networks</h3>
+    <h3>6. Generative Neural Networks</h3>
     <h5>Stable Diffusion</h5>
   </a>
   <div class="section">
     <img rnd="0" src="../imgs/program/4B-wheel.gif">
     <img rnd="1" src="../imgs/program/4B-cat.webp">
     <p>
-    Reducing problems to functions, arbitrary function construction, the Universal Approximation Theorem. Forward pass and backpropagation in a classification neural network. Training: loss function, gradient descent, stochastic gradient descent. Interpretability, convolutional neural networks (CNN), U-Net. Neural networks for image and video restoration: training data synthesis, available implementations. 
-Image generation: reverse classifiers and generative adversarial networks (GAN), mode collapse. Autoencoders: training data synthesis, compression, latent space and generalized coordinates, variational autoencoders (VAE).
-Diffusion models: full image space and target distribution, forward process and <i>Schedule types</i>, reverse process and <i>Sampling methods</i> (ODE solvers), differential equation, step size (<i>Sampling steps</i>). Unguided vs guided generation, image-text cross attention, classifier-free guidance (<i>CFG</i>) <i>scale</i>, Control Net.
-Latent diffusion, Stable Diffusion (SD) 1.5 and interfaces (Automatic1111, ComfyUI, InvokeAI, Fooocus, Google Colab).
-Generation from source images (<i>img2img</i>), <i>inpainting</i>, diffusion models for image restoration.
+    Machine learning basics: reducing problems to functions, neural networks as universal approximators. Coding a neural network from scratch: loss function, stochastic gradient descent, deriving backpropagation equations. Image and video restoration: training data synthesis, available implementations. 
+    <br>
+    Mathematical foundations of diffusion image generation: image space and target manifold, training data synthesis with diffusion<!--<i>Schedule types</i>-->, reverse diffusion and ODE solvers (<i>Samplers</i>)<!--step size (<i>Sampling steps</i>)-->, mode collapse and stochastic samplers. Unguided vs guided generation, image-text cross attention, classifier-free guidance (<i>CFG</i>) <i>scale</i>. Variational autoencoders (<i>VAE</i>), data compression, latent diffusion. <!--training data synthesis, latent space and generalized coordinates-->
+    <br>
+    Application: Stable Diffusion, interfaces (Automatic1111, ComfyUI, …), generation based on initial images (<i>img2img</i>), <i>inpainting</i>, diffusion for image restoration, integration with Adobe Photoshop. 
+    <br>
+    *Fine-tuning, Low-Rank Adaptations (<i>LoRA</i>), extra conditioning (<i>Control Net</i>). Interpretability. Convolutional Neural Networks (<i>CNN</i>), <i>U-Net</i> architecture, generative adversarial networks (<i>GAN</i>).
+    </p>
+  </div>
+
+
+
+  <h2>Extra chapters</h2>
+
+
+  <a class="section" href="chapter-01^.html">
+    <h3>1*. Animation and Motion Design</h3>
+    <h5>Adobe After Effects</h5>
+  </a>
+  <div class="section">
+    <img src="../imgs/program/1^-birb.webp">
+    <p>
+    Adobe After Effects interface: <i>Project</i>, <i>Composition</i>, <i>Timeline</i>, and <i>Preview</i> panels, accessing <i>History</i>. Importing video, frame sequences, raster and vector images. Layers: raster, vector, text, compositions. Layer properties, <i>Transform</i>, reference frames and parenting, <i>Null Objects</i>. Effects, <i>Effect Controls</i> panel, adjustment layers. Tween animation (Bézier splines), temporal interpolation, <i>Graph Editor</i>, animating with <i>Pen</i> tool. 
+Expressions, <i>pick whip</i>, JavaScript basics, After Effects Object Model, <i>Expression Controls</i>. Scripts and Plugins.
+Composition settings, Motion blur, and Frame Blending. <i>Render Queue</i> and export settings. Importing animation keyframe tables from Wolfram Mathematica.
+3D graphical elements, right- and left-handed coordinates, <i>Space Transforms</i>, 3D rotation properties, <i>lookAt</i> method. Text and vector layer extrusion, Camera and Light layers, material properties.
     </p>
   </div>
 
   <a class="section" href="chapter-04C.html">
-    <h3>4C. Web and Interactive Design</h3>
+    <h3>2*. Web and Interactive Design</h3>
     <h5>HTML + CSS + JavaScript</h5>
   </a>
   <div class="section">
@@ -135,33 +197,15 @@ Rendering LaTeX expressions (MathJax library).
     </p>
   </div>
 
-  <a class="section" href="chapter-04D.html">
-    <h3>4D. 3D Modeling</h3>
-    <h5>Blender</h5>
-  </a>
-  <div class="section">
-    <img rnd="0" class="" src="../imgs/program/4D-nut.gif">
-    <p>
-	General interface: opening, closing, switching, and rearranging panels, <i>Outliner</i> and <i>Properties</i> panels. <i>Viewport</i> panel: navigation, modes, display regimes, overlays. Adding and manipulating objects: <i>N-Panel</i>, gizmos, shortcuts. Object rotation: Euler angles vs quaternions, geometry origin and pivot point, <i>3D-cursor</i>.
-	Object modeling: <i>Array</i>, <i>Bevel</i>, and <i>Boolean</i> modifiers, shading methods. 
-	Manipulating indivisual verteces, edges, and faces. Extrude and inset, join and fill, inserting and selecting edge loops. Delete vs dissolve vs merge.
-	SubD modeling: B-splines, <i>Subdivision</i> modifier, topology cleanup.
-	PBR materials: physical foundations, basic parameters, <i>Shader Nodes</i>. Lighting and camera settings, HDRI environment maps. Eevee and Cycles rendering engines, GPU setup. 
-<br>
-*Keyframe animation, <i>Timeline</i> and <i>Graph Editor</i> panel. Importing animation keyframes and 3D meshes from Wolfram Mathematica, importing and animating LaTeX expressions.
-<br>
-**Rigid-body and fluid simulations. Scripting, <i>Drivers</i>, <i>Geometry Nodes</i>, trajectory visualization. 
-    </p>
-  </div>
 
   <a class="section" href="chapter-04E.html">
-    <h3>4E. Shaders</h3>
+    <h3>3*. Shaders</h3>
     <h5>GLSL</h5>
   </a>
   <div class="section">
     <img rnd="0" src="../imgs/program/4D-wing.gif">
     <p>
-    Special aspects of real-time GPU simulations and rendering, graphical pipeline. GLSL basics: program structure, variable types, function declarations. Functional paradigm and polymorphism. 
+    Aspects of real-time GPU simulations and rendering, graphical pipeline. GLSL basics: program structure, variable types, function declarations. Functional paradigm and polymorphism. 
 <!-- no recursion, no rng, no complex data structures -->
 Coordinate system: drawing gradients, disks, and circles. Vectors, matrices and other data structures, swizzling. Build-in mathematical functions, interpolation. Drawing complex shapes, 2D signed-distance function (SDF), straight-line segments, dashing.
 Time-dependent animations, ODE solvers.
@@ -172,24 +216,11 @@ Exporting animation frames into files.
   </div>
 
 
-  <h2>Extra chapters (on demand)</h2>
+  <h2>Extra theory</h2>
 
-  <a class="section" href="chapter-01^.html">
-    <h3>1*. Animation and Motion Design</h3>
-    <h5>Adobe After Effects</h5>
-  </a>
-  <div class="section">
-    <img src="../imgs/program/1^-birb.webp">
-    <p>
-    Adobe After Effects interface: <i>Project</i>, <i>Composition</i>, <i>Timeline</i>, and <i>Preview</i> panels, accessing <i>History</i>. Importing video, frame sequences, raster and vector images. Layers: raster, vector, text, compositions. Layer properties, <i>Transform</i>, reference frames and parenting, <i>Null Objects</i>. Effects, <i>Effect Controls</i> panel, adjustment layers. Tween animation (Bézier splines), temporal interpolation, <i>Graph Editor</i>, animating with <i>Pen</i> tool. 
-Expressions, <i>pick whip</i>, JavaScript basics, After Effects Object Model, <i>Expression Controls</i>. Scripts and Plugins.
-Composition settings, Motion blur, and Frame Blending. <i>Render Queue</i> and export settings. Importing animation keyframe tables from Wolfram Mathematica.
-3D graphical elements, right- and left-handed coordinates, <i>Space Transforms</i>, 3D rotation properties, <i>lookAt</i> method. Text and vector layer extrusion, Camera and Light layers, material properties.
-    </p>
-  </div>
 
   <a class="section" href="chapter-02^.html">
-    <h3>2*. Graphic Design and Page Layout</h3>
+    <h3>4*. Graphic Design and Page Layout</h3>
     <h5>Microsoft PowerPoint | Adobe InDesign</h5>
   </a>
   <div class="section">
@@ -203,8 +234,9 @@ Interactive elements, dynamic references, animation and transitions, layer namin
     </p>
   </div>
 
+
   <a class="section" href="chapter-03^.html">
-    <h3>3*. Color Theory</h3>
+    <h3>5*. Color Theory</h3>
     <h5></h5>
   </a>
   <div class="section">
@@ -222,7 +254,7 @@ Color decomposition, combination with frequency (wavelet) decomposition, applica
   </div>
 
   <a class="section" href="chapter-04^.html">
-    <h3>4*. Procedural Generation Algorythms</h3>
+    <h3>6*. Procedural Image Processing and Generation</h3>
     <h5></h5>
   </a>
   <div class="section">
@@ -236,7 +268,7 @@ Reaction-diffusion patterns.
   </div>
 
   <a class="section" href="chapter-05^.html">
-    <h3>5*. 3D Programming Fundamentals</h3>
+    <h3>7*. 3D Graphics</h3>
     <h5>GLSL | Wolfram Mathematica</h5>
   </a>
   <div class="section">
