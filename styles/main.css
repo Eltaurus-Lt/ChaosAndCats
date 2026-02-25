@@ -105,17 +105,34 @@ body:not([rnd="2"]) [rnd="2"] {
     font-size: 13px;
 }
 
+.header .button.fwd::after,
+.header .button.bck::before,
 .header .button.prg::before {
     width: .8em;
     height: .8em;
     display: inline-block;
 
-    margin-right: .4em;
-
     content: "";
     clip-path: polygon(92% 100%, 50% 82%, 8% 100%, 50% 0%);
     background-color: var(--text-col);
 }
+.header .button.fwd::after {
+    margin-left: .4em;
+    rotate: 90deg;
+}
+.header .button.bck::before,
+.header .button.prg::before {
+    margin-right: .4em;
+}
+.header .button.bck::before {
+    rotate: -90deg;
+}
+.header .button.fwd::after,
+.header .button.bck::before {
+    margin-bottom: -.1em;
+}
+
+
 
 #language-selector {
     padding-top: .3em;
