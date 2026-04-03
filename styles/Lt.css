@@ -17,12 +17,14 @@
   opacity: .25;
 }
 
+.pane.Lt-link-container > .Lt-link::after,
 .pane.Lt::after {
   right: 1em;
   bottom: 1em;
 }
 
 .Lt-link::after {
+  /* position: fixed; */
   opacity: .5;
 }
 .Lt-link:hover::after {
