@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta property="og:title" content="Хаос и Котики" />
+  <meta property="og:description" content="научная визуализация и дизайн" />
+  <meta property="og:image" content="../imgs/splash.png" />
+  <meta property="og:type" content="website" />
+
+  <title>4A. Интерактивная графика и веб-дизайн</title>
+  <meta name="author" content="Eltaurus">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/svg+xml" href="">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/chapterStyles.css">
+</head>
+<body>
+<div class="header">
+  <a class="button bck" href="chapter-04A.html">Назад</a>
+  <a class="button prg" href="program.html">Программа</a>
+  <select id="language-selector">
+    <option lang="ru" value="ru">Rus</option>
+    <option lang="en" value="en">Eng</option>
+  </select>
+  <a class="off" href="../eng/chapter-04C.html">rus</a>
+  <a class="button fwd" href="chapter-04E.html">Вперед</a>
+</div>
+
+
+
+  <h1>Интерактивная графика и веб-дизайн</h1>
+
+
+  <h2 id="L01">Семинар 1</h2>
+  <h3>Основы HTML и CSS</h3>
+
+  <div class="section">
+    <div class="iframe-container">
+      <iframe class="iframe-content square" src="../imgs/04C/html.html"></iframe>
+    </div>
+    <p>
+      Язык разметки HTML: тэги, аттрибуты, сравнение с LaTeX. Аттрибут стиля и базовые свойства. Верстка формул при помощи MathJax.
+      <br>
+      Каскадные таблицы стилей CSS, тэг <code>&lt;style&gt;</code>, селекторы тегов и классов, наследование правил, специфичность.
+      <br>
+      Блочная модель: содержимое, внутренние и внешние отступы, граница. Сокращённые свойства. Свойства <code>display</code> и <code>position</code>, группа свойств <code>inset</code>. Абсолютные и относительные единицы измерения размеров.
+      <br>
+      *Селекторы по <code>id</code> и значениям аттрибутов, комбинаторы. Свойство <code>transform</code>.
+    </p>
+  </div>
+
+  <fieldset class="downloads-block">
+    <legend>Материалы</legend>
+    <a class="dwld" href="../en/04C/downloads/template.html" download title="шаблон">template.html</a>
+    <a class="dwld" href="../en/04C/downloads/Poster.html" download title="пример">Poster.html</a>
+  </fieldset>
+
+  <h2 id="L02">Семинар 2</h2>
+  <h3>JavaScript</h3>
+
+  <div class="section">
+    <div class="iframe-container">
+      <iframe class="iframe-content square" src="../imgs/04C/JS.html"></iframe>
+    </div>
+    <p>
+      Основы синтаксиса языка: переменные, циклы, ветвления, функции. Сравнение с C, Python и <a href="chapter-01.html#L01">Wolfram</a>. Типы данных: числа, строки, массивы, множества, отображения. Консоль разработчика в браузере, метод <code>console.log()</code>.
+      <br>
+      Связка с HTML: тэг <code>&lt;script&gt;</code>, DOM, методы <code>.querySelector</code> и <code>.querySelectorAll</code>.
+      <br>
+      Аттрибут <code>onclick</code>, обработчики событий.
+      <br>
+      *Планировщики выполнения <code>setTimeout</code>, <code>setInterval</code> и <code>requestAnimationFrame</code>.
+    </p>
+  </div>
+
+  <h2>Семинар 3</h2>
+  <h3>Векторная графика и анимация</h3>
+
+  <div class="section">
+    <div class="iframe-container" style="background: white">
+      <iframe class="iframe-content square" src="../iframes/wheel.html" style="width: 450px; height: 450px; scale: 47.5%"></iframe>
+    </div>
+    <p>
+    
+    </p>
+  </div>
+
+  <h2>Семинар 4</h2>
+  <h3>Математическое моделирование и графики</h3>
+
+  <div class="section">
+    <div class="iframe-container">
+      <iframe class="centerpiece" src="../../SquirrelsAndSpace/pLTlib/test_plot.html" onload="window.addEventListener('message', e=>{if(e.source===this.contentWindow && e.data && e.data.type==='embed-height'){this.style.height=e.data.height+'px';}});"></iframe>
+    </div>
+    <p>
+      Фреймворк <a href="../../SquirrelsAndSpace/pLTlib/Readme.html" target="_blank">pLTlib</a>: структура документа, базовые графики, настройка стилей, динамические вычисления, встроенные математические методы.
+      <br>
+      Встраивание веб-страниц при помощи тега <code>&lt;iframe&gt;</code>.
+    </p>
+  </div>
+
+  <h2>Семинар 5*</h2>
+  <h3>Хостинг веб-страниц и основы Git</h3>
+
+  <div class="section">
+    <div class="iframe-container" style="background: black">
+    </div>
+    <p>
+      Ссылки на внешние стили, скрипты и изображения. 
+    </p>
+  </div>
+
+  <h2>Семинар 6*</h2>
+  <h3>Растровая графика в HTML</h3>
+
+  <script src="../scripts/main.js"></script>
+</body>
+</html>
