@@ -1,7 +1,8 @@
 /* language selector */
-const languageSet = new Set(['en', 'ru']);
-
 const languageSelector = document.getElementById("language-selector");
+
+const languageSet = new Set([...languageSelector.children].map(L=>L.value));
+
 languageSelector.value = currentLanguage();
 languageSelector.addEventListener("change", changeLanguage);
 
