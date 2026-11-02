@@ -5,6 +5,7 @@
 
 
 :root {
+    color-scheme: light dark;
     --accent-col: #884fd0;
 
     --section-col: #eee;white;
@@ -22,6 +23,9 @@
     --maxwidth: 860px;
     
     --body-pad: 1em;
+}
+@media (prefers-color-scheme: dark) {
+  /* opera patch */
 }
 @media (min-width: 500px) {
     :root {
@@ -197,9 +201,13 @@ body {
     color: var(--text-col);
 }
 
+body:lang(ja) {
+    font-family: "Source Serif 4", "Noto Sans JP", YuGothic, sans-serif;
+}
+
 
 h1, h2, h3, h4, h5 {
-    font-family: "Noto Sans", Arial, sans-serif;
+    font-family: "Noto Sans", "Noto Sans JP", Arial, sans-serif;
 }
 
 h1 {
@@ -511,12 +519,12 @@ button.btn.wide {
 divider {
     background: var(--border-col);
     flex: 0 0 auto;
-} 
+}
 .split.h > divider {
     height: 4px;
     width: 100%;
     cursor: row-resize;
-} 
+}
 .split.v > divider {
     width: 4px;
     height: 100%;
