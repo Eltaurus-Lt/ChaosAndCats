@@ -146,6 +146,7 @@ ol, ul {
     [href$='.blend'],
     [href$='.aep'],
     [href$='.pptx'],
+    [href$='.html'],
 ) {
     padding-left: 2em;
 }
@@ -189,4 +190,7 @@ ol, ul {
 }
 .downloads-block a[href$='.pptx']::after {
     background-image: url("../imgs/file_icons/pptx.png");
+}
+.downloads-block a[href$='.html']::after {
+    background-image: url("../imgs/file_icons/html.png");
 }
