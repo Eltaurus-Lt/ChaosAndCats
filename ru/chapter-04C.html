@@ -13,6 +13,7 @@
   <title>4A. Интерактивная веб визуализация</title>
   <meta name="author" content="Eltaurus">
 
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="icon" type="image/svg+xml" href="">
   <link rel="stylesheet" href="../styles/main.css">
@@ -43,13 +44,13 @@
       <iframe class="iframe-content square" src="../imgs/04C/html.html"></iframe>
     </div>
     <p>
-      Язык разметки HTML: тэги, атрибуты, сравнение с LaTeX. Атрибут стиля и базовые свойства. Верстка формул при помощи MathJax.
+      Язык разметки HTML: тэги, атрибуты, сравнение с LaTeX. Атрибут стиля и базовые свойства. Верстка формул с MathJax.
       <br>
-      Каскадные таблицы стилей CSS, тэг <code>&lt;style&gt;</code>, селекторы тегов и классов, наследование правил, специфичность.
+      Каскадные таблицы стилей CSS, тэг <code>&lt;style&gt;</code>, селекторы тегов и классов, наследование свойств, специфичность.
       <br>
-      Блочная модель: содержимое, внутренние и внешние отступы, граница. Сокращённые свойства. Свойства <code>display</code> и <code>position</code>, группа свойств <code>inset</code>. Абсолютные и относительные единицы измерения размеров.
+      Блоковая модель: содержимое, внутренние и внешние отступы, граница<!-- +outline -->. Сокращённые свойства. Свойства <code>display</code> и <code>position</code>, группа свойств <code>inset</code>. Единицы измерения длины, абсолютные и относительные единицы.
       <br>
-      *Селекторы по <code>id</code> и значениям атрибутов, комбинаторы. Свойство <code>transform</code>.
+      *Селекторы по <code>id</code> и значениям атрибутов, комбинаторы, псевдоклассы и псевдообъекты. Макеты <code>flexbox</code> и <code>grid</code>.
     </p>
   </div>
 
@@ -59,6 +60,7 @@
     <a class="dwld" href="../en/04C/downloads/Poster.html" download title="пример">Poster.html</a>
   </fieldset>
 
+
   <h2 id="L02">Семинар 2</h2>
   <h3>JavaScript</h3>
 
@@ -67,15 +69,16 @@
       <iframe class="iframe-content square" src="../imgs/04C/JS.html"></iframe>
     </div>
     <p>
-      Основы синтаксиса языка: переменные, циклы, ветвления, функции. Сравнение с C, Python и <a href="chapter-01.html#L01">Wolfram</a>. Типы данных: числа, строки, массивы, множества, отображения. Консоль разработчика в браузере, метод <code>console.log()</code>.
+      Основы синтаксиса языка: переменные, циклы, ветвления, функции. Сравнение с C, Python и <a href="chapter-01.html#L01">Wolfram</a>. Типы данных: числа, строки, массивы, множества, отображения. Браузерная консоль разработчика, метод <code>console.log()</code>.
       <br>
-      Связка с HTML: тэг <code>&lt;script&gt;</code>, DOM, методы <code>.querySelector</code> и <code>.querySelectorAll</code>.
+      Связка с HTML: тэг <code>&lt;script&gt;</code>, структура объектов документа (DOM), методы <code>.querySelector</code> и <code>.querySelectorAll</code>.
       <br>
-      Атрибут <code>onclick</code>, обработчики событий.
+      Интерактивность: атрибут <code>onclick</code>, базовые элементы интерфейса, обработчики событий. <!--  кнопки, ползунки, галочки, выпадающие списки -->
       <br>
-      *Планировщики выполнения <code>setTimeout</code>, <code>setInterval</code> и <code>requestAnimationFrame</code>.
+      *Планировщики выполнения <code>setTimeout</code> и <code>setInterval</code>.
     </p>
   </div>
+
 
   <h2>Семинар 3</h2>
   <h3>Векторная графика и анимация</h3>
@@ -85,13 +88,14 @@
       <iframe class="iframe-content square" src="../iframes/wheel.html" style="width: 450px; height: 450px; scale: 47.5%"></iframe>
     </div>
     <p>
-      Стандарт SVG. Задание параметров внешнего вида при помощи атрибутов и при помощи CSS. Тэг <code>&lt;path&gt;</code> и <a href="chapter-03.html#bezier">атрибут <code>d</code></a>.
+      Формат SVG, атрибуты внешнего вида и атрибуты представления (CSS). Тэг <code>&lt;path&gt;</code> и синтаксис атрибута <code>d</code>. Структура документа, тэги <code>&lt;g&gt;</code>, <code>&lt;def&gt;</code> и <code>&lt;use&gt;</code>. Встраивание векторных изображений из <a href="chapter-03.html#illustrator">Adobe Illustrator</a>.
       <br>
-      Встраивание векторных изображений из <a href="chapter-03.html#illustrator">Adobe Illustrator</a>.
+      CSS переходы (<code>transition</code>) и анимация по ключевым кадрам (<code>@keyframes</code>), параметры интерполяции. Свойство <code>transform</code>. Пользовательские свойства (CSS переменные).
       <br>
-      CSS анимация при помощи <code>@keyframes</code>. *SVG тэг <code>&lt;animate&gt;</code>.
+      *SVG тэги <code>&lt;animate&gt;</code> и <code>&lt;set&gt;</code>.
     </p>
   </div>
+
 
   <h2>Семинар 4</h2>
   <h3>Математическое моделирование и графики</h3>
@@ -101,7 +105,7 @@
       <iframe class="centerpiece" src="../../SquirrelsAndSpace/pLTlib/test_plot.html" onload="window.addEventListener('message', e=>{if(e.source===this.contentWindow && e.data && e.data.type==='embed-height'){this.style.height=e.data.height+'px';}});"></iframe>
     </div>
     <p>
-      Фреймворк <a href="../../SquirrelsAndSpace/pLTlib/Readme.html" target="_blank">pLTlib</a>: структура документа, базовые графики, настройка стилей, динамические вычисления, встроенные математические методы.
+      Библиотека <a href="../../SquirrelsAndSpace/pLTlib/Readme.html" target="_blank">pLTlib</a>: структура документа, идиоматика, настройка стилей, динамические вычисления, встроенные математические методы. Шаблоны и паттерны базовых графиков.
       <br>
       Встраивание веб-страниц при помощи тега <code>&lt;iframe&gt;</code>.
     </p>
@@ -120,7 +124,7 @@
   <div class="section">
     <img src="../imgs/04C/L05.svg" style="background: white">
     <p>
-      Ссылки на внешние стили, скрипты и изображения. Атрибут <code>defer</code>.
+      Ссылки на внешние стили, скрипты и изображения в HTML, атрибут <code>defer</code>.
       <br>
       Создание репозитория на GitHub, хостинг веб-страниц через GitHub Pages, структура репозитория, деплоймент через GitHub Actions. Загрузка и редактирование файлов.
       <br>
@@ -132,6 +136,17 @@
 
   <h2>Семинар 6*</h2>
   <h3>Растровая графика в HTML</h3>
+
+  <div class="section">
+    <img style="background: white">
+    <p>
+      Контейнер <code>&lt;canvas&gt;</code>, базовые методы для задания стиля и отрисовки графических примитивов, вставка растровых изображений. Составные пути: метод <code>.beginPath</code> и методы добавления сегментов, сравнение с форматом SVG. Прозрачность и режимы наложения (<code>.globalCompositeOperation</code>).
+      <br>
+      Анимация: метод <code>requestAnimationFrame</code>, очистка холста.
+      <br>
+      *SVG фильтры. Связка с GLSL шейдерами.
+    </p>
+  </div>
 
   <script src="../scripts/main.js"></script>
 </body>
