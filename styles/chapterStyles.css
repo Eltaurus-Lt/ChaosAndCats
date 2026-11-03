@@ -143,6 +143,7 @@ ol, ul {
     [href$='.pdf'],
     [href$='.psd'],
     [href$='.ai'],
+    [href$='.obj'],
     [href$='.blend'],
     [href$='.aep'],
     [href$='.pptx'],
@@ -184,6 +185,9 @@ ol, ul {
 }
 .downloads-block a[href$='.blend']::after {
     background-image: url("../imgs/soft_icons/blender.png");
+}
+.downloads-block a[href$='.obj']::after {
+    background-image: url("../imgs/file_icons/obj.png");
 }
 .downloads-block a[href$='.aep']::after {
     background-image: url("../imgs/file_icons/aep.png");
